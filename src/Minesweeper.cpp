@@ -133,9 +133,9 @@ void Minesweeper::doItFlag(int x,int y) {
 		mines[x][y]=mines[x][y]+10;
 		cout << "flagged it";
 	}else if (mines[x][y]/10==1){
-		cout << "it's flagged already";
+		cout << "it's flagged already" <<endl;
 	}else{
-		cout << "it's open cant be flagged";
+		cout << "it's open cant be flagged" <<endl;
 		//it is already open
 	}
 }
@@ -158,7 +158,7 @@ void Minesweeper::openTheActualCell(int x,int y) {
 	}else if (mines[x][y]/10==1){
 		mines[x][y]=mines[x][y]+10;
 	}else{
-		cout << "it' open already";
+		cout << "it' open already" <<endl;
 		//it is already open
 	}
 }
@@ -166,6 +166,7 @@ void Minesweeper::openTheActualCell(int x,int y) {
 /**
  *	checks if there are neighbours to be opened
  *	opens them
+ *	and call its self for every neighbour which was opened
  */
 void Minesweeper::openNeighboursRec(int x,int y) {
 	for (int i = -1; i < 2; i += 1) {
@@ -189,10 +190,10 @@ void Minesweeper::rightClickAction(int x,int y) {
 	if(mines[x][y]/10!=2){//if it is not open
 		if(mines[x][y]/10!=1){//if it is not flagged
 			doItFlag(x,y);
-			cout << "flagged";
+			cout << "flagged" <<endl;
 		}else{//it is flagged
 			removeFlag(x,y);
-			cout << "remove flag";
+			cout << "remove flag" <<endl;
 		}
 	}
 }
