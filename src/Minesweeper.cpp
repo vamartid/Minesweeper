@@ -164,14 +164,18 @@ void Minesweeper::openTheActualCell(int x,int y) {
 }
 
 /**
- *
+ *	checks if there are neighbours to be opened
+ *	opens them
  */
 void Minesweeper::openNeighboursRec(int x,int y) {
 	for (int i = -1; i < 2; i += 1) {
-			for (int j = -1; j < 2; j += 1) {
-				if ((x+i >= 0)&&(x+i <= height-1) && (y+j >= 0)&&(y+j <= width-1)) {
-					if ((mines[x+i][y+j] == 0)) {
+		for (int j = -1; j < 2; j += 1) {
+			if ((x+i >= 0)&&(x+i <= height-1) && (y+j >= 0)&&(y+j <= width-1)) {
+				if (mines[x+i][y+j]/10!=2){//it is not open
+					mines[x+i][y+j]=mines[x+i][y+j]+20;
+					if (mines[x+i][y+j]%10==0) {
 						openNeighboursRec(x+i,y+j);
+					}
 				}
 			}
 		}
