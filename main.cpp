@@ -12,7 +12,7 @@
 using namespace std;
 
 int main (int argc, char const* argv[]) {
-	int chooseDifficulty = 3;
+	int chooseDifficulty = 0;
 	int stX, stY, stB;
 	switch (chooseDifficulty) {
 	case 0: 
@@ -79,44 +79,6 @@ int main (int argc, char const* argv[]) {
 	}
 	table -> print();
 
-	cout << "give x" <<endl;
-	cin >> a;
-	cout << "give y" <<endl;
-	cin >> b;
-	cout << "choose" <<endl;
-	cin >> choose;
-	if ( choose== 1) { //check if next character is newline
-		table->rightClickAction(a,b); //and assign the default
-	} else if (choose == 2) { //be sure to handle invalid input
-		table->leftClickAction(a,b);
-	}
-	table -> print();
-
-	cout << "give x" <<endl;
-	cin >> a;
-	cout << "give y" <<endl;
-	cin >> b;
-	cout << "choose" <<endl;
-	cin >> choose;
-	if ( choose== 1) { //check if next character is newline
-		table->rightClickAction(a,b); //and assign the default
-	} else if (choose == 2) { //be sure to handle invalid input
-		table->leftClickAction(a,b);
-	}
-	table -> print();
-
-	cout << "give x" <<endl;
-	cin >> a;
-	cout << "give y" <<endl;
-	cin >> b;
-	cout << "choose" <<endl;
-	cin >> choose;
-	if ( choose== 1) { //check if next character is newline
-		table->rightClickAction(a,b); //and assign the default
-	} else if (choose == 2) { //be sure to handle invalid input
-		table->leftClickAction(a,b);
-	}
-	table -> print();
 	delete table;
 	return 0;
 }
