@@ -14,28 +14,28 @@
 using namespace std;
 
 class Minesweeper {
-	private:
-		int width;
-		int height;
-		int mineCounter;
-		int ** mines;
-	public:
-		Minesweeper(int, int, int);
-		~Minesweeper();
-		void bombGenerator(int ,int);
-		bool checkPlacement(int , int ,int ,int );
-		void numberPlacement(int, int);
+private:
+	int width;
+	int height;
+	int mineCounter;
+	int ** mines;
+public:
+	Minesweeper(int, int, int);
+	~Minesweeper();
+	void bombGenerator(int, int);
+	bool checkPlacement(int, int, int, int);
+	void numberPlacement(int, int);
 
-		void doItFlag(int, int);
-		void removeFlag(int, int);
-		void openTheActualCell(int, int);
-		void openNeighboursRec(int ,int);
+	void doItFlag(int, int);
+	void removeFlag(int, int);
+	void openTheActualCell(int, int);
+	void openNeighboursRec(int, int);
 
-		void rightClickAction(int, int);
-		void leftClickAction(int, int);
+	void rightClickAction(int, int);
+	void leftClickAction(int, int);
 
-		void print();
-		void print2(int, int);
+	void print();
+	void print2(int, int);
 };
 
 #endif

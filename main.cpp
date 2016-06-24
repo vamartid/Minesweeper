@@ -11,9 +11,11 @@
 
 using namespace std;
 
-int main (int argc, char const* argv[]) {
+int main(int argc, char const* argv[]) {
 	int chooseDifficulty = 0;
-	int stX, stY, stB; 
+//	cout << "set difficulty 0, 1, 2"<< endl;
+//	cin >> chooseDifficulty;
+	int stX, stY, stB;
 	switch (chooseDifficulty) {
 	case 0: // = ez
 		stX = 8;
@@ -32,52 +34,52 @@ int main (int argc, char const* argv[]) {
 		break;
 	default: // = costum
 		do {
-			cout << "give height" <<endl;
+			cout << "give height" << endl;
 			cin >> stX;
 		} while (stX < 4);
 		do {
-			cout << "give width" <<endl;
+			cout << "give width" << endl;
 			cin >> stY;
 		} while (stY < 4);
 		do {
-			cout << "give bombs" <<endl;
+			cout << "give bombs" << endl;
 			cin >> stB;
-		} while (stB >= stX*stY-9);
+		} while (stB >= stX * stY - 9);
 		break;
 	}
-	Minesweeper *table = new Minesweeper(stX,stY,stB); // init table
-	int fsX=2; // starting potition is (2, 2)
-	int fsY=2;
-	table -> bombGenerator(fsX,fsY); // generate table
-	table -> print2(fsX,fsY);
-	cout << "give x" <<endl;
+	Minesweeper *table = new Minesweeper(stX, stY, stB); // init table
+	int fsX = 2; // starting position is (2, 2)
+	int fsY = 2;
+	table->bombGenerator(fsX, fsY);
+	table->print2(fsX, fsY);
+	cout << "give x" << endl;
 	int a;
 	cin >> a;
-	cout << "give y" <<endl;
+	cout << "give y" << endl;
 	int b;
 	cin >> b;
-	cout << "choose" <<endl;
+	cout << "choose" << endl;
 	int choose;
 	cin >> choose;
-	if ( choose== 1) { //check if next character is newline
-		table->rightClickAction(a,b); //and assign the default
+	if (choose == 1) { //check if next character is newline
+		table->rightClickAction(a, b); //and assign the default
 	} else if (choose == 2) { //be sure to handle invalid input
-		table->leftClickAction(a,b);
+		table->leftClickAction(a, b);
 	}
-	table -> print();
+	table->print();
 
-	cout << "give x" <<endl;
+	cout << "give x" << endl;
 	cin >> a;
-	cout << "give y" <<endl;
+	cout << "give y" << endl;
 	cin >> b;
-	cout << "choose" <<endl;
+	cout << "choose" << endl;
 	cin >> choose;
-	if ( choose== 1) { //check if next character is newline
-		table->rightClickAction(a,b); //and assign the default
+	if (choose == 1) { //check if next character is newline
+		table->rightClickAction(a, b); //and assign the default
 	} else if (choose == 2) { //be sure to handle invalid input
-		table->leftClickAction(a,b);
+		table->leftClickAction(a, b);
 	}
-	table -> print();
+	table->print();
 
 	delete table;
 	return 0;
