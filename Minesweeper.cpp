@@ -94,17 +94,9 @@ void Minesweeper::print() {
 bool Minesweeper::checkPlacement(int x1, int y1,int x,int y) {
 	for (int i = -1; i < 2; i += 1) {
 		for (int j = -1; j < 2; j += 1) {
-			// check if cells between borders
 			if ((x+i >= 0)&&(x+i <= height-1) && (y+j >= 0)&&(y+j <= width-1)) {
-				if ((x+i == x1) && (y+j == y1)) { // check if starting cell
-					for (int ii = -1; ii < 2; ii += 1) {
-						for (int jj = -1; jj < 2; jj += 1) {
-							// starting cell must be 0, so check cells arround it
-							if ((x+i == x1+ii) && (y+j == y1+jj)) {
-								return false;
-							}
-						}
-					}
+				if ((x+i == x1)&&(y+j == y1)) {
+					return false;
 				}
 			}
 		}
