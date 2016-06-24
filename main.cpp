@@ -13,24 +13,24 @@ using namespace std;
 
 int main (int argc, char const* argv[]) {
 	int chooseDifficulty = 0;
-	int stX, stY, stB;
+	int stX, stY, stB; 
 	switch (chooseDifficulty) {
-	case 0: 
+	case 0: // = ez
 		stX = 8;
 		stY = 8;
 		stB = 10;
 		break;
-	case 1:
+	case 1: // = medium
 		stX = 16;
 		stY = 16;
 		stB = 40;
 		break;
-	case 2:
+	case 2: // = hard
 		stX = 30;
 		stY = 16;
 		stB = 99;
 		break;
-	default:
+	default: // = costum
 		do {
 			cout << "give height" <<endl;
 			cin >> stX;
@@ -45,10 +45,10 @@ int main (int argc, char const* argv[]) {
 		} while (stB >= stX*stY-9);
 		break;
 	}
-	Minesweeper *table = new Minesweeper(stX,stY,stB);
-	int fsX=2;
+	Minesweeper *table = new Minesweeper(stX,stY,stB); // init table
+	int fsX=2; // starting potition is (2, 2)
 	int fsY=2;
-	table -> bombGenerator(fsX,fsY);
+	table -> bombGenerator(fsX,fsY); // generate table
 	table -> print2(fsX,fsY);
 	cout << "give x" <<endl;
 	int a;
