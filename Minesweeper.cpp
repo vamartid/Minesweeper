@@ -38,8 +38,8 @@ void Minesweeper::bombGenerator(int x1,int y1) {
 			x = rand()%(height);//generate random x for the bomb
 			y = rand()%(width);//generate random y for the bomb
 			if (checkPlacement(x1,y1,x,y)) {//check if the random is not a neighbour of the selected
-				if (mines[x][y] != -1) {//if its not a bomb
-					mines[x][y] = -1;//make it bomb
+				if (mines[x][y] != 9) {//if its not a bomb
+					mines[x][y] = 9;//make it bomb
 					numberPlacement(x, y);//increase all neighbours for one
 					checker = 1;//declare that you made a bomb
 				}
@@ -60,7 +60,7 @@ void Minesweeper::numberPlacement(int x, int y) {
 	for (int i = -1; i < 2; i += 1) {
 		for (int j = -1; j < 2; j += 1) {
 			if ((x+i >= 0)&&(x+i <= height-1) && (y+j >= 0)&&(y+j <= width-1)) {
-				if ((mines[x+i][y+j] != -1)) {
+				if ((mines[x+i][y+j] != 9)) {
 					mines[x+i][y+j]++;
 				}
 			}
@@ -74,7 +74,7 @@ void Minesweeper::numberPlacement(int x, int y) {
 void Minesweeper::print() {
 	for (int i = 0; i < width; i += 1) {
 		for (int j = 0; j < height; j += 1) {
-			if ( mines[i][j]==-1 ){
+			if ( mines[i][j]==9 ){
 				cout << "*" << "\t";
 			}else if ( mines[i][j]==0 ){
 				cout << ".." << "\t";
@@ -113,14 +113,107 @@ void Minesweeper::print2(int x,int y) {
 		for (int j = 0; j < height; j += 1) {
 			if ((x==i)&&(y==j)) {
 				cout << "..." << "\t";
-			}else if ( mines[i][j]==-1 ){
+			}else if ( mines[i][j]%10==9 ){
 				cout << "*" << "\t";
-			}else if ( mines[i][j]==0 ){
+			}else if ( mines[i][j]%10==0 ){
 				cout << ".." << "\t";
 			}else{
-				cout << mines[i][j] << "\t";
+				cout << mines[i][j]%10 << "\t";
 			}
 		}
 		cout << endl << endl;
+	}
+}
+
+/**
+ * do the cell a flag
+ */
+void Minesweeper::doItFlag(int x,int y) {
+	if (mines[x][y]/10==0){
+		mines[x][y]=mines[x][y]+10;
+		cout << "flagged it";
+	}else if (mines[x][y]/10==1){
+		cout << "it's flagged already";
+	}else{
+		cout << "it's open cant be flagged";
+		//it is already open
+	}
+}
+
+/**
+ * do the cell a flag
+ */
+void Minesweeper::removeFlag(int x,int y) {
+	if (mines[x][y]/10==1){//if it is flagged
+		mines[x][y]=mines[x][y]-10;//remove it
+	}
+}
+
+/**
+ * do the cell a flag
+ */
+void Minesweeper::openTheActualCell(int x,int y) {
+	if (mines[x][y]/10==0){
+		mines[x][y]=mines[x][y]+20;
+	}else if (mines[x][y]/10==1){
+		mines[x][y]=mines[x][y]+10;
+	}else{
+		cout << "it' open already";
+		//it is already open
+	}
+}
+
+/**
+ *	checks if there are neighbours to be opened
+ *	opens them
+ */
+void Minesweeper::openNeighboursRec(int x,int y) {
+	for (int i = -1; i < 2; i += 1) {
+		for (int j = -1; j < 2; j += 1) {
+			if ((x+i >= 0)&&(x+i <= height-1) && (y+j >= 0)&&(y+j <= width-1)) {
+				if (mines[x+i][y+j]/10!=2){//it is not open
+					mines[x+i][y+j]=mines[x+i][y+j]+20;
+					if (mines[x+i][y+j]%10==0) {
+						openNeighboursRec(x+i,y+j);
+					}
+				}
+			}
+		}
+	}
+}
+
+/**
+ * right Click action
+ */
+void Minesweeper::rightClickAction(int x,int y) {
+	if(mines[x][y]/10!=2){//if it is not open
+		if(mines[x][y]/10!=1){//if it is not flagged
+			doItFlag(x,y);
+			cout << "flagged";
+		}else{//it is flagged
+			removeFlag(x,y);
+			cout << "remove flag";
+		}
+	}
+}
+
+/**
+ * left Click action
+ */
+void Minesweeper::leftClickAction(int x,int y) {
+	if(mines[x][y]/10!=2){//if it is not open
+		if(mines[x][y]/10==1){//it is flagged
+			//you have to open the cell
+			mines[x][y]=mines[x][y]+20;//open
+			openNeighboursRec(x,y);
+		}else if(mines[x][y]/10==0){//it not flagged
+			//you have to open the cell
+			mines[x][y]=mines[x][y]+20;//open
+			openNeighboursRec(x,y);
+		}else{
+			cout << "dont know what this is" <<endl;
+		}
+	}else{
+		cout << "i can not click this" <<endl;
 	}
 }

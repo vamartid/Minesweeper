@@ -33,8 +33,37 @@ int main (int argc, char const* argv[]) {
 	Minesweeper *table = new Minesweeper(8,8,10);
 	int fsX=5;
 	int fsY=2;
-	table -> bombGenerator2(fsX,fsY);
+	table -> bombGenerator(fsX,fsY);
 	table -> print2(fsX,fsY);
+	cout << "give x" <<endl;
+	int a;
+	cin >> a;
+	cout << "give y" <<endl;
+	int b;
+	cin >> b;
+	cout << "choose" <<endl;
+	int choose;
+	cin >> choose;
+	if ( choose== 1) { //check if next character is newline
+		table->rightClickAction(a,b); //and assign the default
+	} else if (choose == 2) { //be sure to handle invalid input
+		table->leftClickAction(a,b);
+	}
+	table -> print();
+
+	cout << "give x" <<endl;
+	cin >> a;
+	cout << "give y" <<endl;
+	cin >> b;
+	cout << "choose" <<endl;
+	cin >> choose;
+	if ( choose== 1) { //check if next character is newline
+		table->rightClickAction(a,b); //and assign the default
+	} else if (choose == 2) { //be sure to handle invalid input
+		table->leftClickAction(a,b);
+	}
+	table -> print();
+
 	delete table;
 	return 0;
 }
