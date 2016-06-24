@@ -12,26 +12,41 @@
 using namespace std;
 
 int main (int argc, char const* argv[]) {
-	/*
-	int x = 0;
-	if (argc == 2) {
-		printf("%d\n", atoi(argv[1]));
-		switch (x)
-		{
-		case 1: cout << "3";
-			break;
-		case 2: cout << "2";
-			break;
-		case 3: cout << "1";
-			break;
-		default: cout << "qwerty";
-			break;
-		}
-		
-	}*/
-	
-	Minesweeper *table = new Minesweeper(8,8,10);
-	int fsX=5;
+	int chooseDifficulty = 3;
+	int stX, stY, stB;
+	switch (chooseDifficulty) {
+	case 0: 
+		stX = 8;
+		stY = 8;
+		stB = 10;
+		break;
+	case 1:
+		stX = 16;
+		stY = 16;
+		stB = 40;
+		break;
+	case 2:
+		stX = 30;
+		stY = 16;
+		stB = 99;
+		break;
+	default:
+		do {
+			cout << "give height" <<endl;
+			cin >> stX;
+		} while (stX < 4);
+		do {
+			cout << "give width" <<endl;
+			cin >> stY;
+		} while (stY < 4);
+		do {
+			cout << "give bombs" <<endl;
+			cin >> stB;
+		} while (stB >= stX*stY-9);
+		break;
+	}
+	Minesweeper *table = new Minesweeper(stX,stY,stB);
+	int fsX=2;
 	int fsY=2;
 	table -> bombGenerator(fsX,fsY);
 	table -> print2(fsX,fsY);
@@ -64,6 +79,44 @@ int main (int argc, char const* argv[]) {
 	}
 	table -> print();
 
+	cout << "give x" <<endl;
+	cin >> a;
+	cout << "give y" <<endl;
+	cin >> b;
+	cout << "choose" <<endl;
+	cin >> choose;
+	if ( choose== 1) { //check if next character is newline
+		table->rightClickAction(a,b); //and assign the default
+	} else if (choose == 2) { //be sure to handle invalid input
+		table->leftClickAction(a,b);
+	}
+	table -> print();
+
+	cout << "give x" <<endl;
+	cin >> a;
+	cout << "give y" <<endl;
+	cin >> b;
+	cout << "choose" <<endl;
+	cin >> choose;
+	if ( choose== 1) { //check if next character is newline
+		table->rightClickAction(a,b); //and assign the default
+	} else if (choose == 2) { //be sure to handle invalid input
+		table->leftClickAction(a,b);
+	}
+	table -> print();
+
+	cout << "give x" <<endl;
+	cin >> a;
+	cout << "give y" <<endl;
+	cin >> b;
+	cout << "choose" <<endl;
+	cin >> choose;
+	if ( choose== 1) { //check if next character is newline
+		table->rightClickAction(a,b); //and assign the default
+	} else if (choose == 2) { //be sure to handle invalid input
+		table->leftClickAction(a,b);
+	}
+	table -> print();
 	delete table;
 	return 0;
 }
