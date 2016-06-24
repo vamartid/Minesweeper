@@ -20,3 +20,4 @@ run:
 
 clean:
 	rm -rf a.out
+	rm -rf *.h.gch

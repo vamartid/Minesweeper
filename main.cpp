@@ -30,9 +30,11 @@ int main (int argc, char const* argv[]) {
 		
 	}*/
 	
-	Minesweeper *loula = new Minesweeper(8,8,10);
-	loula -> bombGenerator();
-	loula -> print();
-	delete loula;
+	Minesweeper *table = new Minesweeper(8,8,10);
+	int fsX=5;
+	int fsY=2;
+	table -> bombGenerator2(fsX,fsY);
+	table -> print2(fsX,fsY);
+	delete table;
 	return 0;
 }

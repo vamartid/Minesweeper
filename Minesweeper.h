@@ -22,9 +22,11 @@ class Minesweeper {
 	public:
 		Minesweeper(int, int, int);
 		~Minesweeper();
-		void bombGenerator();
+		void bombGenerator(int ,int);
+		bool checkPlacement(int , int ,int ,int );
 		void numberPlacement(int, int);
 		void print();
+		void print2(int, int);
 };
 
 #endif
