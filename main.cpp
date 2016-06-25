@@ -47,7 +47,7 @@ int main(int argc, char const* argv[]) {
 		} while (stB >= stX * stY - 9);
 		break;
 	}
-	Minenew *table = new Minenew(stX, stY, stB); // init table
+	Minesweeper *table = new Minesweeper(stX, stY, stB); // init table
 	int fsX = 2; // starting position is (2, 2)
 	int fsY = 2;
 	table->bombGenerator(fsX, fsY);
