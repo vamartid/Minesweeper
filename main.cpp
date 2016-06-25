@@ -32,7 +32,7 @@ int main(int argc, char const* argv[]) {
 		stY = 16;
 		stB = 99;
 		break;
-	default: // = costum
+	default: // = custom
 		do {
 			cout << "give height" << endl;
 			cin >> stX;
