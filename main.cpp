@@ -7,7 +7,7 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
-#include "Minesweeper.h"
+#include "Minenew.h"
 
 using namespace std;
 
@@ -32,7 +32,7 @@ int main(int argc, char const* argv[]) {
 		stY = 16;
 		stB = 99;
 		break;
-	default: // = costum
+	default: // = custom
 		do {
 			cout << "give height" << endl;
 			cin >> stX;
@@ -47,7 +47,7 @@ int main(int argc, char const* argv[]) {
 		} while (stB >= stX * stY - 9);
 		break;
 	}
-	Minesweeper *table = new Minesweeper(stX, stY, stB); // init table
+	Minenew *table = new Minenew(stX, stY, stB); // init table
 	int fsX = 2; // starting position is (2, 2)
 	int fsY = 2;
 	table->bombGenerator(fsX, fsY);

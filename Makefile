@@ -5,7 +5,7 @@ CFLAGS = -Wall -g
 # vvvvvvvvvvvvvv
 
 build: Minesweeper.cpp Minesweeper.h
-	$(CC) $(CFLAGS) main.cpp Minesweeper.cpp Minesweeper.h
+	$(CC) $(CFLAGS) main.cpp Minesweeper.cpp Minesweeper.h Cell.cpp Cell.h
 
 
 # RUN COMMANDS
