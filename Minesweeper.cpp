@@ -103,15 +103,8 @@ void Minesweeper::print() {
  *  and returns true if it is not
  */
 bool Minesweeper::checkPlacement(int x1, int y1, int x, int y) {
-	for (int i = -1; i < 2; i += 1) {
-		for (int j = -1; j < 2; j += 1) {
-			if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
-					&& (y + j <= width - 1)) {
-				if ((x + i == x1) && (y + j == y1)) {
-					return false;
-				}
-			}
-		}
+	if(abs(x1-x) <= 1 && abs(y1-y) <= 1){
+		return false;
 	}
 	return true;
 }
@@ -164,13 +157,15 @@ void Minesweeper::openNeighboursRec(int x, int y) {
  */
 void Minesweeper::rightClickAction(int x, int y) {
 	if (!getCell(x, y)->isRevealed()) { //if it is not open
-		if (!getCell(x, y)->isFlagged()) { //if it is not flagged
+		if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked()) { //if it is not flagged
 			getCell(x, y)->setFlagged(true);
 			cout << "flagged";
-		} else { //it is flagged
+		} else if (!getCell(x, y)->isFlagged()){ //it is flagged
 			getCell(x, y)->setFlagged(false);
 			getCell(x, y)->setQuestionMarked(true);
 			cout << "add question mark";
+		} else {
+			getCell(x, y)->setQuestionMarked(false);
 		}
 	}
 }
