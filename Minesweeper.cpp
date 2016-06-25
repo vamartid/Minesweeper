@@ -30,7 +30,7 @@ Minesweeper::~Minesweeper() {
 
 
 Cell* Minesweeper::getCell(int x, int y){
-	return  &cells[x * y + y];
+	return  &cells[x * width + y];
 }
 
 /**
