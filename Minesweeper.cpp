@@ -1,4 +1,4 @@
-#include "Minenew.h"
+#include "Minesweeper.h"
 
 using namespace std;
 /**
@@ -6,7 +6,7 @@ using namespace std;
  * we set the width the height and the number of the cells
  * gives zero to all the values of the matrix
  */
-Minenew::Minenew(int width, int height, int mineCounter) {
+Minesweeper::Minesweeper(int width, int height, int mineCounter) {
 	this->width = width;
 	this->height = height;
 	this->mineCounter = mineCounter;
@@ -24,12 +24,12 @@ Minenew::Minenew(int width, int height, int mineCounter) {
 /**
  * destructor of the cells
  */
-Minenew::~Minenew() {
+Minesweeper::~Minesweeper() {
 	delete &cells;
 }
 
 
-Cell* Minenew::getCell(int x, int y){
+Cell* Minesweeper::getCell(int x, int y){
 	return  &cells[x * y + y];
 }
 
@@ -37,7 +37,7 @@ Cell* Minenew::getCell(int x, int y){
  * create the table place the bombs and the numbers to its neighbours
  * but dont give x1 and y1 bomb and nor its neighbours
  */
-void Minenew::bombGenerator(int x1, int y1) {
+void Minesweeper::bombGenerator(int x1, int y1) {
 	srand(time(NULL));
 	for (int i = 0; i < mineCounter; i += 1) {
 		bool checker = false;
@@ -65,7 +65,7 @@ void Minenew::bombGenerator(int x1, int y1) {
  * this way we keep updated the values of  the neighbours
  * on how many bombs are around them
  */
-void Minenew::numberPlacement(int x, int y) {
+void Minesweeper::numberPlacement(int x, int y) {
 	for (int i = -1; i < 2; i += 1) {
 		for (int j = -1; j < 2; j += 1) {
 			if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
@@ -82,7 +82,7 @@ void Minenew::numberPlacement(int x, int y) {
 /**
  * print the matrix whitch has the values which declares bombs,neighbours etc.
  */
-void Minenew::print() {
+void Minesweeper::print() {
 	for (int i = 0; i < width; i += 1) {
 		for (int j = 0; j < height; j += 1) {
 			if (getCell(i, j)->getBombNum() == 9) {
@@ -102,7 +102,7 @@ void Minenew::print() {
  *  returns false if it is
  *  and returns true if it is not
  */
-bool Minenew::checkPlacement(int x1, int y1, int x, int y) {
+bool Minesweeper::checkPlacement(int x1, int y1, int x, int y) {
 	for (int i = -1; i < 2; i += 1) {
 		for (int j = -1; j < 2; j += 1) {
 			if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
@@ -120,7 +120,7 @@ bool Minenew::checkPlacement(int x1, int y1, int x, int y) {
  * print the matrix whitch has the values which declares bombs,neighbours etc.
  * but print the first selected with a <>
  */
-void Minenew::print2(int x, int y) {
+void Minesweeper::print2(int x, int y) {
 	for (int i = 0; i < width; i += 1) {
 		for (int j = 0; j < height; j += 1) {
 			if ((x == i) && (y == j)) {
@@ -141,7 +141,7 @@ void Minenew::print2(int x, int y) {
  *	checks if there are neighbours to be opened
  *	opens them
  */
-void Minenew::openNeighboursRec(int x, int y) {
+void Minesweeper::openNeighboursRec(int x, int y) {
 	for (int i = -1; i < 2; i += 1) {
 		for (int j = -1; j < 2; j += 1) {
 			if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
@@ -162,7 +162,7 @@ void Minenew::openNeighboursRec(int x, int y) {
 /**
  * right Click action
  */
-void Minenew::rightClickAction(int x, int y) {
+void Minesweeper::rightClickAction(int x, int y) {
 	if (!getCell(x, y)->isRevealed()) { //if it is not open
 		if (!getCell(x, y)->isFlagged()) { //if it is not flagged
 			getCell(x, y)->setFlagged(true);
@@ -178,7 +178,7 @@ void Minenew::rightClickAction(int x, int y) {
 /**
  * left Click action
  */
-void Minenew::leftClickAction(int x, int y) {
+void Minesweeper::leftClickAction(int x, int y) {
 	if (!getCell(x, y)->isRevealed()) { //if it is not open
 		if (getCell(x, y)->getBombNum() == 9) { //it is bomb
 			for (int i = 0; i < width; i++) { //open all cells

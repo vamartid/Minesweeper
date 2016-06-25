@@ -1,5 +1,5 @@
-#ifndef MINENEW_H
-#define MINENEW_H
+#ifndef MINESWEEPER_H
+#define MINESWEEPER_H
 
 #include <iostream>
 #include <string>
@@ -15,7 +15,7 @@
 
 using namespace std;
 
-class Minenew {
+class Minesweeper {
 private:
 	int width;
 	int height;
@@ -23,8 +23,8 @@ private:
 	//Cell ** cells;
 	std::vector<Cell> cells;
 public:
-	Minenew(int, int, int);
-	~Minenew();
+	Minesweeper(int, int, int);
+	~Minesweeper();
 	void bombGenerator(int, int);
 	bool checkPlacement(int, int, int, int);
 	void numberPlacement(int, int);

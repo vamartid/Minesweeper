@@ -7,7 +7,7 @@
 #include <time.h>
 #include <math.h>
 #include <string.h>
-#include "Minenew.h"
+#include "Minesweeper.h"
 
 using namespace std;
 
