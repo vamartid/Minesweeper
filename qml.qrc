@@ -4,5 +4,8 @@
         <file>GUI/main.qml</file>
         <file>GUI/MainMenu.qml</file>
         <file>GUI/ViewApplianceList.qml</file>
+        <file>GUI/icons/back-arrow.png</file>
+        <file>GUI/icons/mine-grey.png</file>
+        <file>GUI/icons/mine-white.png</file>
     </qresource>
 </RCC>

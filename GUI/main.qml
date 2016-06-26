@@ -7,6 +7,8 @@ ApplicationWindow {
     width: 484
     height: 860
     title: qsTr("Minesweeper - Qt")
+    minimumHeight: 860
+    minimumWidth: 484
 
     Component{
         id: menu
