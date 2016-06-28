@@ -34,6 +34,7 @@ public:
 
 	void rightClickAction(int, int);
 	void leftClickAction(int, int);
+    void doubleClickAction(int, int);
 
 	void print();
 	void print2(int, int);
