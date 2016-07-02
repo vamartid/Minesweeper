@@ -11,7 +11,7 @@
 
 using namespace std;
 
-int main_noui(int argc, char const* argv[]) {
+int main_noui() {
 	int chooseDifficulty = 0;
 //	cout << "set difficulty 0, 1, 2"<< endl;
 //	cin >> chooseDifficulty;

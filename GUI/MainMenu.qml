@@ -117,7 +117,7 @@ Rectangle {
             id: about
             anchors.top: high_scores.bottom
             anchors.topMargin: height*0.14
-            width: parent.width/2.06
+            width: parent.width/2 - height*0.07
             height:parent.height/9
             Text{
                 width: parent.width
@@ -135,7 +135,7 @@ Rectangle {
             anchors.top: high_scores.bottom
             anchors.topMargin: height*0.14
             anchors.right: parent.right
-            width: parent.width/2.06
+            width: parent.width/2 - height*0.07
             height:parent.height/9
             Text{
                 width: parent.width
