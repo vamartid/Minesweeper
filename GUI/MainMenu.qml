@@ -9,28 +9,18 @@ Rectangle {
     visible: true
     color: "#303030"
 
-    Rectangle
+    AndroidToolbar
     {
         id: toolbar_main_menu
-        width: parent.width
-        height: parent.height*0.07
-        color: "#FF5722"
         Text{
             color: "#FFFFFF"
-            //text: qsTr("<a href=\"http://qt-project.org\">Minesweeper - built with QtQuick</a>")
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
-            //anchors.margins: parent.height*0.03
             anchors.left: parent.left
             anchors.leftMargin: parent.width*0.04
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: parent.height*0.45
             wrapMode: Text.Wrap
-            linkColor: "#FFFFFF"
-            //onLinkActivated:
-            //{
-              //  stack.push(game)
-            //}
         }
     }
 
@@ -46,17 +36,19 @@ Rectangle {
 
         Image{
             id: img1
+            anchors.right: logotext.left
             width: parent.height*0.5
             height: parent.height*0.5
             source: "icons/mine-white.png"
-            anchors.left: parent.left
             anchors.verticalCenter: parent.verticalCenter
         }
         Text{
+            id: logotext
             color:"#FFFFFF"
             text: qsTr("mine\nsweeper")
-            anchors.left: img1.right
-            anchors.right:img2.left
+            width: height*0.88
+            height: parent.height
+            anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             anchors.verticalCenter: parent.verticalCenter
@@ -67,10 +59,10 @@ Rectangle {
         }
         Image{
             id: img2
+            anchors.left: logotext.right
             width: parent.height*0.5
             height: parent.height*0.5
             source: "icons/mine-white.png"
-            anchors.right: parent.right
             anchors.verticalCenter: parent.verticalCenter
         }
     }
@@ -99,7 +91,7 @@ Rectangle {
             }
             onClicked:
             {
-                stack.push(game);
+                stack.push(choosedifficulty);
             }
         }
 
@@ -107,7 +99,7 @@ Rectangle {
         {
             id: high_scores
             anchors.top: new_game.bottom
-            anchors.topMargin: parent.height*0.017
+            anchors.topMargin: height*0.14
             width: parent.width
             height:parent.height/9
             Text{
@@ -124,7 +116,7 @@ Rectangle {
         {
             id: about
             anchors.top: high_scores.bottom
-            anchors.topMargin: parent.height*0.017
+            anchors.topMargin: height*0.14
             width: parent.width/2.06
             height:parent.height/9
             Text{
@@ -141,7 +133,7 @@ Rectangle {
         {
             id: help
             anchors.top: high_scores.bottom
-            anchors.topMargin: parent.height*0.017
+            anchors.topMargin: height*0.14
             anchors.right: parent.right
             width: parent.width/2.06
             height:parent.height/9
@@ -171,8 +163,8 @@ Rectangle {
 
     Component
     {
-        id:game
-        Game{}
+        id:choosedifficulty
+        ChooseDifficulty{}
     }
 
 }
