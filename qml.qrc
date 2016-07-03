@@ -11,5 +11,6 @@
         <file>GUI/AndroidToolbar.qml</file>
         <file>GUI/BackButton.qml</file>
         <file>GUI/icons/forward-arrow.png</file>
+        <file>GUI/CellBlock.qml</file>
     </qresource>
 </RCC>

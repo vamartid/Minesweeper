@@ -3,7 +3,17 @@ import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 
 Rectangle {
-    id: game
+
+
+    property int mines: 0
+    property string rows:easybutton.rows
+    property string columns:easybutton.columns
+
+
+//    property string rows:console.log(easybutton.rows)
+//    property string collums:console.log(easybutton.colums)
+
+    id: rectID
     height: parent.height
     width: parent.width
     visible: true
@@ -25,25 +35,17 @@ Rectangle {
         anchors.right: parent.right
         anchors.margins: parent.width*0.01
         spacing: parent.width*0.001
-        columns : 16
-        rows : 30
+        columns:    9
+        rows:       9
         Repeater{
-            model:480
-            Button{
-                height: (game.width
-                         -(gridid.spacing*(gridid.columns-1))
-                         -(gridid.anchors.leftMargin)
-                         -(gridid.anchors.rightMargin)
-                         )/gridid.columns
-                width : (game.width
-                    -(gridid.spacing*(gridid.columns-1))
-                    -(gridid.anchors.leftMargin)
-                    -(gridid.anchors.rightMargin)
-                    )/gridid.columns
-                onClicked:
-                {
-                    stack.pop();
+            id: repeaterId
+            model:gridid.rows*gridid.columns
+            CellBlock{
+                id: cellBlock
+                Text{
+                    text: rectID.rows
                 }
+
             }
         }
     }

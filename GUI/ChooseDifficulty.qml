@@ -68,6 +68,10 @@ Rectangle {
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.3
         }
+
+        property string rows: "kalimera2"
+        property string columns: "kalimera"
+
         onClicked: {
             stack.push(game)
         }
