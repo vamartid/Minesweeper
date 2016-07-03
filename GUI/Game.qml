@@ -3,27 +3,43 @@ import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 
 Rectangle {
-    height: 860
-    width: 484
+    id: game
+    height: parent.height
+    width: parent.width
     visible: true
     color: "#303030"
-    Rectangle
-    {
-        width: parent.width
-        height: parent.height*0.07
-        id:toolbar
-        color: "#FF5722"
-        BackButton{}
+    AndroidToolbar{
+        id: toolbar_game
+        BackButton{
+            onClicked:{
+                stack.pop(stack.get(0))
+            }
+        }
     }
+
     Grid{
-        spacing: 20
-        columns : 3
-        rows : 3
+        id: gridid
+        anchors.top: toolbar_game.bottom
+        anchors.bottom: parent.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.margins: parent.width*0.01
+        spacing: parent.width*0.001
+        columns : 16
+        rows : 30
         Repeater{
-            model:9
+            model:480
             Button{
-            width: 20
-            height: 20
+                height: (game.width
+                         -(gridid.spacing*(gridid.columns-1))
+                         -(gridid.anchors.leftMargin)
+                         -(gridid.anchors.rightMargin)
+                         )/gridid.columns
+                width : (game.width
+                    -(gridid.spacing*(gridid.columns-1))
+                    -(gridid.anchors.leftMargin)
+                    -(gridid.anchors.rightMargin)
+                    )/gridid.columns
                 onClicked:
                 {
                     stack.pop();
@@ -31,5 +47,4 @@ Rectangle {
             }
         }
     }
-
 }

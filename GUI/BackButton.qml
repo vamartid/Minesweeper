@@ -16,8 +16,4 @@ ToolButton
     anchors.top: parent.top
     width: parent.height
     height:width
-    onClicked:
-    {
-        stack.pop();
-    }
 }

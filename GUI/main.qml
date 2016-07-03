@@ -4,11 +4,11 @@ import QtQuick.Controls 1.4
 
 ApplicationWindow {
     visible: true
-    width: 484
-    height: 860
+    width: 406
+    height: 768
     title: qsTr("Minesweeper - Qt")
-    minimumHeight: 860
-    minimumWidth: 484
+    minimumHeight: 768
+    minimumWidth: 406
 
     Component{
         id: menu

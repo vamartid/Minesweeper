@@ -4,8 +4,8 @@ import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.2
 
 Rectangle {
-    height: 860
-    width: 484
+    height: parent.height
+    width: parent.width
     visible: true
     color: "#303030"
 
@@ -149,7 +149,7 @@ Rectangle {
         }
         //this text should go to the about page
         Text{
-            visible:false
+            //visible:false
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
             width: parent.width*0.9
@@ -157,7 +157,7 @@ Rectangle {
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font.pixelSize: parent.height*0.035
-            text: qsTr("License: GPL v3, Aristotle University of Thessaloniki 2016")
+            text: qsTr("Aristotle University of Thessaloniki - 2016")
         }
     }
 

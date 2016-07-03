@@ -10,5 +10,6 @@
         <file>GUI/ChooseDifficulty.qml</file>
         <file>GUI/AndroidToolbar.qml</file>
         <file>GUI/BackButton.qml</file>
+        <file>GUI/icons/forward-arrow.png</file>
     </qresource>
 </RCC>
