@@ -5,10 +5,9 @@ import QtQuick.Window 2.2
 Rectangle {
 
 
-    property int mines: 0
-    property string rows:easybutton.rows
-    property string columns:easybutton.columns
-
+    property int mines: parseInt(choice.mines)
+    property int rows: parseInt(choice.rows)
+    property int columns: parseInt(choice.columns)
 
 //    property string rows:console.log(easybutton.rows)
 //    property string collums:console.log(easybutton.colums)
@@ -35,8 +34,8 @@ Rectangle {
         anchors.right: parent.right
         anchors.margins: parent.width*0.01
         spacing: parent.width*0.001
-        columns:    9
-        rows:       9
+        columns:    rectID.columns
+        rows:       rectID.rows
         Repeater{
             id: repeaterId
             model:gridid.rows*gridid.columns

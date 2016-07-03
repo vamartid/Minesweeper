@@ -3,10 +3,15 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 Rectangle {
+    id:"choice"
     height: parent.height
     width: parent.width
     visible: true
     color: "#303030"
+    property int rows: 9
+    property int columns: 9
+    property int mines: 10
+
     AndroidToolbar
     {
         id: toolbar_difficulty_menu
@@ -68,10 +73,6 @@ Rectangle {
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.3
         }
-
-        property string rows: "kalimera2"
-        property string columns: "kalimera"
-
         onClicked: {
             stack.push(game)
         }
@@ -104,6 +105,12 @@ Rectangle {
             font.pixelSize: parent.height*0.3
         }
 
+        onClicked: {
+            choice.rows= 16
+            choice.columns= 16
+            choice.mines= 40
+            stack.push(game)
+        }
     }
 
     Button
@@ -134,6 +141,12 @@ Rectangle {
             font.pixelSize: parent.height*0.3
         }
 
+        onClicked: {
+            choice.rows= 30
+            choice.columns= 16
+            choice.mines= 99
+            stack.push(game)
+        }
     }
 
     Button
@@ -335,9 +348,11 @@ Rectangle {
             anchors.bottomMargin: parent.height*0.2
             width: parent.height*0.3
             height:width
-            onClicked:
-            {
-                stack.push(game);
+            onClicked: {
+                choice.rows= fieldheight_input.text
+                choice.columns= fieldwidth_input.text
+                choice.mines= fieldmines_input.text
+                stack.push(game)
             }
         }
 
