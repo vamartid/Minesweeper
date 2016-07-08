@@ -91,7 +91,7 @@ Rectangle {
             }
             onClicked:
             {
-                stack.push(choosedifficulty);
+                stack.push(chooseDifficulty);
             }
         }
 
@@ -128,6 +128,10 @@ Rectangle {
                 wrapMode: Text.Wrap
                 font.pixelSize: parent.height*0.5
             }
+            onClicked:
+            {
+                stack.push(aboutPage);
+            }
         }
         Button
         {
@@ -147,24 +151,29 @@ Rectangle {
                 font.pixelSize: parent.height*0.5
             }
         }
-        //this text should go to the about page
-        Text{
-            //visible:false
-            anchors.bottom: parent.bottom
-            anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width*0.9
-            color: "#FFFFFF"
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
-            font.pixelSize: parent.height*0.035
-            text: qsTr("Aristotle University of Thessaloniki - 2016")
-        }
+    }
+    Text{
+        //visible:false
+        anchors.bottom: parent.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: parent.width*0.9
+        color: "#FFFFFF"
+        horizontalAlignment: Text.AlignHCenter
+        verticalAlignment: Text.AlignVCenter
+        font.pixelSize: parent.height*0.0186
+        text: qsTr("Aristotle University of Thessaloniki - 2016")
     }
 
     Component
     {
-        id:choosedifficulty
+        id:chooseDifficulty
         ChooseDifficulty{}
+    }
+
+    Component
+    {
+        id: aboutPage
+        AboutPage{}
     }
 
 }
