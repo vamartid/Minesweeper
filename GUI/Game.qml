@@ -26,25 +26,28 @@ Rectangle {
         }
     }
 
-    Grid{
-        id: gridid
+    ScrollView {
         anchors.top: toolbar_game.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.margins: parent.width*0.01
-        spacing: parent.width*0.001
-        columns:    rectID.columns
-        rows:       rectID.rows
-        Repeater{
-            id: repeaterId
-            model:gridid.rows*gridid.columns
-            CellBlock{
-                id: cellBlock
-                Text{
-                    text: rectID.rows
-                }
+        Grid{
+            id: gridid
+            anchors.top: parent.top
+            spacing: parent.width*0.001
+            columns: rectID.columns
+            rows: rectID.rows
+            Repeater{
+                id: repeaterId
+                model:gridid.rows*gridid.columns
+                CellBlock{
+                    id: cellBlock
+                    Text{
+                        //text: rectID.rows
+                    }
 
+                }
             }
         }
     }
