@@ -111,6 +111,10 @@ Rectangle {
                 wrapMode: Text.Wrap
                 font.pixelSize: parent.height*0.5
             }
+            onClicked:
+            {
+                stack.push(scores);
+            }
         }
         Button
         {
@@ -168,6 +172,12 @@ Rectangle {
     {
         id:chooseDifficulty
         ChooseDifficulty{}
+    }
+
+    Component
+    {
+        id:scores
+        Scores{}
     }
 
     Component

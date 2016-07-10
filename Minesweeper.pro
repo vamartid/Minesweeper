@@ -6,7 +6,10 @@ CONFIG += c++11
 SOURCES += main.cpp \
     GameLogic/Cell.cpp \
     GameLogic/main_NO_UI.cpp \
-    GameLogic/Minesweeper.cpp
+    GameLogic/Minesweeper.cpp \
+    HighScores/mediator.cpp \
+    HighScores/myscore.cpp \
+    HighScores/scoremodel.cpp
 
 RESOURCES += qml.qrc
 
@@ -18,4 +21,7 @@ include(deployment.pri)
 
 HEADERS += \
     GameLogic/Cell.h \
-    GameLogic/Minesweeper.h
+    GameLogic/Minesweeper.h \
+    HighScores/mediator.h \
+    HighScores/myscore.h \
+    HighScores/scoremodel.h
