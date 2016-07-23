@@ -7,34 +7,23 @@ Rectangle {
     width: 484
     visible: true
     color: "#303030"
-    Rectangle
-    {
-        width: parent.width
-        height: parent.height*0.07
-        id:toolbar
-        color: "#FF5722"
-        opacity: 100
-
-        ToolButton
-        {
-            Image
-            {
-                width: parent.width*0.5
-                height: parent.height*0.5
-                source: "icons/back-arrow.png"
-                anchors.horizontalCenter: parent.horizontalCenter
-                anchors.verticalCenter: parent.verticalCenter
-            }
-            anchors.left: parent.left
-            anchors.top: parent.top
-            width: parent.height
-            height:width
-            onClicked:
-            {
-                stack.pop();
+    AndroidToolbar{
+        id: toolbar_game
+        BackButton{
+            id: backbutton
+            onClicked:{
+                stack.pop(stack.pop())
             }
         }
-
+        Text{
+            color: "#FFFFFF"
+            text: qsTr("Minesweeper - Qt quick")
+            width: parent.width
+            anchors.left: backbutton.right
+            anchors.verticalCenter: parent.verticalCenter
+            font.pixelSize: parent.height*0.45
+            wrapMode: Text.Wrap
+        }
     }
     Row
     {
@@ -45,7 +34,7 @@ Rectangle {
         {
             id:myButton
             text:"add"
-            onClicked: mediator.insertScore(babis.text, babis.text, 0);
+            //onClicked: mediator.insertScore(babis.text, babis.text, 0);
         }
         Button
         {

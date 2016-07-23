@@ -3,7 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 Rectangle {
-    id:"choice"
+    id:choice
     height: parent.height
     width: parent.width
     visible: true
@@ -74,6 +74,7 @@ Rectangle {
             font.pixelSize: parent.height*0.3
         }
         onClicked: {
+            mineField.initField(choice.rows, choice.columns, choice.mines);
             stack.push(game)
         }
     }
@@ -109,6 +110,7 @@ Rectangle {
             choice.rows= 16
             choice.columns= 16
             choice.mines= 40
+            mineField.initField(choice.rows, choice.columns, choice.mines);
             stack.push(game)
         }
     }
@@ -145,6 +147,7 @@ Rectangle {
             choice.rows= 30
             choice.columns= 16
             choice.mines= 99
+            mineField.initField(choice.rows, choice.columns, choice.mines);
             stack.push(game)
         }
     }
@@ -352,6 +355,7 @@ Rectangle {
                 choice.rows= fieldheight_input.text
                 choice.columns= fieldwidth_input.text
                 choice.mines= fieldmines_input.text
+                mineField.initField(choice.rows, choice.columns, choice.mines);
                 stack.push(game)
             }
         }

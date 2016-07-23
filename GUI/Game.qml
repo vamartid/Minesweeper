@@ -41,12 +41,11 @@ Rectangle {
             Repeater{
                 id: repeaterId
                 model:gridid.rows*gridid.columns
+                onItemAdded:{
+                    itemAt(index).x_position = index/gridid.columns
+                    itemAt(index).y_position = index % gridid.columns
+                }
                 CellBlock{
-                    id: cellBlock
-                    Text{
-                        //text: rectID.rows
-                    }
-
                 }
             }
         }
