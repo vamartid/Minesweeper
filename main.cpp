@@ -5,6 +5,7 @@
 #include "HighScores/myscore.h"
 #include "HighScores/scoremodel.h"
 #include "HighScores/mediator.h"
+#include "GameLogic/Minesweeper.h"
 
 int main(int argc, char *argv[])
 {
@@ -12,6 +13,8 @@ int main(int argc, char *argv[])
     QQmlApplicationEngine engine;
 
     Mediator *msg = new Mediator();
+    Minesweeper *mineField = new Minesweeper();
+    engine.rootContext()->setContextProperty("mineField", mineField);
     engine.rootContext()->setContextProperty("mediator",msg);
 
     engine.load(QUrl(QStringLiteral("qrc:/GUI/main.qml")));
