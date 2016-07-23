@@ -7,16 +7,23 @@ using namespace std;
  * we set the width the height and the number of the cells
  * gives zero to all the values of the matrix
  */
-Minesweeper::Minesweeper(int width, int height, int mineCounter) {
+
+
+Minesweeper::Minesweeper(QObject *parent): QObject(parent){
+
+}
+
+void Minesweeper::initField(int width, int height, int mineCounter) {
     this->width = width;
     this->height = height;
     this->mineCounter = mineCounter;
     //initializing the minefield array
     //cells = new Cell[width][height];
     cells.resize(height * width);
+    bombGenerator(1,1);
     /*for (int i = 0; i < width; i++) {
-     cells[i] = new Cell[height];
-     for (int j = 0; j < height; j += 1) {
+     cells[i] = new Cell[
+0; j < height; j += 1) {
      cells[i][j] = new Cell;
      }
      }*/
@@ -173,6 +180,7 @@ void Minesweeper::rightClickAction(int x, int y) {
 /**
  * left Click action
  */
+
 void Minesweeper::leftClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
         if (getCell(x, y)->getBombNum() == 9) { //it is bomb
@@ -194,6 +202,7 @@ void Minesweeper::leftClickAction(int x, int y) {
         cout << "i can not click this" << endl;
     }
 }
+
 
 /**
  * double Click action
@@ -250,4 +259,8 @@ void Minesweeper::doubleClickAction(int x, int y) {
             }
         }
     }
+}
+
+int Minesweeper::getBombNum(int x, int y){
+    return getCell(x,y)->getBombNum();
 }

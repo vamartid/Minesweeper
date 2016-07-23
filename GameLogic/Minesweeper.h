@@ -12,10 +12,12 @@
 #include <math.h>
 #include <string.h>
 #include "Cell.h"
+#include <QObject>
 
 using namespace std;
 
-class Minesweeper {
+class Minesweeper : public QObject {
+    Q_OBJECT
 private:
 	int width;
 	int height;
@@ -23,8 +25,10 @@ private:
 	//Cell ** cells;
 	std::vector<Cell> cells;
 public:
-	Minesweeper(int, int, int);
+    explicit Minesweeper(QObject *parent = 0);
+    //Minesweeper(int, int, int);
 	~Minesweeper();
+
 	void bombGenerator(int, int);
 	bool checkPlacement(int, int, int, int);
 	void numberPlacement(int, int);
@@ -32,12 +36,16 @@ public:
 
 	void openNeighboursRec(int, int);
 
-	void rightClickAction(int, int);
-	void leftClickAction(int, int);
+    void rightClickAction(int, int);
+    //, int);
     void doubleClickAction(int, int);
 
 	void print();
-	void print2(int, int);
+    void print2(int, int);
+public slots:
+    int getBombNum(int, int);
+    void initField(int, int, int);
+    void leftClickAction(int, int);
 };
 
 #endif
