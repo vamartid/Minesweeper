@@ -33,7 +33,7 @@ public:
 	void numberPlacement(int, int);
     Cell * getCell(int, int);
 	void openNeighboursRec(int, int);
-    void rightClickAction(int, int);
+
     //, int);
 
 	void print();
@@ -44,6 +44,7 @@ public slots:
     void initField(int, int, int);
     void leftClickAction(int, int);
     void doubleClickAction(int, int);
+    void rightClickAction(int, int);
 
     void bombGenerator(int, int);
     int getBombNum(int, int);

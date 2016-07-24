@@ -22,17 +22,25 @@ Button{
     MouseArea {
         id: innerMouseArea
         anchors.fill: parent
+
+        acceptedButtons: Qt.LeftButton | Qt.RightButton
+
         onClicked:
         {
-           if(gridid.moves==0){
-               mineField.bombGenerator(x_position, y_position);
-               mineField.leftClickAction(x_position, y_position);
-               gridid.moves++;
-               reveal();
-           }else{
-               mineField.leftClickAction(x_position, y_position);
-               reveal();
-           }
+            if(mouse.button & Qt.LeftButton){
+                if(gridid.moves==0){
+                   mineField.bombGenerator(x_position, y_position);
+                   mineField.leftClickAction(x_position, y_position);
+                   gridid.moves++;
+                   reveal();
+               }else{
+                   mineField.leftClickAction(x_position, y_position);
+                   reveal();
+               }
+            }else if(mouse.button & Qt.RightButton) {
+                 mineField.rightClickAction(x_position, y_position);
+                reveal();
+            }
         }
 
         onDoubleClicked: {
@@ -57,11 +65,15 @@ Button{
                     }else{
                         repeaterId.itemAt(m*columns+n).text = mineField.getBombNum(m,n).toString();
                     }
-                    repeaterId.itemAt(m*columns+n).enabled = false;
+                    //repeaterId.itemAt(m*columns+n).enabled = false;
                 }else if(mineField.getisFlagged(m,n)){
                     repeaterId.itemAt(m*columns+n).text = "^";
-                }else if(mineField.getisQuestionMarked(m,n)){
-                    repeaterId.itemAt(m*columns+n).text = "?";
+                }else if(!mineField.getisFlagged(m,n)){
+                    if(mineField.getisQuestionMarked(m,n)){
+                        repeaterId.itemAt(m*columns+n).text = "?";
+                    }else{
+                        repeaterId.itemAt(m*columns+n).text = " ";
+                    }
                 }
             }
         }
