@@ -5,7 +5,7 @@
 */
 Cell::Cell(){
 	bombNum = 0;
-	revealed = false;
+    revealed = false;
 	flagged = false;
 	questionMarked = false;
 }

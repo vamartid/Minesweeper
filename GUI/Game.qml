@@ -33,6 +33,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.margins: parent.width*0.01
         Grid{
+            property int moves: 0
             id: gridid
             anchors.top: parent.top
             spacing: parent.width*0.001

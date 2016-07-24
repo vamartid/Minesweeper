@@ -5,7 +5,6 @@ CONFIG += c++11
 
 SOURCES += main.cpp \
     GameLogic/Cell.cpp \
-    GameLogic/main_NO_UI.cpp \
     GameLogic/Minesweeper.cpp \
     HighScores/mediator.cpp \
     HighScores/myscore.cpp \

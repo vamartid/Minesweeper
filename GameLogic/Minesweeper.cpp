@@ -20,7 +20,6 @@ void Minesweeper::initField(int width, int height, int mineCounter) {
     //initializing the minefield array
     //cells = new Cell[width][height];
     cells.resize(height * width);
-    bombGenerator(1,1);
     /*for (int i = 0; i < width; i++) {
      cells[i] = new Cell[
 0; j < height; j += 1) {
@@ -264,3 +263,20 @@ void Minesweeper::doubleClickAction(int x, int y) {
 int Minesweeper::getBombNum(int x, int y){
     return getCell(x,y)->getBombNum();
 }
+bool Minesweeper::getisFlagged(int x, int y){
+    return getCell(x,y)->isFlagged();
+}
+bool Minesweeper::getisQuestionMarked(int x, int y){
+    return getCell(x,y)->isQuestionMarked();
+}
+bool Minesweeper::getisRevealed(int x, int y){
+    return getCell(x,y)->isRevealed();
+}
+//Cell Minesweeper::returnCell(int x, int y){//1 revieald//2 flagged//3 marked
+//    Cell a;
+//    a.setFlagged(getCell(x,y)->isFlagged());
+//    a.setQuestionMarked(getCell(x,y)->isQuestionMarked());
+//    a.setRevealed(getCell(x,y)->isRevealed());
+//    a.setBombNum(getCell(x,y)->getBombNum());
+//    return a;
+//}

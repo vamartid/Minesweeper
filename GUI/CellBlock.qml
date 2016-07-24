@@ -8,6 +8,10 @@ Button{
     width : minDim*0.08
     property int x_position
     property int y_position
+
+    property int m: 0
+    property int n: 0
+
     Text{
         anchors.fill: parent
         id: cellText
@@ -15,11 +19,37 @@ Button{
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
-
     onClicked:
     {
-        mineField.leftClickAction(x_position, y_position);
-        cellText.text = mineField.getBombNum(x_position, y_position).toString();
-        this.enabled = false;
+        if(gridid.moves==0){
+            mineField.bombGenerator(x_position, y_position);
+            gridid.moves++;
+            reveal();
+        }else{
+            mineField.leftClickAction(x_position, y_position);
+            reveal();
+        }
     }
+
+    function reveal() {
+        for (m = 0; m < gridid.rows; m++) {
+            for (n = 0; n < gridid.columns; n++) {
+                if(mineField.getisRevealed(m,n)){
+                    if(mineField.getBombNum(m,n)==9){
+                        repeaterId.itemAt(m,n).text = "@";
+                    }else{
+                        repeaterId.itemAt(m,n).text = mineField.getBombNum(m,n).toString();
+                    }
+                    repeaterId.itemAt(m,n).enabled = false;
+                }else if(mineField.getisFlagged(m,n)){
+                    repeaterId.itemAt(m,n).text = "^";
+                }else if(mineField.getisQuestionMarked(m,n)){
+                    repeaterId.itemAt(m,n).text = "?";
+                }
+
+            }
+        }
+    }
+
 }
+
