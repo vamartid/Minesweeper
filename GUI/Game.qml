@@ -21,6 +21,7 @@ Rectangle {
         id: toolbar_game
         BackButton{
             onClicked:{
+                gridid.moves=0
                 stack.pop(stack.get(0))
             }
         }

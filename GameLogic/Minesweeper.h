@@ -35,7 +35,7 @@ public:
 	void openNeighboursRec(int, int);
     void rightClickAction(int, int);
     //, int);
-    void doubleClickAction(int, int);
+
 	void print();
     void print2(int, int);
 public slots:
@@ -43,6 +43,7 @@ public slots:
 
     void initField(int, int, int);
     void leftClickAction(int, int);
+    void doubleClickAction(int, int);
 
     void bombGenerator(int, int);
     int getBombNum(int, int);

@@ -26,6 +26,12 @@ void Minesweeper::initField(int width, int height, int mineCounter) {
      cells[i][j] = new Cell;
      }
      }*/
+    for(int i = 0; i < height*width; i++){
+        cells[i].setRevealed(false);
+        cells[i].setFlagged(false);
+        cells[i].setQuestionMarked(false);
+        cells[i].setBombNum(0);
+    }
 }
 
 /**
@@ -44,6 +50,7 @@ Cell* Minesweeper::getCell(int x, int y) {
  * but dont give x1 and y1 bomb and nor its neighbours
  */
 void Minesweeper::bombGenerator(int x1, int y1) {
+
     srand(time(NULL));
     for (int i = 0; i < mineCounter; i += 1) {
         bool checker = false;
