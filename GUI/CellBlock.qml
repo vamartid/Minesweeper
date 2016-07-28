@@ -74,6 +74,8 @@ Button{
                     }else{
                         repeaterId.itemAt(m*columns+n).text = " ";
                     }
+                }else{
+                    repeaterId.itemAt(m*columns+n).text = " ";
                 }
             }
         }
