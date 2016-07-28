@@ -189,7 +189,7 @@ void Minesweeper::rightClickAction(int x, int y) {
 
 void Minesweeper::leftClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
-        if (!getCell(x, y)->isFlagged()) { //it is flagged
+        if (!getCell(x, y)->isFlagged() || !getCell(x, y)->isQuestionMarked()) { //it is flagged
             if (getCell(x, y)->getBombNum() == 9) { //it is bomb
                 for (int i = 0; i < width; i++) { //open all cells
                     for (int j = 0; j < height; j++) {
@@ -197,11 +197,11 @@ void Minesweeper::leftClickAction(int x, int y) {
                     }
                 }
             }
-            else if (getCell(x, y)->getBombNum() == 0) {			//if its empty
-                openNeighboursRec(x, y);			//check and open neighbours
+            else if (getCell(x, y)->getBombNum() == 0) { //if its empty
+                openNeighboursRec(x, y); //check and open neighbours
+            } else {
+                getCell(x, y)->setRevealed(true);
             }
-            //you have to open the cell
-            //getCell(x, y)->setRevealed(true);			//open
         } else {
             cout << "cell is flagged" << endl;
         }
@@ -240,7 +240,14 @@ void Minesweeper::doubleClickAction(int x, int y) {
                 for (int i = -1; i < 2; i += 1) {
                     for (int j = -1; j < 2; j += 1) {
                         if (getCell(x, y)->getBombNum() != 9) { //it is not bomb
-                            getCell(x + i, y + j)->setRevealed(true);
+                            if (getCell(x, y)->getBombNum() != 0){
+                                getCell(x + i, y + j)->setRevealed(true);
+                            } else {
+                                openNeighboursRec(x + i, y + j);
+                            }
+                        }
+                        else {
+
                         }
                     }
                 }
