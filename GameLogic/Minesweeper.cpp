@@ -173,7 +173,7 @@ void Minesweeper::rightClickAction(int x, int y) {
         if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked()) { //if it is not flagged
             getCell(x, y)->setFlagged(true);
             cout << "flagged";
-        } else if (!getCell(x, y)->isFlagged()) { //it is flagged
+        } else if (getCell(x, y)->isFlagged()) { //it is flagged
             getCell(x, y)->setFlagged(false);
             getCell(x, y)->setQuestionMarked(true);
             cout << "add question mark";
@@ -189,23 +189,24 @@ void Minesweeper::rightClickAction(int x, int y) {
 
 void Minesweeper::leftClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
-        if (getCell(x, y)->getBombNum() == 9) { //it is bomb
-            for (int i = 0; i < width; i++) { //open all cells
-                for (int j = 0; j < height; j++) {
-                    getCell(i, j)->setRevealed(true);
+        if (!getCell(x, y)->isFlagged()) { //it is flagged
+            if (getCell(x, y)->getBombNum() == 9) { //it is bomb
+                for (int i = 0; i < width; i++) { //open all cells
+                    for (int j = 0; j < height; j++) {
+                        getCell(i, j)->setRevealed(true);
+                    }
                 }
             }
-        } else if (!getCell(x, y)->isFlagged()) { //it is flagged
-            //you have to open the cell
-            getCell(x, y)->setRevealed(true);			//open
-            if (getCell(x, y)->getBombNum() == 0) {			//if its empty
+            else if (getCell(x, y)->getBombNum() == 0) {			//if its empty
                 openNeighboursRec(x, y);			//check and open neighbours
             }
+            //you have to open the cell
+            //getCell(x, y)->setRevealed(true);			//open
         } else {
-            cout << "dont know what this is" << endl;
+            cout << "cell is flagged" << endl;
         }
     } else {
-        cout << "i can not click this" << endl;
+        cout << "cell is already revealed" << endl;
     }
 }
 
