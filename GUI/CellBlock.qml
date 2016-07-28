@@ -45,7 +45,7 @@ Button{
 
         onDoubleClicked: {
            if(mineField.getisRevealed(x_position, y_position)){
-               if(!(mineField.getBombNum(x_position, y_position)==9)){
+               if(!(mineField.getBombNum(x_position, y_position)===9)){
                    mineField.doubleClickAction(x_position, y_position);
                    reveal();
                }
@@ -60,8 +60,12 @@ Button{
         for (m = 0; m < gridid.rows; m++) {
             for (n = 0; n < gridid.columns; n++) {
                 if(mineField.getisRevealed(m,n)){
-                    if(mineField.getBombNum(m,n)==9){
-                        repeaterId.itemAt(m*columns+n).text = "@";
+                    if(mineField.getBombNum(m,n)===9){
+                        if(mineField.getisFlagged(m,n)){
+                            repeaterId.itemAt(m*columns+n).text = "^"; //proxeiri lisi, prepei na exei kapoio bug kapou
+                        } else {
+                            repeaterId.itemAt(m*columns+n).text = "@";
+                    }
                     }else{
                         repeaterId.itemAt(m*columns+n).text = mineField.getBombNum(m,n).toString();
                     }
