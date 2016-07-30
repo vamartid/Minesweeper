@@ -298,8 +298,8 @@ bool Minesweeper::isGameWon(){
 }
 
 void Minesweeper::openAllCells(){
-    for (int i = 0; i < width; i++) { //open all cells
-        for (int j = 0; j < height; j++) {
+    for (int i = 0; i < height; i++) { //open all cells
+        for (int j = 0; j < width; j++) {
             getCell(i, j)->setRevealed(true);
             getCell(i, j)->setFlagged(false);
         }
