@@ -40,7 +40,11 @@ Button{
                }
             }else if(mouse.button & Qt.RightButton) {
                  mineField.rightClickAction(x_position, y_position);
+                rectID.remMines = mineField.getRemFlags();
                 reveal();
+            }
+            if(mineField.isGameWon()){
+                resetText.text = "😎";
             }
         }
 
@@ -50,6 +54,9 @@ Button{
                    mineField.doubleClickAction(x_position, y_position);
                    reveal();
                }
+           }
+           if(mineField.isGameWon()){
+               resetText.text = "😎";
            }
         }
     }
@@ -66,6 +73,7 @@ Button{
                             repeaterId.itemAt(m*columns+n).cellText = "^"; //proxeiri lisi, prepei na exei kapoio bug kapou
                         } else {
                             repeaterId.itemAt(m*columns+n).cellText = "@";
+                            resetText.text = "😢";//"☹";
                     }
                     }else{
                         repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
