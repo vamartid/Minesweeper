@@ -22,35 +22,31 @@ private:
 	int width;
 	int height;
 	int mineCounter;
-	//Cell ** cells;
+    int remFlags;
+    int winCounter = 0;
 	std::vector<Cell> cells;
+    void openNeighboursRec(int, int);
+    bool checkPlacement(int, int, int, int);
+    void numberPlacement(int, int);
+    void openAllCells();
 public:
     explicit Minesweeper(QObject *parent = 0);
-    //Minesweeper(int, int, int);
 	~Minesweeper();
-//    void bombGenerator(int, int);
-	bool checkPlacement(int, int, int, int);
-	void numberPlacement(int, int);
     Cell * getCell(int, int);
-	void openNeighboursRec(int, int);
-
-    //, int);
-
 	void print();
     void print2(int, int);
 public slots:
-
-
     void initField(int, int, int);
     void leftClickAction(int, int);
     void doubleClickAction(int, int);
     void rightClickAction(int, int);
-
     void bombGenerator(int, int);
     int getBombNum(int, int);
+    int getRemFlags();
     bool getisFlagged(int, int);
     bool getisQuestionMarked(int, int);
-    bool getisRevealed(int, int);
+    bool getisRevealed(int, int); 
+    bool isGameWon();
 //    Cell returnCell(int, int);
 };
 
