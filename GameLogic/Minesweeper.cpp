@@ -306,8 +306,6 @@ void Minesweeper::openAllCells(){
     }
 }
 
-
-
 //Cell Minesweeper::returnCell(int x, int y){//1 revieald//2 flagged//3 marked
 //    Cell a;
 //    a.setFlagged(getCell(x,y)->isFlagged());
