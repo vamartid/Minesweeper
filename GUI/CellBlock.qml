@@ -3,19 +3,20 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 Button{
+    //id: cellBlock
     property int minDim: Math.min(rectID.height, rectID.width);
     height: minDim*0.08
     width : minDim*0.08
+    property string cellText
     property int x_position
     property int y_position
-
     property int m: 0
     property int n: 0
 
     Text{
         anchors.fill: parent
-        id: cellText
-        font.pixelSize: parent.height*0.8
+        text: cellText
+        font.pixelSize: parent.height*0.7
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
     }
@@ -62,24 +63,24 @@ Button{
                 if(mineField.getisRevealed(m,n)){
                     if(mineField.getBombNum(m,n)===9){
                         if(mineField.getisFlagged(m,n)){
-                            repeaterId.itemAt(m*columns+n).text = "^"; //proxeiri lisi, prepei na exei kapoio bug kapou
+                            repeaterId.itemAt(m*columns+n).cellText = "^"; //proxeiri lisi, prepei na exei kapoio bug kapou
                         } else {
-                            repeaterId.itemAt(m*columns+n).text = "@";
+                            repeaterId.itemAt(m*columns+n).cellText = "@";
                     }
                     }else{
-                        repeaterId.itemAt(m*columns+n).text = mineField.getBombNum(m,n).toString();
+                        repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
                     }
                     //repeaterId.itemAt(m*columns+n).enabled = false;
                 }else if(mineField.getisFlagged(m,n)){
-                    repeaterId.itemAt(m*columns+n).text = "^";
+                    repeaterId.itemAt(m*columns+n).cellText = "^";
                 }else if(!mineField.getisFlagged(m,n)){
                     if(mineField.getisQuestionMarked(m,n)){
-                        repeaterId.itemAt(m*columns+n).text = "?";
+                        repeaterId.itemAt(m*columns+n).cellText = "?";
                     }else{
-                        repeaterId.itemAt(m*columns+n).text = " ";
+                        repeaterId.itemAt(m*columns+n).cellText = " ";
                     }
                 }else{
-                    repeaterId.itemAt(m*columns+n).text = " ";
+                    repeaterId.itemAt(m*columns+n).cellText = " ";
                 }
             }
         }
