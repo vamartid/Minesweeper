@@ -45,6 +45,7 @@ Button{
             }
             if(mineField.isGameWon()){
                 resetText.text = "😎";
+                secondCounter.stop();
             }
         }
 
@@ -57,6 +58,7 @@ Button{
            }
            if(mineField.isGameWon()){
                resetText.text = "😎";
+               secondCounter.stop();
            }
         }
     }
@@ -74,6 +76,7 @@ Button{
                         } else {
                             repeaterId.itemAt(m*columns+n).cellText = "@";
                             resetText.text = "😢";//"☹";
+                            secondCounter.stop();
                     }
                     }else{
                         repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();

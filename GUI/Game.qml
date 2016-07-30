@@ -3,12 +3,15 @@ import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 
 Rectangle {
-
-
     property int mines: parseInt(choice.mines)
     property int rows: parseInt(choice.rows)
     property int columns: parseInt(choice.columns)
     property int remMines: parseInt(choice.mines)
+    property int m: 0
+    property int n: 0
+    SecondCounter{
+        id: secondCounter
+    }
 
 //    property string rows:console.log(easybutton.rows)
 //    property string collums:console.log(easybutton.colums)
@@ -28,7 +31,7 @@ Rectangle {
             }
         }
         Rectangle{
-            border.color: "#FF5722"
+            border.color: parent.color
             border.width: parent.height*0.03
             radius: 6
             color: "#303030"
@@ -47,6 +50,7 @@ Rectangle {
             }
         }
         Button{
+            id: resetButton
             anchors.horizontalCenter: parent.horizontalCenter
             height: parent.height
             width: height
@@ -62,6 +66,38 @@ Rectangle {
                 font.pixelSize: parent.height*0.75
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
+            }
+            onClicked:{
+                for (m = 0; m < gridid.rows; m++) {
+                    for (n = 0; n < gridid.columns; n++) {
+                        repeaterId.itemAt(m*columns+n).cellText = "";
+                    }
+                }
+                gridid.moves=0
+                secondCounter.seconds = 0;
+                secondCounter.start();
+                mineField.initField(rows, columns, mines);
+            }
+
+        }
+        Rectangle{
+            border.color: parent.color
+            border.width: parent.height*0.03
+            radius: 6
+            color: "#303030"
+            anchors.right: parent.right
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.rightMargin: parent.width*0.1
+            width: height*1.4
+            Text{
+                anchors.fill: parent
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.pixelSize: height*0.7
+                text: secondCounter.seconds
+                color: "white"
+                font.family: "droid-sans-mono"
             }
         }
     }
