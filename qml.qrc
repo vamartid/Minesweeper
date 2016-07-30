@@ -14,5 +14,6 @@
         <file>GUI/CellBlock.qml</file>
         <file>GUI/AboutPage.qml</file>
         <file>GUI/Scores.qml</file>
+        <file>GUI/SecondCounter.qml</file>
     </qresource>
 </RCC>
