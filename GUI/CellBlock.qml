@@ -39,13 +39,18 @@ Button{
                    reveal();
                }
             }else if(mouse.button & Qt.RightButton) {
-                 mineField.rightClickAction(x_position, y_position);
-                rectID.remMines = mineField.getRemFlags();
+                mineField.rightClickAction(x_position, y_position);
+                rectID.remFlags = mineField.getRemFlags();
                 reveal();
             }
             if(mineField.isGameWon()){
                 resetText.text = "😎";
                 secondCounter.stop();
+                for (m = 0; m < gridid.rows; m++) {
+                    for (n = 0; n < gridid.columns; n++) {
+                        repeaterId.itemAt(m*columns+n).enabled = false;
+                    }
+                }
             }
         }
 
@@ -59,6 +64,11 @@ Button{
            if(mineField.isGameWon()){
                resetText.text = "😎";
                secondCounter.stop();
+               for (m = 0; m < gridid.rows; m++) {
+                   for (n = 0; n < gridid.columns; n++) {
+                       repeaterId.itemAt(m*columns+n).enabled = false;
+                   }
+               }
            }
         }
     }

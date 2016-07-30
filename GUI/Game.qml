@@ -6,7 +6,7 @@ Rectangle {
     property int mines: parseInt(choice.mines)
     property int rows: parseInt(choice.rows)
     property int columns: parseInt(choice.columns)
-    property int remMines: parseInt(choice.mines)
+    property int remFlags: parseInt(choice.mines)
     property int m: 0
     property int n: 0
     SecondCounter{
@@ -44,7 +44,7 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: height*0.7
-                text: remMines.toString()
+                text: remFlags.toString()
                 color: "white"
                 font.family: "droid-sans-mono"
             }
@@ -61,7 +61,6 @@ Rectangle {
                 anchors.left: parent.left
                 anchors.right: parent.right
                 height: parent.height
-                //text: "☺"
                 text: "😏"
                 font.pixelSize: parent.height*0.75
                 horizontalAlignment: Text.AlignHCenter
@@ -71,12 +70,15 @@ Rectangle {
                 for (m = 0; m < gridid.rows; m++) {
                     for (n = 0; n < gridid.columns; n++) {
                         repeaterId.itemAt(m*columns+n).cellText = "";
+                        repeaterId.itemAt(m*columns+n).enabled = true;
                     }
                 }
                 gridid.moves=0
                 secondCounter.seconds = 0;
                 secondCounter.start();
                 mineField.initField(rows, columns, mines);
+                resetText.text = "😏";
+                remFlags = mines;
             }
 
         }
@@ -88,7 +90,7 @@ Rectangle {
             anchors.right: parent.right
             anchors.top: parent.top
             anchors.bottom: parent.bottom
-            anchors.rightMargin: parent.width*0.1
+            anchors.rightMargin: backButton.width
             width: height*1.4
             Text{
                 anchors.fill: parent
