@@ -74,7 +74,7 @@ Rectangle {
             font.pixelSize: parent.height*0.3
         }
         onClicked: {
-            mineField.initField(choice.rows, choice.columns, choice.mines);
+            mineField.initField(choice.columns, choice.rows, choice.mines);
             stack.push(game)
         }
     }
@@ -110,7 +110,7 @@ Rectangle {
             choice.rows= 16
             choice.columns= 16
             choice.mines= 40
-            mineField.initField(choice.rows, choice.columns, choice.mines);
+            mineField.initField(choice.columns, choice.rows, choice.mines);
             stack.push(game)
         }
     }
@@ -147,7 +147,7 @@ Rectangle {
             choice.rows= 30
             choice.columns= 16
             choice.mines= 99
-            mineField.initField(choice.rows, choice.columns, choice.mines);
+            mineField.initField(choice.columns, choice.rows, choice.mines);
             stack.push(game)
         }
     }
@@ -355,7 +355,7 @@ Rectangle {
                 choice.rows= fieldheight_input.text
                 choice.columns= fieldwidth_input.text
                 choice.mines= fieldmines_input.text
-                mineField.initField(choice.rows, choice.columns, choice.mines);
+                mineField.initField(choice.columns, choice.rows, choice.mines);
                 stack.push(game)
             }
         }

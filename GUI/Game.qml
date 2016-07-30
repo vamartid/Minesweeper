@@ -76,7 +76,7 @@ Rectangle {
                 gridid.moves=0
                 secondCounter.seconds = 0;
                 secondCounter.start();
-                mineField.initField(rows, columns, mines);
+                mineField.initField(columns, rows, mines);
                 resetText.text = "😏";
                 remFlags = mines;
             }
