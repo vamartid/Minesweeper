@@ -40,14 +40,13 @@ Button{
                    mineField.bombGenerator(x_position, y_position);
                    mineField.leftClickAction(x_position, y_position);
                    gridid.moves++;
-                   reveal();
                }else{
                    mineField.leftClickAction(x_position, y_position);
                    if(mineField.getBombNum(m,n)===9){
                        backgroundImage.source = "icons/mine-grey.png";
                     }
-                   reveal();
                }
+               reveal();
             }else if(mouse.button & Qt.RightButton) {
                 mineField.rightClickAction(x_position, y_position);
                 rectID.remFlags = mineField.getRemFlags();
