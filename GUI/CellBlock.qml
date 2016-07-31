@@ -25,7 +25,14 @@ Button{
         anchors.fill: parent
 
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-
+    
+        Image {
+            id: backgroundImage
+            anchors.fill: parent
+            source: ""
+            smooth: true
+        }
+        
         onClicked:
         {
             if(mouse.button & Qt.LeftButton){
@@ -36,6 +43,9 @@ Button{
                    reveal();
                }else{
                    mineField.leftClickAction(x_position, y_position);
+                   if(mineField.getBombNum(m,n)===9){
+                       backgroundImage.source = "icons/mine-grey.png";
+                    }
                    reveal();
                }
             }else if(mouse.button & Qt.RightButton) {
@@ -84,7 +94,7 @@ Button{
                         if(mineField.getisFlagged(m,n)){
                             repeaterId.itemAt(m*columns+n).cellText = "^"; //proxeiri lisi, prepei na exei kapoio bug kapou
                         } else {
-                            repeaterId.itemAt(m*columns+n).cellText = "@";
+                            //repeaterId.itemAt(m*columns+n).cellText = "@";
                             resetText.text = "😢";//"☹";
                             secondCounter.stop();
                     }
