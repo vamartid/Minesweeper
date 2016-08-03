@@ -19,6 +19,7 @@ void Minesweeper::initField(int width, int height, int mineCounter) {
     this->mineCounter = mineCounter;
     remFlags = mineCounter;
     winCounter = 0;
+    gameLost = false;
     //initializing the minefield array
     //cells = new Cell[width][height];
     cells.resize(height * width);
@@ -196,6 +197,7 @@ void Minesweeper::leftClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
         if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked()) { //it is flagged
             if (getCell(x, y)->getBombNum() == 9) { //it is bomb
+                gameLost = true;
                 openAllCells();
             }
             else if (getCell(x, y)->getBombNum() == 0) { //if its empty
@@ -267,6 +269,7 @@ void Minesweeper::doubleClickAction(int x, int y) {
             if (wrongFlaggedBombs) { //he marked wrong cell as bomb
                 cout << "there are wrong flagged bombs" << endl;
                 cout << "you lost" << endl; //he loses
+                gameLost = true;
                 openAllCells();
             } else {
                 cout << "did nothing" << endl;
@@ -290,18 +293,23 @@ bool Minesweeper::getisQuestionMarked(int x, int y){
 bool Minesweeper::getisRevealed(int x, int y){
     return getCell(x,y)->isRevealed();
 }
+//checks if game is won
 bool Minesweeper::isGameWon(){
     if (winCounter == height*width - mineCounter){
         return true;
     }
     return false;
 }
+//checks if game is lost
+bool Minesweeper::isGameLost(){
+    return gameLost;
+}
 
 void Minesweeper::openAllCells(){
     for (int i = 0; i < height; i++) { //open all cells
         for (int j = 0; j < width; j++) {
             getCell(i, j)->setRevealed(true);
-            getCell(i, j)->setFlagged(false);
+            //getCell(i, j)->setFlagged(false);
         }
     }
 }
