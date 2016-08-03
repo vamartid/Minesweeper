@@ -15,5 +15,7 @@
         <file>GUI/AboutPage.qml</file>
         <file>GUI/Scores.qml</file>
         <file>GUI/SecondCounter.qml</file>
+        <file>GUI/icons/flag.png</file>
+        <file>GUI/icons/mine-red.png</file>
     </qresource>
 </RCC>
