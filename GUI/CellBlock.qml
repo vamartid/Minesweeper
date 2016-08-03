@@ -58,28 +58,32 @@ Button{
             }else if(mouse.button & Qt.RightButton) {
                 mineField.rightClickAction(x_position, y_position);
                 rectID.remFlags = mineField.getRemFlags();
-                if(mineField.getisFlagged(x_position, y_position)){
-                    repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
-                    repeaterId.itemAt(x_position*columns+y_position).cellText = "";
-                }else{
-                    if(mineField.getisQuestionMarked(x_position, y_position)){
-                        repeaterId.itemAt(x_position*columns+y_position).clearImage();
-                        repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
-                        repeaterId.itemAt(x_position*columns+y_position).cellTextColor = rectID.colorOne;
+                if(!mineField.getisRevealed(x_position, y_position)){
+                    if(mineField.getisFlagged(x_position, y_position)){
+                        repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
+                        repeaterId.itemAt(x_position*columns+y_position).cellText = "";
                     }else{
-                        repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
+                        if(mineField.getisQuestionMarked(x_position, y_position)){
+                            repeaterId.itemAt(x_position*columns+y_position).clearImage();
+                            repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
+                            repeaterId.itemAt(x_position*columns+y_position).cellTextColor = rectID.colorOne;
+                        }else{
+                            repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
+                        }
                     }
                 }
             }
         }
 
         onDoubleClicked: {
-           if(mineField.getisRevealed(x_position, y_position)){
-               if(!(mineField.getBombNum(x_position, y_position)===9)){
-                   mineField.doubleClickAction(x_position, y_position);
-                   reveal();
+            if(mouse.button & Qt.LeftButton){
+               if(mineField.getisRevealed(x_position, y_position)){
+                   if(!(mineField.getBombNum(x_position, y_position)===9)){
+                       mineField.doubleClickAction(x_position, y_position);
+                       reveal();
+                   }
                }
-           }
+            }
         }
     }
 
