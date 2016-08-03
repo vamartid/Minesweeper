@@ -55,6 +55,8 @@ Rectangle {
             height: parent.height
             width: height
             anchors.margins: width*0.05
+
+
             Text{
                 id: resetText
                 anchors.top: parent.top
@@ -69,8 +71,7 @@ Rectangle {
             onClicked:{
                 for (m = 0; m < gridid.rows; m++) {
                     for (n = 0; n < gridid.columns; n++) {
-                        repeaterId.itemAt(m*columns+n).cellText = "";
-                        repeaterId.itemAt(m*columns+n).enabled = true;
+                        repeaterId.itemAt(m*columns+n).reset();
                     }
                 }
                 gridid.moves=0
