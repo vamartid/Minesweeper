@@ -7,6 +7,16 @@ Rectangle {
     property int rows: parseInt(choice.rows)
     property int columns: parseInt(choice.columns)
     property int remFlags: parseInt(choice.mines)
+    property string colorOne: "#0B0CA5"
+    property string colorTwo: "#147116"
+    property string colorThree: "#A92322"
+    property string colorFour: "#080846"
+    property string colorFive: "#4D1514"
+    property string colorSix: "#1F7373"
+    property string colorSeven: "#000000"
+    property string colorEight: "#808080"
+    property string backgroundColorPressed: "#D1D1D1"
+    property string backgroundColorNotPressed: "#F4F4F4"
     property int m: 0
     property int n: 0
     SecondCounter{
