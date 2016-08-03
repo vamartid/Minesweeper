@@ -3,7 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 
 Button{
-    //id: cellBlock
+    id: cellBlock
     property int minDim: Math.min(rectID.height, rectID.width);
     height: minDim*0.08
     width : minDim*0.08
@@ -12,6 +12,7 @@ Button{
     property int y_position
     property int m: 0
     property int n: 0
+
 
     Text{
         anchors.fill: parent
@@ -25,33 +26,38 @@ Button{
         anchors.fill: parent
 
         acceptedButtons: Qt.LeftButton | Qt.RightButton
-    
         Image {
             id: backgroundImage
             anchors.fill: parent
             source: ""
             smooth: true
         }
-        
         onClicked:
         {
             if(mouse.button & Qt.LeftButton){
                 if(gridid.moves==0){
-                   mineField.bombGenerator(x_position, y_position);
+                    mineField.bombGenerator(x_position, y_position);
+                    mineField.leftClickAction(x_position, y_position);
+                    gridid.moves++;
+                }else{
                    mineField.leftClickAction(x_position, y_position);
-                   gridid.moves++;
-               }else{
-                   mineField.leftClickAction(x_position, y_position);
-                   if(mineField.getBombNum(m,n)===9){
-                       backgroundImage.source = "icons/mine-grey.png";
+                    if(mineField.getBombNum(m,n)===9){
+                        for (m = 0; m < gridid.rows; m++) {
+                            for (n = 0; n < gridid.columns; n++) {
+                                if(mineField.getBombNum(m,n)===9){
+                                    repeaterId.itemAt(m*columns+n).setBombImage();
+                                }
+                            }
+                        }
                     }
-               }
-               reveal();
+                }
+                reveal();
             }else if(mouse.button & Qt.RightButton) {
                 mineField.rightClickAction(x_position, y_position);
                 rectID.remFlags = mineField.getRemFlags();
                 reveal();
             }
+
             if(mineField.isGameWon()){
                 resetText.text = "😎";
                 secondCounter.stop();
@@ -116,5 +122,14 @@ Button{
         }
     }
 
+    function setBombImage() {
+        backgroundImage.source = "icons/mine-grey.png";
+    }
+
+    function reset() {
+        cellText = "";
+        enabled = true;
+        backgroundImage.source = "";
+    }
 }
 
