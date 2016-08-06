@@ -17,5 +17,9 @@
         <file>GUI/SecondCounter.qml</file>
         <file>GUI/icons/flag.png</file>
         <file>GUI/icons/mine-red.png</file>
+        <file>GUI/NameInputWindow.qml</file>
+        <file>GUI/DarkTextField.qml</file>
+        <file>GUI/Toast.qml</file>
+        <file>GUI/ToastManager.qml</file>
     </qresource>
 </RCC>
