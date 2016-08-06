@@ -16,7 +16,7 @@ Column{
      * @param {real} duration Duration to show in milliseconds, defaults to 3000
      */
     function show(text, duration){
-        var toast = toastComponent.createObject(root);
+        var toast = toastComponent.createObject(toastManager);
         toast.selfDestroying = true;
         toast.show(text, duration);
     }
@@ -25,7 +25,7 @@ Column{
      * Private
      */
 
-    id: root
+    id: toastManager
 
     z: Infinity
     spacing: 5

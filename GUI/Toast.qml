@@ -34,7 +34,7 @@ Rectangle{
     * Private
     */
 
-    id: root
+    id: toast
 
     property real time: defaultTime
     readonly property real defaultTime: 3000
@@ -80,7 +80,7 @@ Rectangle{
 
         onRunningChanged:{
             if(!running && selfDestroying)
-                root.destroy();
+                toast.destroy();
         }
     }
 }

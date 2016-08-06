@@ -5,12 +5,12 @@ import QtQuick.Controls.Styles 1.4
 Button{
     id: cellBlock
     //property int minDim: Math.min(rectID.height, rectID.width);
-    height: rectID.height*0.05
+    height: game.height*0.05
     //width : minDim*0.08
-    width: rectID.height*0.05
+    width: game.height*0.05
     property string cellText
     property string cellTextColor: "#000000"
-    property string backgroundColor: rectID.backgroundColorNotPressed
+    property string cellColor: game.cellColorNotPressed
     property int x_position
     property int y_position
     property int m: 0
@@ -18,7 +18,7 @@ Button{
 
 
     Text{
-        //id: cellTextArea
+        id: cellTextArea
         anchors.fill: parent
         text: cellText
         color: cellTextColor
@@ -29,7 +29,7 @@ Button{
     style: ButtonStyle {
        background:
             Rectangle {
-               color: innerMouseArea.pressed ? rectID.backgroundColorPressed : backgroundColor;
+               color: innerMouseArea.pressed ? game.cellColorPressed : cellColor;
                 radius: 1;
             }
     }
@@ -63,7 +63,7 @@ Button{
                 }
             }else if(mouse.button & Qt.RightButton) {
                 mineField.rightClickAction(x_position, y_position);
-                rectID.remFlags = mineField.getRemFlags();
+                game.remFlags = mineField.getRemFlags();
                 if(!mineField.getisRevealed(x_position, y_position)){
                     if(mineField.getisFlagged(x_position, y_position)){
                         repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
@@ -72,7 +72,6 @@ Button{
                         if(mineField.getisQuestionMarked(x_position, y_position)){
                             repeaterId.itemAt(x_position*columns+y_position).clearImage();
                             repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
-                            repeaterId.itemAt(x_position*columns+y_position).cellTextColor = rectID.colorOne;
                         }else{
                             repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
                         }
@@ -119,32 +118,15 @@ Button{
 
                 if(mineField.getisRevealed(m,n)){
                     if(mineField.getBombNum(m,n)===9){
-                        //if(mineField.getisFlagged(m,n)){
-                            //repeaterId.itemAt(m*columns+n).setFlagImage(); //proxeiri lisi, prepei na exei kapoio bug kapou
-                        //}else{
-                            repeaterId.itemAt(m*columns+n).setBombImage();
-                        //}
+                        repeaterId.itemAt(m*columns+n).setBombImage();
                     }else{
                         if (mineField.getBombNum(m,n) !== 0){
                             repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
                             repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n));
                         }
-                        repeaterId.itemAt(m*columns+n).backgroundColor = rectID.backgroundColorPressed;
+                        repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
                     }
                 }
-                /*}else if(mineField.getisFlagged(m,n)){
-                    repeaterId.itemAt(m*columns+n).setFlagImage();
-                    repeaterId.itemAt(m*columns+n).cellText = "";
-                }else if(!mineField.getisFlagged(m,n)){
-                    if(mineField.getisQuestionMarked(m,n)){
-                        repeaterId.itemAt(m*columns+n).cellText = "?";
-                        repeaterId.itemAt(m*columns+n).cellTextColor = rectID.colorOne;
-                    }else{
-                        repeaterId.itemAt(m*columns+n).cellText = " ";
-                    }
-                }else{
-                    repeaterId.itemAt(m*columns+n).cellText = "";
-                }*/
             }
         }
     }
@@ -164,23 +146,23 @@ Button{
     function getNumberColor(number){
         switch(number) {
             case 1:
-                return rectID.colorOne;
+                return game.colorOne;
             case 2:
-                return rectID.colorTwo;
+                return game.colorTwo;
             case 3:
-                return rectID.colorThree;
+                return game.colorThree;
             case 4:
-                return rectID.colorFour;
+                return game.colorFour;
             case 5:
-                return rectID.colorFive;
+                return game.colorFive;
             case 6:
-                return rectID.colorSix;
+                return game.colorSix;
             case 7:
-                return rectID.colorSeven;
+                return game.colorSeven;
             case 8:
-                return rectID.colorEight;
+                return game.colorEight;
             default:
-                return rectID.colorSeven;
+                return game.colorSeven;
         }
     }
 
@@ -188,7 +170,7 @@ Button{
         cellText = "";
         enabled = true;
         backgroundImage.source = "";
-        backgroundColor = rectID.backgroundColorNotPressed;
+        cellColor = game.cellColorNotPressed;
         cellTextColor = "#000000"
     }
 }

@@ -5,11 +5,11 @@ import QtQuick.Controls.Styles 1.4
 TextField{
     style: TextFieldStyle {
         textColor: "white"
-        selectionColor: "#FF774C"
+        selectionColor: "#ff7043"
         background: Rectangle {
-            radius: 7
+            radius: 5
             color: "#303030"
-            border.color: "#F4F4F4"
+            border.color: "#9e9e9e"
             border.width: 1
         }
     }

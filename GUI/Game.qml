@@ -15,25 +15,19 @@ Rectangle {
     property string colorSix: "#1F7373"
     property string colorSeven: "#000000"
     property string colorEight: "#808080"
-    property string backgroundColorPressed: "#D1D1D1"
-    property string backgroundColorNotPressed: "#F4F4F4"
+    property string cellColorPressed: "#D1D1D1"
+    property string cellColorNotPressed: "#F4F4F4"
     property int m: 0
     property int n: 0
     SecondCounter{
         id: secondCounter
     }
-
-//    property string rows:console.log(easybutton.rows)
-//    property string collums:console.log(easybutton.colums)
-
-    id: rectID
+    id: game
     height: parent.height
     width: parent.width
     visible: true
     color: "#303030"
-    //NameInputWindow{
-        //visible: true
-    //}
+
     AndroidToolbar{
         id: toolbar_game
         BackButton{
@@ -129,8 +123,8 @@ Rectangle {
             id: gridid
             anchors.top: parent.top
             spacing: parent.width*0.001
-            columns: rectID.columns
-            rows: rectID.rows
+            columns: game.columns
+            rows: game.rows
             Repeater{
                 id: repeaterId
                 model:gridid.rows*gridid.columns

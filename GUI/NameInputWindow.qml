@@ -19,6 +19,7 @@ Window {
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.right: parent.right
+            anchors.topMargin: parent.height*0.05
             color: "white"
             text: qsTr("Please enter your name")
             verticalAlignment: Text.AlignVCenter
@@ -53,7 +54,7 @@ Window {
                 anchors.right: parent.right
                 anchors.rightMargin: parent.width*0.1
                 anchors.bottom: parent.bottom
-                font.pixelSize: parent.height*0.6
+                font.pixelSize: parent.height*0.5
             }
         }
         Rectangle{
@@ -77,6 +78,9 @@ Window {
                     verticalAlignment: Text.AlignVCenter
                     wrapMode: Text.Wrap
                     font.pixelSize: parent.height*0.5
+                }
+                onClicked: {
+                    //Saves data to high scores
                 }
             }
             Button{

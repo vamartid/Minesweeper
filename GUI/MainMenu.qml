@@ -157,7 +157,6 @@ Rectangle {
         }
     }
     Text{
-        //visible:false
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width*0.9
