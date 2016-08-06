@@ -4,9 +4,10 @@ import QtQuick.Controls.Styles 1.4
 
 Button{
     id: cellBlock
-    property int minDim: Math.min(rectID.height, rectID.width);
-    height: minDim*0.08
-    width : minDim*0.08
+    //property int minDim: Math.min(rectID.height, rectID.width);
+    height: rectID.height*0.05
+    //width : minDim*0.08
+    width: rectID.height*0.05
     property string cellText
     property string cellTextColor: "#000000"
     property string backgroundColor: rectID.backgroundColorNotPressed
@@ -55,6 +56,11 @@ Button{
                    mineField.leftClickAction(x_position, y_position);
                 }
                 reveal();
+                if(mineField.isGameWon() && !choice.customGame){
+                    var nameComponent = Qt.createComponent("NameInputWindow.qml")
+                    var nameWindow    = nameComponent.createObject(root)
+                    nameWindow.show()
+                }
             }else if(mouse.button & Qt.RightButton) {
                 mineField.rightClickAction(x_position, y_position);
                 rectID.remFlags = mineField.getRemFlags();
@@ -81,6 +87,11 @@ Button{
                    if(!(mineField.getBombNum(x_position, y_position)===9)){
                        mineField.doubleClickAction(x_position, y_position);
                        reveal();
+                       if(mineField.isGameWon() && !choice.customGame){
+                           var nameComponent = Qt.createComponent("NameInputWindow.qml")
+                           var nameWindow    = nameComponent.createObject(root)
+                           nameWindow.show()
+                       }
                    }
                }
             }

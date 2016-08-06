@@ -31,6 +31,9 @@ Rectangle {
     width: parent.width
     visible: true
     color: "#303030"
+    //NameInputWindow{
+        //visible: true
+    //}
     AndroidToolbar{
         id: toolbar_game
         BackButton{

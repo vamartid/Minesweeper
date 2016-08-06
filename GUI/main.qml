@@ -3,6 +3,7 @@ import QtQuick.Window 2.2
 import QtQuick.Controls 1.4
 
 ApplicationWindow {
+    id: root
     visible: true
     width: 406
     height: 768
@@ -13,6 +14,9 @@ ApplicationWindow {
     Component{
         id: menu
         MainMenu{}
+    }
+    ToastManager{
+        id: toast
     }
 
     StackView

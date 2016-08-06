@@ -11,6 +11,7 @@ Rectangle {
     property int rows: 9
     property int columns: 9
     property int mines: 10
+    property bool customGame: false
 
     AndroidToolbar
     {
@@ -161,10 +162,11 @@ Rectangle {
         width: parent.width/2
         height: parent.height/16
         onClicked:{
-            if(asdf.state == "Visible"){
-                 asdf.state = "Invisible"
+            if(customRectangle.state == "Visible"){
+                 customRectangle.state = "Invisible"
             }else{
-                asdf.state = "Visible"
+                fieldwidth_input.forceActiveFocus()
+                customRectangle.state = "Visible"
             }
         }
         Text{
@@ -189,24 +191,24 @@ Rectangle {
 
     }
     Rectangle{
-        id: asdf
+        id: customRectangle
         state: "Invisible"
         color: "#303030"
         anchors.top: custombutton.bottom
         anchors.topMargin: parent.height*0.05
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width*0.7
+        width: parent.width*0.4
         states: [
             State{
                 name: "Visible"
-                PropertyChanges{target: asdf; opacity: 1.0}
-                PropertyChanges{target: asdf; visible: true}
+                PropertyChanges{target: customRectangle; opacity: 1.0}
+                PropertyChanges{target: customRectangle; visible: true}
             },
             State{
                 name:"Invisible"
-                PropertyChanges{target: asdf; opacity: 0.0}
-                PropertyChanges{target: asdf; visible: false}
+                PropertyChanges{target: customRectangle; opacity: 0.0}
+                PropertyChanges{target: customRectangle; visible: false}
             }
         ]
 
@@ -217,13 +219,13 @@ Rectangle {
 
                     SequentialAnimation{
                        NumberAnimation {
-                           target: asdf
+                           target: customRectangle
                            property: "opacity"
                            duration: 500
                            easing.type: Easing.InOutQuad
                        }
                        NumberAnimation {
-                           target: asdf
+                           target: customRectangle
                            property: "visible"
                            duration: 0
                        }
@@ -234,12 +236,12 @@ Rectangle {
                     to: "Visible"
                     SequentialAnimation{
                        NumberAnimation {
-                           target: asdf
+                           target: customRectangle
                            property: "visible"
                            duration: 0
                        }
                        NumberAnimation {
-                           target: asdf
+                           target: customRectangle
                            property: "opacity"
                            duration: 500
                            easing.type: Easing.InOutQuad
@@ -251,84 +253,79 @@ Rectangle {
             id: fieldwidth
             anchors.top: parent.top
             anchors.left: parent.left
+            height: parent.height*0.14
             color: "#FFFFFF"
             text: qsTr("Width: ")
-            font.pixelSize: parent.height*0.12
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: parent.height*0.1
         }
 
-        TextField {
+        DarkTextField {
             id: fieldwidth_input
+            validator: IntValidator{}
+            inputMethodHints: Qt.ImhDigitsOnly
+            maximumLength: 2
             anchors.top:parent.top
             anchors.left: fieldheight.right
             anchors.right: parent.right
             horizontalAlignment: Text.AlignHCenter
             height: fieldwidth.height
             font.pixelSize: parent.height*0.1
-            style: TextFieldStyle {
-                textColor: "black"
-                background: Rectangle {
-                    radius: 2
-                    border.color: "#303030"
-                    border.width: 3
-                }
-            }
+            onAccepted: acceptButton.acceptCustom()
         }
 
         Text{
             id: fieldheight
             anchors.top: fieldwidth.bottom
             anchors.left: parent.left
+            height: parent.height*0.14
             color: "#FFFFFF"
             text: qsTr("Height: ")
-            font.pixelSize: parent.height*0.12
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: parent.height*0.1
         }
 
-        TextField {
+        DarkTextField {
             id: fieldheight_input
+            validator: IntValidator{}
+            inputMethodHints: Qt.ImhDigitsOnly
+            maximumLength: 2
             anchors.top: fieldwidth_input.bottom
             anchors.left: fieldheight.right
             anchors.right: parent.right
             horizontalAlignment: Text.AlignHCenter
             height: fieldheight.height
             font.pixelSize: parent.height*0.1
-            style: TextFieldStyle {
-                textColor: "black"
-                background: Rectangle {
-                    radius: 2
-                    border.color: "#303030"
-                    border.width: 3
-                }
-            }
+            onAccepted: acceptButton.acceptCustom()
         }
 
         Text{
             id: fieldmines
             anchors.top: fieldheight.bottom
             anchors.left: parent.left
+            height: parent.height*0.14
             color: "#FFFFFF"
             text: qsTr("Mines: ")
-            font.pixelSize: parent.height*0.12
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: parent.height*0.1
         }
 
-        TextField {
+        DarkTextField {
             id: fieldmines_input
+            validator: IntValidator{}
+            inputMethodHints: Qt.ImhDigitsOnly
+            maximumLength: 4
             anchors.top: fieldheight_input.bottom
             anchors.left: fieldheight.right
             anchors.right: parent.right
             horizontalAlignment: Text.AlignHCenter
             height: fieldmines.height
             font.pixelSize: parent.height*0.1
-            style: TextFieldStyle {
-                textColor: "black"
-                background: Rectangle {
-                    radius: 2
-                    border.color: "#303030"
-                    border.width: 3
-                }
-            }
+            onAccepted: acceptButton.acceptCustom()
         }
         ToolButton
         {
+            id: acceptButton
             Image
             {
                 width: parent.width*0.8
@@ -351,12 +348,28 @@ Rectangle {
             anchors.bottomMargin: parent.height*0.2
             width: parent.height*0.3
             height:width
+            function acceptCustom(){
+                if(parseInt(fieldwidth_input.text) >= 5 && parseInt(fieldheight_input.text) >= 5){
+                    if(parseInt(fieldmines_input.text) <= parseInt(fieldheight_input.text)*parseInt(fieldwidth_input.text) - 9){
+                        if(parseInt(fieldmines_input.text) > 0){
+                            choice.rows = parseInt(fieldheight_input.text);
+                            choice.columns = parseInt(fieldwidth_input.text);
+                            choice.mines = parseInt(fieldmines_input.text);
+                            mineField.initField(choice.columns, choice.rows, choice.mines);
+                            customGame = true;
+                            stack.push(game)
+                        } else {
+                            toast.show("Cannot have less than one mine")
+                        }
+                    } else {
+                        toast.show("Cannot have that many mines!")
+                    }
+                } else {
+                    toast.show("Height and Width have to be at least 5")
+                }
+            }
             onClicked: {
-                choice.rows= fieldheight_input.text
-                choice.columns= fieldwidth_input.text
-                choice.mines= fieldmines_input.text
-                mineField.initField(choice.columns, choice.rows, choice.mines);
-                stack.push(game)
+                acceptCustom();
             }
         }
 
@@ -366,7 +379,4 @@ Rectangle {
         id:game
         Game{}
     }
-
-
-
 }
