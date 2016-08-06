@@ -20,15 +20,8 @@ void Minesweeper::initField(int width, int height, int mineCounter) {
     remFlags = mineCounter;
     winCounter = 0;
     gameLost = false;
-    //initializing the minefield array
-    //cells = new Cell[width][height];
+    //resizing the minefield array
     cells.resize(height * width);
-    /*for (int i = 0; i < width; i++) {
-     cells[i] = new Cell[
-0; j < height; j += 1) {
-     cells[i][j] = new Cell;
-     }
-     }*/
     for(int i = 0; i < height*width; i++){
         cells[i].setRevealed(false);
         cells[i].setFlagged(false);
@@ -305,20 +298,11 @@ bool Minesweeper::isGameLost(){
     return gameLost;
 }
 
+//opens all cells
 void Minesweeper::openAllCells(){
     for (int i = 0; i < height; i++) { //open all cells
         for (int j = 0; j < width; j++) {
             getCell(i, j)->setRevealed(true);
-            //getCell(i, j)->setFlagged(false);
         }
     }
 }
-
-//Cell Minesweeper::returnCell(int x, int y){//1 revieald//2 flagged//3 marked
-//    Cell a;
-//    a.setFlagged(getCell(x,y)->isFlagged());
-//    a.setQuestionMarked(getCell(x,y)->isQuestionMarked());
-//    a.setRevealed(getCell(x,y)->isRevealed());
-//    a.setBombNum(getCell(x,y)->getBombNum());
-//    return a;
-//}
