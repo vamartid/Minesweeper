@@ -47,7 +47,7 @@ Rectangle {
         font.family: "droid sans"
         wrapMode: Text.Wrap
     }
-    Button
+    AndroidButton
     {
         id: easybutton
         anchors.horizontalCenter: parent.horizontalCenter
@@ -80,7 +80,7 @@ Rectangle {
         }
     }
 
-    Button
+    AndroidButton
     {
         id: mediumbutton
         anchors.verticalCenter: parent.verticalCenter
@@ -116,7 +116,7 @@ Rectangle {
         }
     }
 
-    Button
+    AndroidButton
     {
         id: hardbutton
         anchors.top: mediumbutton.bottom
@@ -153,7 +153,7 @@ Rectangle {
         }
     }
 
-    Button
+    AndroidButton
     {
         id: custombutton
         anchors.top: hardbutton.bottom

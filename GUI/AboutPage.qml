@@ -3,7 +3,7 @@ import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 
 Rectangle {
-    id: rectID
+    id: aboutPage
     height: parent.height
     width: parent.width
     visible: true
@@ -45,7 +45,10 @@ Rectangle {
         id: about_body
         anchors.top: about_header.bottom
         anchors.bottom: parent.bottom
-        width: parent.width
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.leftMargin: parent.width*0.05
+        anchors.rightMargin: parent.width*0.05
         color:"#FFFFFF"
         text: qsTr("This program was created for a project in a mobile development course, in the Aristotle University of Thessaloniki.<br><br>
         It is licensed under GNU GPL v3 and the code is available  <a href=\"http://i.imgur.com/27nLhLy.gif\">on github</a>.<br><br>

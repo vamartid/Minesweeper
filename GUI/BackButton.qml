@@ -6,8 +6,8 @@ ToolButton
 {
     Image
     {
-        width: parent.width*0.5
-        height: parent.height*0.5
+        width: parent.width*0.6
+        height: parent.height*0.6
         source: "icons/back-arrow.png"
         anchors.horizontalCenter: parent.horizontalCenter
         anchors.verticalCenter: parent.verticalCenter
