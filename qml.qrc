@@ -21,5 +21,6 @@
         <file>GUI/DarkTextField.qml</file>
         <file>GUI/Toast.qml</file>
         <file>GUI/ToastManager.qml</file>
+        <file>GUI/AndroidButton.qml</file>
     </qresource>
 </RCC>
