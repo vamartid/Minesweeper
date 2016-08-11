@@ -19,7 +19,7 @@ Rectangle {
             anchors.left: parent.left
             anchors.leftMargin: parent.width*0.04
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: parent.height*0.45
+            font.pixelSize: parent.height*0.37
             wrapMode: Text.Wrap
         }
     }
@@ -27,6 +27,7 @@ Rectangle {
     //Game logo!!
     Rectangle{
         id: logo
+        anchors.topMargin: root.height*0.04
         anchors.top: toolbar_main_menu.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width
@@ -40,7 +41,7 @@ Rectangle {
             width: parent.height*0.5
             height: parent.height*0.5
             source: "icons/mine-white.png"
-            anchors.verticalCenter: parent.verticalCenter
+            //anchors.verticalCenter: parent.verticalCenter
         }
         Text{
             id: logotext
@@ -50,7 +51,7 @@ Rectangle {
             height: parent.height
             anchors.horizontalCenter: parent.horizontalCenter
             horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter
+            verticalAlignment: Text.AlignTop
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: parent.height*0.2
             font.family: "droid sans mono"
@@ -63,23 +64,23 @@ Rectangle {
             width: parent.height*0.5
             height: parent.height*0.5
             source: "icons/mine-white.png"
-            anchors.verticalCenter: parent.verticalCenter
+            //anchors.verticalCenter: parent.verticalCenter
         }
     }
     Rectangle{
         color: parent.color
-        width:parent.width/2
-        anchors.top: logo.bottom
+        width:parent.width/1.5
+        anchors.top: parent.top
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.topMargin: parent.height*0.1
+        anchors.topMargin: parent.height*0.35
         //New game button, other buttons will go below it.
-        Button
+        AndroidButton
         {
             id: new_game
             anchors.top: parent.top
             width: parent.width
-            height:parent.height/9
+            height: root.height/10
             Text{
                 width: parent.width
                 height: parent.height
@@ -95,13 +96,13 @@ Rectangle {
             }
         }
 
-        Button
+        AndroidButton
         {
             id: high_scores
             anchors.top: new_game.bottom
             anchors.topMargin: height*0.14
             width: parent.width
-            height:parent.height/9
+            height: root.height/10
             Text{
                 width: parent.width
                 height: parent.height
@@ -116,13 +117,13 @@ Rectangle {
                 stack.push(scores);
             }
         }
-        Button
+        AndroidButton
         {
             id: about
             anchors.top: high_scores.bottom
             anchors.topMargin: height*0.14
             width: parent.width/2 - height*0.07
-            height:parent.height/9
+            height: root.height/10
             Text{
                 width: parent.width
                 height: parent.height
@@ -137,14 +138,14 @@ Rectangle {
                 stack.push(aboutPage);
             }
         }
-        Button
+        AndroidButton
         {
             id: help
             anchors.top: high_scores.bottom
             anchors.topMargin: height*0.14
             anchors.right: parent.right
             width: parent.width/2 - height*0.07
-            height:parent.height/9
+            height: root.height/10
             Text{
                 width: parent.width
                 height: parent.height

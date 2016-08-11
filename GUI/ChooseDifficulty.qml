@@ -29,7 +29,7 @@ Rectangle {
             width: parent.width
             anchors.left: backbutton.right
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: parent.height*0.45
+            font.pixelSize: parent.height*0.37
             wrapMode: Text.Wrap
         }
 
@@ -42,163 +42,185 @@ Rectangle {
         color:"#FFFFFF"
         text: qsTr("Choose a difficulty")
         horizontalAlignment: Text.AlignHCenter
-        verticalAlignment: Text.AlignVCenter
         font.pixelSize: height*0.3
         font.family: "droid sans"
         wrapMode: Text.Wrap
     }
-    AndroidButton
-    {
-        id: easybutton
+    Rectangle{
+        id: choiceButtonsRect
+        color: parent.color
+        width:parent.width/1.5
+        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        anchors.bottom: mediumbutton.top
-        anchors.bottomMargin: height*0.14
-        width: parent.width/2
-        height: parent.height/16
-        Text{
+        anchors.topMargin: parent.height*0.20
+        //Difficulty choice buttons
+        AndroidButton
+        {
+            id: easybutton
+            //anchors.horizontalCenter: parent.horizontalCenter
+            //anchors.bottom: mediumbutton.top
+            //anchors.bottomMargin: height*0.14
+            anchors.top: parent.top
             width: parent.width
-            height: parent.height
-            text: qsTr("Easy")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter + parent.height*0.3
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.5
-        }
-        Text{
+            height: root.height/10
+            Text{
+                width: parent.width
+                height: parent.height
+                text: qsTr("Easy")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter + parent.height*0.3
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.5
+            }
+            Text{
 
-            width: parent.width
-            height: parent.height
-            text: qsTr("9x9 grid with 10 mines")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignBottom
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.3
-        }
-        onClicked: {
-            mineField.initField(choice.columns, choice.rows, choice.mines);
-            stack.push(game)
-        }
-    }
-
-    AndroidButton
-    {
-        id: mediumbutton
-        anchors.verticalCenter: parent.verticalCenter
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width/2
-        height: parent.height/16
-        Text{
-            width: parent.width
-            height: parent.height
-            text: qsTr("Medium")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter + parent.height*0.3
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.5
-        }
-        Text{
-
-            width: parent.width
-            height: parent.height
-            text: qsTr("16x16 grid with 40 mines")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignBottom
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.3
-        }
-
-        onClicked: {
-            choice.rows= 16
-            choice.columns= 16
-            choice.mines= 40
-            mineField.initField(choice.columns, choice.rows, choice.mines);
-            stack.push(game)
-        }
-    }
-
-    AndroidButton
-    {
-        id: hardbutton
-        anchors.top: mediumbutton.bottom
-        anchors.topMargin: height*0.14
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width/2
-        height: parent.height/16
-        Text{
-            width: parent.width
-            height: parent.height
-            text: qsTr("Hard")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter + parent.height*0.3
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.5
-        }
-        Text{
-
-            width: parent.width
-            height: parent.height
-            text: qsTr("30x16 grid with 99 mines")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignBottom
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.3
-        }
-
-        onClicked: {
-            choice.rows= 30
-            choice.columns= 16
-            choice.mines= 99
-            mineField.initField(choice.columns, choice.rows, choice.mines);
-            stack.push(game)
-        }
-    }
-
-    AndroidButton
-    {
-        id: custombutton
-        anchors.top: hardbutton.bottom
-        anchors.topMargin: height*0.14
-        anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width/2
-        height: parent.height/16
-        onClicked:{
-            if(customRectangle.state == "Visible"){
-                 customRectangle.state = "Invisible"
-            }else{
-                fieldwidth_input.forceActiveFocus()
-                customRectangle.state = "Visible"
+                width: parent.width
+                height: parent.height
+                text: qsTr("9x9 grid with 10 mines")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignBottom
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.25
+            }
+            onClicked: {
+                mineField.initField(choice.columns, choice.rows, choice.mines);
+                stack.push(game)
             }
         }
-        Text{
-            width: parent.width
-            height: parent.height
-            text: qsTr("Custom")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignVCenter + parent.height*0.3
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.5
-        }
-        Text{
 
+        AndroidButton
+        {
+            id: mediumbutton
+            //anchors.verticalCenter: parent.verticalCenter
+            //anchors.horizontalCenter: parent.horizontalCenter
+            //width: parent.width/2
+            //height: parent.height/16
+            anchors.top: easybutton.bottom
+            anchors.topMargin: height*0.14
             width: parent.width
-            height: parent.height
-            text: qsTr("Choose your paremeters below")
-            horizontalAlignment: Text.AlignHCenter
-            verticalAlignment: Text.AlignBottom
-            wrapMode: Text.Wrap
-            font.pixelSize: parent.height*0.3
+            height: root.height/10
+            Text{
+                width: parent.width
+                height: parent.height
+                text: qsTr("Medium")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter + parent.height*0.3
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.5
+            }
+            Text{
+
+                width: parent.width
+                height: parent.height
+                text: qsTr("16x16 grid with 40 mines")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignBottom
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.25
+            }
+
+            onClicked: {
+                choice.rows= 16
+                choice.columns= 16
+                choice.mines= 40
+                mineField.initField(choice.columns, choice.rows, choice.mines);
+                stack.push(game)
+            }
         }
 
-    }
+        AndroidButton
+        {
+            id: hardbutton
+            //anchors.top: mediumbutton.bottom
+            //anchors.topMargin: height*0.14
+            //anchors.horizontalCenter: parent.horizontalCenter
+            //width: parent.width/2
+            //height: parent.height/16
+            anchors.top: mediumbutton.bottom
+            anchors.topMargin: height*0.14
+            width: parent.width
+            height: root.height/10
+            Text{
+                width: parent.width
+                height: parent.height
+                text: qsTr("Hard")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter + parent.height*0.3
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.5
+            }
+            Text{
+
+                width: parent.width
+                height: parent.height
+                text: qsTr("30x16 grid with 99 mines")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignBottom
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.25
+            }
+
+            onClicked: {
+                choice.rows= 30
+                choice.columns= 16
+                choice.mines= 99
+                mineField.initField(choice.columns, choice.rows, choice.mines);
+                stack.push(game)
+            }
+        }
+
+        AndroidButton
+        {
+            id: custombutton
+            //anchors.top: hardbutton.bottom
+            //anchors.topMargin: height*0.14
+            //anchors.horizontalCenter: parent.horizontalCenter
+            //width: parent.width/2
+            //height: parent.height/16
+            anchors.top: hardbutton.bottom
+            anchors.topMargin: height*0.14
+            width: parent.width
+            height: root.height/10
+            onClicked:{
+                if(customRectangle.state == "Visible"){
+                     customRectangle.state = "Invisible"
+                }else{
+                    fieldwidth_input.forceActiveFocus()
+                    customRectangle.state = "Visible"
+                }
+            }
+            Text{
+                width: parent.width
+                height: parent.height
+                text: qsTr("Custom")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter + parent.height*0.3
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.5
+            }
+            Text{
+
+                width: parent.width
+                height: parent.height
+                text: qsTr("Choose your paremeters below")
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignBottom
+                wrapMode: Text.Wrap
+                font.pixelSize: parent.height*0.25
+            }
+
+        }
+
     Rectangle{
         id: customRectangle
         state: "Invisible"
         color: "#303030"
         anchors.top: custombutton.bottom
-        anchors.topMargin: parent.height*0.05
+        anchors.topMargin: parent.height*0.02
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width*0.4
+        width: parent.width*0.65
         states: [
             State{
                 name: "Visible"
@@ -373,6 +395,7 @@ Rectangle {
             }
         }
 
+    }
     }
 
     Component{

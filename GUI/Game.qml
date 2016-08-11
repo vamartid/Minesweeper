@@ -31,7 +31,7 @@ Rectangle {
     AndroidToolbar{
         id: toolbar_game
         BackButton{
-            id: backButton
+            id: backButton_game
             onClicked:{
                 gridid.moves=0
                 stack.pop(stack.get(0))
@@ -42,9 +42,9 @@ Rectangle {
             border.width: parent.height*0.03
             radius: 6
             color: "#303030"
-            anchors.left: backButton.right
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
+            anchors.left: backButton_game.right
+            anchors.verticalCenter: parent.verticalCenter
+            height: parent.height*0.7
             width: height*1.4
             Text{
                 anchors.fill: parent
@@ -56,15 +56,21 @@ Rectangle {
                 font.family: "droid-sans-mono"
             }
         }
-        Button{
+        AndroidButton{
             id: resetButton
             anchors.horizontalCenter: parent.horizontalCenter
-            height: parent.height
+            anchors.verticalCenter: parent.verticalCenter
+            height: parent.height*0.8
             width: height
-            anchors.margins: width*0.05
-
-
-            Text{
+            //anchors.margins: width*0.05
+            Image {
+                anchors.margins: parent.height*0.1
+                id: resetButtonImage
+                anchors.fill: parent
+                source: "icons/smiling.png"
+                smooth: true
+            }
+            /*Text{
                 id: resetText
                 anchors.top: parent.top
                 anchors.left: parent.left
@@ -74,7 +80,7 @@ Rectangle {
                 font.pixelSize: parent.height*0.75
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
-            }
+            }*/
             onClicked:{
                 for (m = 0; m < gridid.rows; m++) {
                     for (n = 0; n < gridid.columns; n++) {
@@ -85,7 +91,8 @@ Rectangle {
                 secondCounter.seconds = 0;
                 secondCounter.start();
                 mineField.initField(columns, rows, mines);
-                resetText.text = "😏";
+                //resetText.text = "😏";
+                resetButtonImage.source = "icons/smiling.png"
                 remFlags = mines;
             }
 
@@ -96,10 +103,10 @@ Rectangle {
             radius: 6
             color: "#303030"
             anchors.right: parent.right
-            anchors.top: parent.top
-            anchors.bottom: parent.bottom
-            anchors.rightMargin: backButton.width
+            anchors.rightMargin: backButton_game.width
+            anchors.verticalCenter: parent.verticalCenter
             width: height*1.4
+            height: parent.height*0.7
             Text{
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignHCenter
@@ -134,6 +141,19 @@ Rectangle {
                 }
                 CellBlock{
                 }
+            }
+        }
+    }
+    NameInputDialog{
+        id: nameInputDialog
+        visible: false
+        onVisibleChanged: {
+            if(visible == true){
+                resetButton.enabled = false;
+                backButton_game.enabled = false;
+            } else {
+                resetButton.enabled = true;
+                backButton_game.enabled = true;
             }
         }
     }

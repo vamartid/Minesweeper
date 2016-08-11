@@ -5,9 +5,9 @@ import QtQuick.Controls.Styles 1.4
 Button{
     id: cellBlock
     //property int minDim: Math.min(rectID.height, rectID.width);
-    height: game.height*0.05
+    height: game.height*0.057
     //width : minDim*0.08
-    width: game.height*0.05
+    width: game.height*0.057
     property string cellText
     property string cellTextColor: "#000000"
     property string cellColor: game.cellColorNotPressed
@@ -37,7 +37,6 @@ Button{
     MouseArea {
         id: innerMouseArea
         anchors.fill: parent
-
         acceptedButtons: Qt.LeftButton | Qt.RightButton
         Image {
             id: backgroundImage
@@ -45,54 +44,24 @@ Button{
             source: ""
             smooth: true
         }
+        onPressAndHold: {
+            if(mouse.button & Qt.LeftButton){
+                cellBlock.rightClicked()
+            }
+        }
+
         onClicked:
         {
             if(mouse.button & Qt.LeftButton){
-                if(gridid.moves==0){
-                    mineField.bombGenerator(x_position, y_position);
-                    mineField.leftClickAction(x_position, y_position);
-                    gridid.moves++;
-                }else{
-                   mineField.leftClickAction(x_position, y_position);
-                }
-                reveal();
-                if(mineField.isGameWon() && !choice.customGame){
-                    var nameComponent = Qt.createComponent("NameInputWindow.qml")
-                    var nameWindow    = nameComponent.createObject(root)
-                    nameWindow.show()
-                }
+                cellBlock.leftClicked()
             }else if(mouse.button & Qt.RightButton) {
-                mineField.rightClickAction(x_position, y_position);
-                game.remFlags = mineField.getRemFlags();
-                if(!mineField.getisRevealed(x_position, y_position)){
-                    if(mineField.getisFlagged(x_position, y_position)){
-                        repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
-                        repeaterId.itemAt(x_position*columns+y_position).cellText = "";
-                    }else{
-                        if(mineField.getisQuestionMarked(x_position, y_position)){
-                            repeaterId.itemAt(x_position*columns+y_position).clearImage();
-                            repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
-                        }else{
-                            repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
-                        }
-                    }
-                }
+                cellBlock.rightClicked()
             }
         }
 
         onDoubleClicked: {
             if(mouse.button & Qt.LeftButton){
-               if(mineField.getisRevealed(x_position, y_position)){
-                   if(!(mineField.getBombNum(x_position, y_position)===9)){
-                       mineField.doubleClickAction(x_position, y_position);
-                       reveal();
-                       if(mineField.isGameWon() && !choice.customGame){
-                           var nameComponent = Qt.createComponent("NameInputWindow.qml")
-                           var nameWindow    = nameComponent.createObject(root)
-                           nameWindow.show()
-                       }
-                   }
-               }
+               cellBlock.doubleClicked()
             }
         }
     }
@@ -105,14 +74,16 @@ Button{
             for (n = 0; n < gridid.columns; n++) {
                 if(mineField.isGameWon()){
                     repeaterId.itemAt(m*columns+n).enabled = false;
-                    resetText.text = "😎";
+                    //resetText.text = "😎";
+                    resetButtonImage.source = "icons/sunglasses.png"
                     secondCounter.stop();
                 }else if(mineField.isGameLost()){
                     if(mineField.getisFlagged(m, n)){
                         repeaterId.itemAt(m*columns+n).clearImage();
                     }
                     repeaterId.itemAt(m*columns+n).enabled = false;
-                    resetText.text = "😢";
+                    //resetText.text = "😢";
+                    resetButtonImage.source = "icons/crying.png"
                     secondCounter.stop();
                 }
 
@@ -122,10 +93,55 @@ Button{
                     }else{
                         if (mineField.getBombNum(m,n) !== 0){
                             repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
-                            repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n));
+                            repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n)); 
                         }
+                        repeaterId.itemAt(m*columns+n).clearImage();
                         repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
                     }
+                }
+            }
+        }
+    }
+
+    function leftClicked(){
+        if(gridid.moves==0){
+            mineField.bombGenerator(x_position, y_position);
+            mineField.leftClickAction(x_position, y_position);
+            gridid.moves++;
+        }else{
+           mineField.leftClickAction(x_position, y_position);
+        }
+        reveal();
+        if(mineField.isGameWon() && !choice.customGame){
+            nameInputDialog.visible = true;
+        }
+    }
+
+    function rightClicked(){
+        mineField.rightClickAction(x_position, y_position);
+        game.remFlags = mineField.getRemFlags();
+        if(!mineField.getisRevealed(x_position, y_position)){
+            if(mineField.getisFlagged(x_position, y_position)){
+                repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
+                repeaterId.itemAt(x_position*columns+y_position).cellText = "";
+            }else{
+                if(mineField.getisQuestionMarked(x_position, y_position)){
+                    repeaterId.itemAt(x_position*columns+y_position).clearImage();
+                    repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
+                }else{
+                    repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
+                }
+            }
+        }
+    }
+
+    function doubleClicked(){
+        if(mineField.getisRevealed(x_position, y_position)){
+            if(!(mineField.getBombNum(x_position, y_position)===9)){
+                mineField.doubleClickAction(x_position, y_position);
+                reveal();
+                if(mineField.isGameWon() && !choice.customGame){
+                    nameInputDialog.visible = true;
                 }
             }
         }

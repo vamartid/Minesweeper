@@ -5,7 +5,7 @@ import QtQuick.Controls.Styles 1.4
 Rectangle
 {
     width: parent.width
-    height: parent.height*0.07
+    height: parent.height*0.1
     color: "#FF5722"
 }
 

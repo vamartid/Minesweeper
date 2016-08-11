@@ -11,7 +11,7 @@ Rectangle {
     AndroidToolbar{
         id: toolbar_about
         BackButton{
-            id: backbutton
+            id: backButton_aboutPage
             onClicked:{
                 stack.pop()
             }
@@ -20,9 +20,9 @@ Rectangle {
             color: "#FFFFFF"
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
-            anchors.left: backbutton.right
+            anchors.left: backButton_aboutPage.right
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: parent.height*0.45
+            font.pixelSize: parent.height*0.37
             wrapMode: Text.Wrap
         }
     }
