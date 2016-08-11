@@ -151,6 +151,7 @@ void Minesweeper::openNeighboursRec(int x, int y) {
                 if (!getCell(x + i, y + j)->isRevealed()) { //it is not open
                     if (getCell(x + i, y + j)->getBombNum() != 9) {
                         getCell(x + i, y + j)->setRevealed(true);
+                        getCell(x + i, y + j)->setFlagged(false);
                         winCounter++;
                     }
                     if (getCell(x + i, y + j)->getBombNum() == 0) {
