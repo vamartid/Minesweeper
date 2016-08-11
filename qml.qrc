@@ -3,7 +3,6 @@
         <file>GUI/Game.qml</file>
         <file>GUI/main.qml</file>
         <file>GUI/MainMenu.qml</file>
-        <file>GUI/ViewApplianceList.qml</file>
         <file>GUI/icons/back-arrow.png</file>
         <file>GUI/icons/mine-grey.png</file>
         <file>GUI/icons/mine-white.png</file>
@@ -17,10 +16,13 @@
         <file>GUI/SecondCounter.qml</file>
         <file>GUI/icons/flag.png</file>
         <file>GUI/icons/mine-red.png</file>
-        <file>GUI/NameInputWindow.qml</file>
+        <file>GUI/NameInputDialog.qml</file>
         <file>GUI/DarkTextField.qml</file>
         <file>GUI/Toast.qml</file>
         <file>GUI/ToastManager.qml</file>
         <file>GUI/AndroidButton.qml</file>
+        <file>GUI/icons/crying.png</file>
+        <file>GUI/icons/smiling.png</file>
+        <file>GUI/icons/sunglasses.png</file>
     </qresource>
 </RCC>
