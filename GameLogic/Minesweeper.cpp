@@ -174,10 +174,11 @@ void Minesweeper::rightClickAction(int x, int y) {
         } else if (getCell(x, y)->isFlagged()) { //it is flagged
             getCell(x, y)->setFlagged(false);
             getCell(x, y)->setQuestionMarked(true);
+            remFlags += 1;
             cout << "add question mark";
         } else {
             getCell(x, y)->setQuestionMarked(false);
-            remFlags += 1;
+            //remFlags += 1;
         }
     }
 }
