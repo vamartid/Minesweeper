@@ -149,11 +149,15 @@ Rectangle {
             Text{
                 width: parent.width
                 height: parent.height
-                text: qsTr("?")
+                text: qsTr("Settings")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
                 font.pixelSize: parent.height*0.5
+            }
+            onClicked:
+            {
+                stack.push(settingsPage);
             }
         }
     }
@@ -184,6 +188,11 @@ Rectangle {
     {
         id: aboutPage
         AboutPage{}
+    }
+    Component
+    {
+        id: settingsPage
+        SettingsPage{}
     }
 
 }
