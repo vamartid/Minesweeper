@@ -78,11 +78,18 @@ Rectangle {
                     smooth: true
                 }
                 onClicked:{
-                   for (m = 0; m < gridid.rows; m++) {
-                       for (n = 0; n < gridid.columns; n++) {
+                    for (m = 0; m < gridid.rows; m++) {
+                        for (n = 0; n < gridid.columns; n++) {
                            repeaterId.itemAt(m*columns+n).reset();
+
                         }
-                   }
+                    }
+                    gridid.moves=0
+                    secondCounter.seconds = 0;
+                    secondCounter.restart();
+                    mineField.initField(columns, rows, mines);
+                    resetButtonImage.source = "icons/smiling.png"
+                    remFlags = mines;
                 }
             }
             /*Text{
