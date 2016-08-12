@@ -26,5 +26,6 @@
         <file>GUI/icons/sunglasses.png</file>
         <file>GUI/icons/flag-greyed.png</file>
         <file>GUI/SettingsPage.qml</file>
+        <file>GUI/icons/gear.png</file>
     </qresource>
 </RCC>
