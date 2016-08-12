@@ -24,5 +24,6 @@
         <file>GUI/icons/crying.png</file>
         <file>GUI/icons/smiling.png</file>
         <file>GUI/icons/sunglasses.png</file>
+        <file>GUI/icons/flag-greyed.png</file>
     </qresource>
 </RCC>
