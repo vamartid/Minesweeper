@@ -129,8 +129,10 @@ Button{
 
     function rightClicked(){
         mineField.rightClickAction(x_position, y_position);
-        game.remFlags = mineField.getRemFlags();
         if(!mineField.getisRevealed(x_position, y_position)){
+            if(game.remFlags === 0 && mineField.getRemFlags() === 0){
+                toast.show("No more flags left!")
+            }
             if(mineField.getisFlagged(x_position, y_position)){
                 repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
                 repeaterId.itemAt(x_position*columns+y_position).cellText = "";
@@ -143,6 +145,7 @@ Button{
                 }
             }
         }
+        game.remFlags = mineField.getRemFlags();
     }
 
     function doubleClicked(){

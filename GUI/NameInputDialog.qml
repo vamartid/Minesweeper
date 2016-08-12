@@ -62,7 +62,7 @@ Rectangle{
         anchors.top: nameRect.bottom
         anchors.bottom: parent.bottom
         anchors.topMargin: parent.height*0.15
-        anchors.bottomMargin: parent.height*0.05
+        anchors.bottomMargin: parent.height*0.1
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width*0.7
         AndroidButton{
