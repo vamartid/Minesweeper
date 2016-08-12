@@ -4,10 +4,11 @@ import QtQuick.Controls.Styles 1.4
 
 Button{
     id: cellBlock
-    //property int minDim: Math.min(rectID.height, rectID.width);
-    height: game.height*0.057
-    //width : minDim*0.08
-    width: game.height*0.057
+    property int minDim: Math.min(game.height, game.width);
+    //height: game.height*0.057
+    width : minDim*0.108
+    height : minDim*0.108
+    //width: game.height*0.057
     property string cellText
     property string cellTextColor: "#000000"
     property string cellColor: game.cellColorNotPressed

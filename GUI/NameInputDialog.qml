@@ -48,6 +48,7 @@ Rectangle{
             font.pixelSize: parent.height*0.6
         }
         DarkTextField{
+            id: nameInputField
             anchors.top: parent.top
             anchors.left: nameText.right
             anchors.right: parent.right
@@ -96,7 +97,10 @@ Rectangle{
                 wrapMode: Text.Wrap
                 font.pixelSize: parent.height*0.5
             }
-            onClicked: nameInputDialog.visible = false;
+            onClicked: {
+                nameInputDialog.visible = false;
+                nameInputField.text = ""
+            }
         }
     }
 }
