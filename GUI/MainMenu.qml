@@ -140,16 +140,27 @@ Rectangle {
         }
         AndroidButton
         {
-            id: help
+            id: settings
             anchors.top: high_scores.bottom
             anchors.topMargin: height*0.14
             anchors.right: parent.right
             width: parent.width/2 - height*0.07
             height: root.height/10
+
+            Image {
+                id: backgroundImage
+                height: parent.height
+                width: parent.height
+                fillMode: Image.PreserveAspectFit
+                anchors.fill: parent
+                source: "/GUI/icons/gear.png"
+                smooth: true
+            }
+
             Text{
                 width: parent.width
                 height: parent.height
-                text: qsTr("Settings")
+                text: qsTr("")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
