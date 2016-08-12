@@ -63,7 +63,8 @@ Rectangle{
         anchors.bottomMargin: parent.height*0.05
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width*0.7
-        Button{
+        AndroidButton
+        {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
@@ -81,7 +82,8 @@ Rectangle{
                 //Saves data to high scores
             }
         }
-        Button{
+        AndroidButton
+        {
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: parent.right
