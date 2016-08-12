@@ -1,7 +1,4 @@
 # Minesweeper
-I̷f̷ ̷y̷o̷u̷ ̷t̷r̷y̷ ̷i̷t̷ ̷R̷C̷l̷i̷c̷k̷ ̷a̷n̷d̷ ̷L̷C̷l̷i̷c̷k̷ ̷a̷n̷d̷ ̷d̷o̷u̷b̷l̷e̷ ̷c̷l̷i̷c̷k̷ ̷a̷r̷e̷ ̷w̷o̷r̷k̷i̷n̷g̷
-b̷u̷t̷ ̷s̷o̷m̷e̷t̷h̷i̷n̷g̷ ̷e̷l̷s̷e̷ ̷i̷s̷ ̷w̷r̷o̷n̷g̷ ̷t̷r̷y̷ ̷t̷o̷ ̷p̷l̷a̷y̷ ̷a̷n̷d̷ ̷c̷l̷i̷c̷k̷ ̷t̷i̷l̷l̷ ̷y̷o̷u̷ ̷a̷r̷e̷ ̷i̷n̷ ̷t̷h̷e̷ ̷e̷n̷d̷ ̷o̷f̷ ̷o̷n̷e̷ ̷s̷i̷d̷e̷
-i̷f̷ ̷y̷o̷u̷ ̷d̷o̷u̷b̷l̷e̷ ̷c̷l̷i̷c̷k̷ ̷i̷n̷ ̷a̷ ̷c̷e̷l̷l̷ ̷w̷i̷c̷h̷ ̷i̷s̷ ̷i̷n̷ ̷t̷h̷e̷ ̷e̷n̷d̷ ̷o̷f̷ ̷t̷h̷e̷ ̷s̷i̷d̷e̷ ̷c̷h̷e̷c̷k̷ ̷w̷h̷a̷t̷ ̷h̷a̷p̷p̷e̷n̷s̷.̷.̷.̷
-w̷e̷ ̷n̷e̷e̷d̷ ̷f̷i̷x̷!̷̶ ̶f̶i̶x̶!̶
-
-Fixed that shit, getting ready for release on steam!
+A clasic minesweeper game.
+The game implemented on Qt creator using basicaly c++ and qml.
+Basics are done the game is finally functional, getting ready for release on steam!
