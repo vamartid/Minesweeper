@@ -167,7 +167,7 @@ void Minesweeper::openNeighboursRec(int x, int y) {
  */
 void Minesweeper::rightClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
-        if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked()) { //if it is not flagged
+        if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked() && remFlags != 0) { //if it is not flagged
             getCell(x, y)->setFlagged(true);
             remFlags -= 1;
             cout << "flagged";
