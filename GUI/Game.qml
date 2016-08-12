@@ -77,6 +77,13 @@ Rectangle {
                     source: "icons/smiling.png"
                     smooth: true
                 }
+                onClicked:{
+                   for (m = 0; m < gridid.rows; m++) {
+                       for (n = 0; n < gridid.columns; n++) {
+                           repeaterId.itemAt(m*columns+n).reset();
+                        }
+                   }
+                }
             }
             /*Text{
                 id: resetText
