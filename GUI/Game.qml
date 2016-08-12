@@ -90,19 +90,10 @@ Rectangle {
                     mineField.initField(columns, rows, mines);
                     resetButtonImage.source = "icons/smiling.png"
                     remFlags = mines;
+                    flagClick = false;
+                    flagButtonImage.source = "icons/flag-greyed.png"
                 }
             }
-            /*Text{
-                id: resetText
-                anchors.top: parent.top
-                anchors.left: parent.left
-                anchors.right: parent.right
-                height: parent.height
-                text: "😏"
-                font.pixelSize: parent.height*0.75
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-            }*/
             AndroidButton{
                 id: flagButton
                 anchors.right: parent.right
@@ -182,9 +173,11 @@ Rectangle {
             if(visible == true){
                 resetButton.enabled = false;
                 backButton_game.enabled = false;
+                flagButton.enabled = false;
             } else {
                 resetButton.enabled = true;
                 backButton_game.enabled = true;
+                flagButton.enabled = true;
             }
         }
     }
