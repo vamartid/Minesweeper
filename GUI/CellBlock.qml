@@ -46,16 +46,28 @@ Button{
         }
         onPressAndHold: {
             if(mouse.button & Qt.LeftButton){
-                cellBlock.rightClicked()
+                if(game.flagClick){
+                    cellBlock.leftClicked()
+                } else {
+                    cellBlock.rightClicked()
+                }
             }
         }
 
         onClicked:
         {
             if(mouse.button & Qt.LeftButton){
-                cellBlock.leftClicked()
+                if(game.flagClick){
+                    cellBlock.rightClicked()
+                } else {
+                    cellBlock.leftClicked()
+                }
             }else if(mouse.button & Qt.RightButton) {
-                cellBlock.rightClicked()
+                if(game.flagClick){
+                    cellBlock.leftClicked()
+                } else {
+                    cellBlock.rightClicked()
+                }
             }
         }
 
@@ -74,7 +86,6 @@ Button{
             for (n = 0; n < gridid.columns; n++) {
                 if(mineField.isGameWon()){
                     repeaterId.itemAt(m*columns+n).enabled = false;
-                    //resetText.text = "😎";
                     resetButtonImage.source = "icons/sunglasses.png"
                     secondCounter.stop();
                 }else if(mineField.isGameLost()){
@@ -82,7 +93,6 @@ Button{
                         repeaterId.itemAt(m*columns+n).clearImage();
                     }
                     repeaterId.itemAt(m*columns+n).enabled = false;
-                    //resetText.text = "😢";
                     resetButtonImage.source = "icons/crying.png"
                     secondCounter.stop();
                 }
@@ -95,7 +105,6 @@ Button{
                             repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
                             repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n)); 
                         }
-                        repeaterId.itemAt(m*columns+n).clearImage();
                         repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
                     }
                 }

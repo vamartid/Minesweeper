@@ -5,13 +5,14 @@ import QtQuick.Window 2.2
 
 Rectangle{
     id: nameInputDialog
-    width: 384
-    height: 200
+    property int minDim: Math.min(parent.height, parent.width);
+    width: minDim*0.9
+    height: minDim*0.5
     visible: true
     color: "#303030"
     anchors.centerIn: parent
     border.color: "#9e9e9e"
-    border.width: 2
+    border.width: height*0.01
     radius: 2
     Text{
         anchors.top: parent.top
@@ -63,12 +64,11 @@ Rectangle{
         anchors.bottomMargin: parent.height*0.05
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width*0.7
-        AndroidButton
-        {
+        AndroidButton{
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
-            width: parent.width*0.6
+            width: parent.width*0.4
             Text{
                 width: parent.width
                 height: parent.height
@@ -82,8 +82,7 @@ Rectangle{
                 //Saves data to high scores
             }
         }
-        AndroidButton
-        {
+        AndroidButton{
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: parent.right

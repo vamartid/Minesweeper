@@ -7,6 +7,7 @@ Rectangle {
     property int rows: parseInt(choice.rows)
     property int columns: parseInt(choice.columns)
     property int remFlags: parseInt(choice.mines)
+    property bool flagClick: false
     property string colorOne: "#0B0CA5"
     property string colorTwo: "#147116"
     property string colorThree: "#A92322"
@@ -56,19 +57,26 @@ Rectangle {
                 font.family: "droid-sans-mono"
             }
         }
-        AndroidButton{
-            id: resetButton
-            anchors.horizontalCenter: parent.horizontalCenter
-            anchors.verticalCenter: parent.verticalCenter
+        Rectangle{
+            anchors.centerIn: parent
             height: parent.height*0.8
-            width: height
-            //anchors.margins: width*0.05
-            Image {
-                anchors.margins: parent.height*0.1
-                id: resetButtonImage
-                anchors.fill: parent
-                source: "icons/smiling.png"
-                smooth: true
+            width: parent.height*1.7
+            color: parent.color
+
+            AndroidButton{
+                id: resetButton
+                anchors.left: parent.left
+                anchors.verticalCenter: parent.verticalCenter
+                height: parent.height
+                width: height
+                //anchors.margins: width*0.05
+                Image {
+                    anchors.margins: parent.height*0.1
+                    id: resetButtonImage
+                    anchors.fill: parent
+                    source: "icons/smiling.png"
+                    smooth: true
+                }
             }
             /*Text{
                 id: resetText
@@ -81,21 +89,30 @@ Rectangle {
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
             }*/
-            onClicked:{
-                for (m = 0; m < gridid.rows; m++) {
-                    for (n = 0; n < gridid.columns; n++) {
-                        repeaterId.itemAt(m*columns+n).reset();
+            AndroidButton{
+                id: flagButton
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+                height: parent.height
+                width: height
+                //anchors.margins: width*0.05
+                Image {
+                    anchors.margins: parent.height*0.1
+                    id: flagButtonImage
+                    anchors.fill: parent
+                    source: "icons/flag-greyed.png"
+                    smooth: true
+                }
+                onClicked:{
+                    if(flagClick){
+                        flagButtonImage.source = "icons/flag-greyed.png"
+                        flagClick = false;
+                    } else {
+                        flagButtonImage.source = "icons/flag.png"
+                        flagClick = true;
                     }
                 }
-                gridid.moves=0
-                secondCounter.seconds = 0;
-                secondCounter.start();
-                mineField.initField(columns, rows, mines);
-                //resetText.text = "😏";
-                resetButtonImage.source = "icons/smiling.png"
-                remFlags = mines;
             }
-
         }
         Rectangle{
             border.color: parent.color
