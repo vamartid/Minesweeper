@@ -148,10 +148,9 @@ void Minesweeper::openNeighboursRec(int x, int y) {
         for (int j = -1; j < 2; j += 1) {
             if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
                     && (y + j <= width - 1)) {
-                if (!getCell(x + i, y + j)->isRevealed()) { //it is not open
+                if (!getCell(x + i, y + j)->isRevealed() && !getCell(x + i, y + j)->isFlagged()) { //it is not open
                     if (getCell(x + i, y + j)->getBombNum() != 9) {
                         getCell(x + i, y + j)->setRevealed(true);
-                        getCell(x + i, y + j)->setFlagged(false);
                         winCounter++;
                     }
                     if (getCell(x + i, y + j)->getBombNum() == 0) {
@@ -176,7 +175,6 @@ void Minesweeper::rightClickAction(int x, int y) {
             getCell(x, y)->setFlagged(false);
             getCell(x, y)->setQuestionMarked(true);
             cout << "add question mark";
-            remFlags += 1;
         } else {
             getCell(x, y)->setQuestionMarked(false);
             remFlags += 1;
