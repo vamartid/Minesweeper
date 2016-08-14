@@ -16,4 +16,23 @@ Button
             radius: 2;
         }
     }
+    onClicked: {
+        soundMngr.playSound();
+    }
 }
+
+/*
+OTHER WAY FOR SOUND NOT USED
+JUST SAVED HERE AS A COMMENT
+
+   import QtMultimedia 5.6
+
+    SoundEffect {
+        id: buttonSound
+        source: "qrc:/Sound/crash_padle.wav"
+        volume: 1
+    }
+    onClicked: {
+        buttonSound.play()
+    }
+*/

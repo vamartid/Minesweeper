@@ -1,6 +1,8 @@
 TEMPLATE = app
 
-QT += qml quick
+QT += qml quick \
+        multimedia \
+        multimediawidgets
 CONFIG += c++11
 
 SOURCES += main.cpp \
@@ -8,7 +10,8 @@ SOURCES += main.cpp \
     GameLogic/Minesweeper.cpp \
     HighScores/mediator.cpp \
     HighScores/myscore.cpp \
-    HighScores/scoremodel.cpp
+    HighScores/scoremodel.cpp \
+    Sound/soundmanager.cpp
 
 RESOURCES += qml.qrc
 
@@ -23,4 +26,7 @@ HEADERS += \
     GameLogic/Minesweeper.h \
     HighScores/mediator.h \
     HighScores/myscore.h \
-    HighScores/scoremodel.h
+    HighScores/scoremodel.h \
+    Sound/soundmanager.h
+
+DISTFILES +=

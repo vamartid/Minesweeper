@@ -391,6 +391,7 @@ Rectangle {
                 }
             }
             onClicked: {
+                soundMngr.playSound();
                 acceptCustom();
             }
         }

@@ -1,4 +1,4 @@
-#include "Minesweeper.h"
+#include "GameLogic/Minesweeper.h"
 
 using namespace std;
 
@@ -10,7 +10,12 @@ using namespace std;
 
 
 Minesweeper::Minesweeper(QObject *parent): QObject(parent){
+    /*musicMngr = new SoundManager();
+    musicMngr->initFields(50,true,QUrl("qrc:/Sounds/Rob Hubbard - Nemesis The Warlock (Maf464 remix).mp3"));
+    musicMngr->playSound();
 
+    soundMngr = new SoundManager();
+    soundMngr->initFields(50,false,QUrl("qrc:/Sound/crash_padle.wav"));*/
 }
 
 void Minesweeper::initField(int width, int height, int mineCounter) {
@@ -307,3 +312,11 @@ void Minesweeper::openAllCells(){
         }
     }
 }
+
+/*SoundManager Minesweeper::getSound(){
+    return *soundMngr;
+}
+
+SoundManager Minesweeper::getMusic(){
+    return *musicMngr;
+}*/

@@ -13,6 +13,7 @@
 #include <string.h>
 #include "Cell.h"
 #include <QObject>
+#include "Sound/soundmanager.h"
 
 using namespace std;
 
@@ -30,12 +31,18 @@ private:
     bool checkPlacement(int, int, int, int);
     void numberPlacement(int, int);
     void openAllCells();
+
+    SoundManager *musicMngr;
+    SoundManager *soundMngr;
+
 public:
     explicit Minesweeper(QObject *parent = 0);
 	~Minesweeper();
     Cell * getCell(int, int);
 	void print();
     void print2(int, int);
+    //SoundManager getSound();
+    //SoundManager getMusic();
 public slots:
     void initField(int, int, int);
     void leftClickAction(int, int);

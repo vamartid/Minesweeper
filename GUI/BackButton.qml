@@ -16,4 +16,8 @@ ToolButton
     anchors.verticalCenter: parent.verticalCenter
     width: parent.height*0.7
     height:width
+    onClicked:{
+        soundMngr.changeLoadedSound("qrc:/Sound/crash_padle.wav");
+        soundMngr.playSound()
+    }
 }
