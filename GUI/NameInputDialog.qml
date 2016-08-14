@@ -80,6 +80,8 @@ Rectangle{
                 font.pixelSize: parent.height*0.5
             }
             onClicked: {
+                soundMngr.changeLoadedSound("qrc:/Sound/crash_padle.wav");
+                soundMngr.playSound()
                 //Saves data to high scores
             }
         }
@@ -98,6 +100,8 @@ Rectangle{
                 font.pixelSize: parent.height*0.5
             }
             onClicked: {
+                soundMngr.changeLoadedSound("qrc:/Sound/crash_padle.wav");
+                soundMngr.playSound()
                 nameInputDialog.visible = false;
                 nameInputField.text = ""
             }
