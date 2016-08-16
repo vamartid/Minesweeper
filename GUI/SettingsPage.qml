@@ -98,6 +98,8 @@ Rectangle {
 
         onValueChanged: {
             soundMngr.setSoundVolume(value)
+            sound2Mngr.setSoundVolume(value)
+            sound3Mngr.setSoundVolume(value)
         }
     }
     AndroidButton{
@@ -184,6 +186,8 @@ Rectangle {
         if((musicMngr.getMuteSound())&&(soundMngr.getMuteSound())){
             musicMngr.muteSound(false);
             soundMngr.muteSound(false);
+            sound2Mngr.muteSound(false);
+            sound3Mngr.muteSound(false);
             if((musicSlider.value==0.0)&&(soundsSlider.value==0.0)){
                 musicSlider.value=volumeM
                 soundsSlider.value=volumeS
@@ -192,6 +196,8 @@ Rectangle {
         }else{
             musicMngr.muteSound(true);
             soundMngr.muteSound(true);
+            sound2Mngr.muteSound(true);
+            sound3Mngr.muteSound(true);
             volumeM=musicSlider.value
             volumeS=soundsSlider.value
             musicSlider.value=0.0
@@ -203,6 +209,8 @@ Rectangle {
         if(musicMngr.getMuteSound()){
             musicMngr.muteSound(false);
             soundMngr.muteSound(false);
+            sound2Mngr.muteSound(false);
+            sound3Mngr.muteSound(false);
             temp=true
         }
 
@@ -210,6 +218,8 @@ Rectangle {
             if(temp){
                 musicMngr.muteSound(true);
                 soundMngr.muteSound(true);
+                sound2Mngr.muteSound(true);
+                sound3Mngr.muteSound(true);
                 musicSlider.value=0.0
                 soundsSlider.value=0.0
             }else{
@@ -230,6 +240,8 @@ Rectangle {
         if(musicMngr.getMuteSound()){
             musicMngr.muteSound(false);
             soundMngr.muteSound(false);
+            sound2Mngr.muteSound(false);
+            sound3Mngr.muteSound(false);
             temp=true
         }
 
@@ -237,6 +249,8 @@ Rectangle {
             if(temp){
                 musicMngr.muteSound(true);
                 soundMngr.muteSound(true);
+                sound2Mngr.muteSound(true);
+                sound3Mngr.muteSound(true);
                 musicSlider.value=0.0
                 soundsSlider.value=0.0
             }else{

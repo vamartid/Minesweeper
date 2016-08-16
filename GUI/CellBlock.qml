@@ -100,7 +100,15 @@ Button{
 
                 if(mineField.getisRevealed(m,n)){
                     if(mineField.getBombNum(m,n)===9){
-                        repeaterId.itemAt(m*columns+n).setBombImage();
+                        if(!game.lost){
+                            sound3Mngr.playSound();
+                            game.lost=!game.lost
+                        }
+                        if(mineField.getisFlagged(m, n)){
+                            repeaterId.itemAt(m*columns+n).setFlaggedBombImage();
+                        }else{
+                            repeaterId.itemAt(m*columns+n).setBombImage();
+                        }
                     }else{
                         if (mineField.getBombNum(m,n) !== 0){
                             repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
@@ -122,8 +130,7 @@ Button{
         }else{
            mineField.leftClickAction(x_position, y_position);
         }
-        soundMngr.changeLoadedSound("qrc:/Sound/temp.wav");
-        soundMngr.playSound();
+        sound2Mngr.playSound();
         reveal();
         if(mineField.isGameWon() && !choice.customGame){
             nameInputDialog.visible = true;
@@ -133,8 +140,7 @@ Button{
 
     function rightClicked(){
         mineField.rightClickAction(x_position, y_position);
-        soundMngr.changeLoadedSound("qrc:/Sound/temp.wav");
-        soundMngr.playSound();
+        sound2Mngr.playSound();
         if(!mineField.getisRevealed(x_position, y_position)){
             if(game.remFlags === 0 && mineField.getRemFlags() === 0){
                 toast.show("No more flags left!")
@@ -159,8 +165,7 @@ Button{
         if(mineField.getisRevealed(x_position, y_position)){
             if(!(mineField.getBombNum(x_position, y_position)===9)){
                 mineField.doubleClickAction(x_position, y_position);
-                soundMngr.changeLoadedSound("qrc:/Sound/temp.wav");
-                soundMngr.playSound();
+                sound2Mngr.playSound();
                 reveal();
                 if(mineField.isGameWon() && !choice.customGame){
                     nameInputDialog.visible = true;
@@ -180,6 +185,10 @@ Button{
 
     function clearImage(){
         backgroundImage.source = "";
+    }
+
+    function setFlaggedBombImage() {
+        backgroundImage.source = "icons/mine-greyflagged.png";
     }
 
     function getNumberColor(number){

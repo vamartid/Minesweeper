@@ -22,10 +22,18 @@ int main(int argc, char *argv[])
     musicMngr->initFields(50,true,QUrl("qrc:/Sound/Rob Hubbard - Nemesis The Warlock (Maf464 remix).mp3"));
     musicMngr->playSound();
     engine.rootContext()->setContextProperty("musicMngr",musicMngr);
-    //About the sounds
+    //About the sounds of the buttons
     SoundManager *soundMngr = new SoundManager();
     soundMngr->initFields(50,false,QUrl("qrc:/Sound/crash_padle.wav"));
     engine.rootContext()->setContextProperty("soundMngr",soundMngr);
+    //About the sounds of the cells
+    SoundManager *sound2Mngr = new SoundManager();
+    sound2Mngr->initFields(50,false,QUrl("qrc:/Sound/temp.wav"));
+    engine.rootContext()->setContextProperty("sound2Mngr",sound2Mngr);
+    //About the sounds of the bombs
+    SoundManager *sound3Mngr = new SoundManager();
+    sound3Mngr->initFields(50,false,QUrl("qrc:/Sound/grenade.mp3"));
+    engine.rootContext()->setContextProperty("sound3Mngr",sound3Mngr);
     /*Mediator*/
     Mediator *msg = new Mediator();
     engine.rootContext()->setContextProperty("mediator",msg);

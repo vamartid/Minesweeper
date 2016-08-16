@@ -8,6 +8,7 @@ Rectangle {
     property int columns: parseInt(choice.columns)
     property int remFlags: parseInt(choice.mines)
     property bool flagClick: false
+    property bool lost: false
     property string colorOne: "#0B0CA5"
     property string colorTwo: "#147116"
     property string colorThree: "#A92322"
@@ -21,6 +22,7 @@ Rectangle {
     property int moves: 0
     property int m: 0
     property int n: 0
+
     SecondCounter{
         id: secondCounter
     }
@@ -83,8 +85,7 @@ Rectangle {
                     smooth: true
                 }
                 onClicked:{
-                    soundMngr.changeLoadedSound("qrc:/Sound/crash_padle.wav");
-                    soundMngr.playSound();
+                    lost = false
                     for (m = 0; m < gridid.rows; m++) {
                         for (n = 0; n < gridid.columns; n++) {
                            repeaterId.itemAt(m*columns+n).reset();
@@ -118,8 +119,6 @@ Rectangle {
                     smooth: true
                 }
                 onClicked:{
-                    soundMngr.changeLoadedSound("qrc:/Sound/crash_padle.wav");
-                    soundMngr.playSound();
                     if(flagClick){
                         flagButtonImage.source = "icons/flag-greyed.png"
                         flagClick = false;
