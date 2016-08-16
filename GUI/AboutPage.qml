@@ -181,7 +181,9 @@ Rectangle {
                         anchors.verticalCenter: parent.verticalCenter
                         height: parent.height*0.7
                         width: parent.height
+                        property bool timer: true
                         Text{
+                            id: secCounterReferenceText
                             anchors.fill: parent
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
@@ -190,9 +192,24 @@ Rectangle {
                             color: "white"
                             font.family: "droid-sans-mono"
                         }
+                        MouseArea{
+                            //id: timerReferenceArea
+                            anchors.fill: parent
+                            acceptedButtons: Qt.LeftButton
+                            onClicked:{
+                                if(secCounterReference.timer){
+                                    secCounterReferenceText.text = "4"
+                                    secCounterReference.timer = false;
+                                } else {
+                                    secCounterReferenceText.text = Qt.binding(function() { return sampleSecondCounter.seconds})
+                                    secCounterReference.timer = true;
+                                }
+                            }
+                        }
                     }
                     SecondCounter{
                         id: sampleSecondCounter
+                        running: true
                         seconds: 15
                     }
 
@@ -263,6 +280,7 @@ Rectangle {
                 text: qsTr("-  The reset button starts a new game.<br><br>
                 -  The flag mode button changes your mode from reveal mode to flag mode.<br><br>
                 -  In reveal mode, left click reveals blocks and right click / left hold flags a block.<br><br>
+                -  Clicking the seconds timer will change it to display the number of moves you have made.<br><br>
                 -  In flag mode, left click flags blocks and right click/ left hold reveals a block.<br><br>
                 -  A block's number represents the amount of mines in neighbouring blocks.<br><br>
                 -  Double clicking a block, which has as many neighbouring flagged blocks as its number, will reveal the rest of its neighbouring blocks.")
