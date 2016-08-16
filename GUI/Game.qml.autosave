@@ -145,7 +145,6 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: height*0.7
                 text: secondCounter.seconds
-                //text: moves
                 color: "white"
                 font.family: "droid-sans-mono"
             }

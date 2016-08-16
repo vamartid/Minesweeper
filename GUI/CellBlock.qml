@@ -114,10 +114,11 @@ Button{
     }
 
     function leftClicked(){
-        if(gridid.moves==0){
+        if(mineField.getMoves()===0){
+            secondCounter.start();
             mineField.bombGenerator(x_position, y_position);
             mineField.leftClickAction(x_position, y_position);
-            gridid.moves++;
+
         }else{
            mineField.leftClickAction(x_position, y_position);
         }
@@ -127,6 +128,7 @@ Button{
         if(mineField.isGameWon() && !choice.customGame){
             nameInputDialog.visible = true;
         }
+        game.moves = mineField.getMoves();
     }
 
     function rightClicked(){
@@ -150,6 +152,7 @@ Button{
             }
         }
         game.remFlags = mineField.getRemFlags();
+        game.moves = mineField.getMoves();
     }
 
     function doubleClicked(){
@@ -164,6 +167,7 @@ Button{
                 }
             }
         }
+        game.moves = mineField.getMoves();
     }
 
     function setBombImage() {
