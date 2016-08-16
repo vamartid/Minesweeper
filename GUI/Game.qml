@@ -83,6 +83,8 @@ Rectangle {
                     smooth: true
                 }
                 onClicked:{
+                    soundMngr.changeLoadedSound("qrc:/Sound/crash_padle.wav");
+                    soundMngr.playSound();
                     for (m = 0; m < gridid.rows; m++) {
                         for (n = 0; n < gridid.columns; n++) {
                            repeaterId.itemAt(m*columns+n).reset();
@@ -116,6 +118,8 @@ Rectangle {
                     smooth: true
                 }
                 onClicked:{
+                    soundMngr.changeLoadedSound("qrc:/Sound/crash_padle.wav");
+                    soundMngr.playSound();
                     if(flagClick){
                         flagButtonImage.source = "icons/flag-greyed.png"
                         flagClick = false;
