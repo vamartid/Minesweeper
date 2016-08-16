@@ -25,6 +25,7 @@ private:
 	int mineCounter;
     int remFlags;
     int winCounter = 0;
+    int moves = 0;
     bool gameLost = false;
 	std::vector<Cell> cells;
     void openNeighboursRec(int, int);
@@ -56,6 +57,7 @@ public slots:
     bool getisRevealed(int, int); 
     bool isGameWon();
     bool isGameLost();
+    int getMoves();
 //    Cell returnCell(int, int);
 };
 

@@ -27,6 +27,7 @@ void Minesweeper::initField(int width, int height, int mineCounter) {
     gameLost = false;
     //resizing the minefield array
     cells.resize(height * width);
+    moves = 0;
     for(int i = 0; i < height*width; i++){
         cells[i].setRevealed(false);
         cells[i].setFlagged(false);
@@ -53,6 +54,7 @@ Cell* Minesweeper::getCell(int x, int y) {
 void Minesweeper::bombGenerator(int x1, int y1) {
 
     srand(time(NULL));
+    //moves++;
     for (int i = 0; i < mineCounter; i += 1) {
         bool checker = false;
         int x;
@@ -176,6 +178,7 @@ void Minesweeper::rightClickAction(int x, int y) {
             getCell(x, y)->setFlagged(true);
             remFlags -= 1;
             cout << "flagged";
+            moves++;
         } else if (getCell(x, y)->isFlagged()) { //it is flagged
             getCell(x, y)->setFlagged(false);
             getCell(x, y)->setQuestionMarked(true);
@@ -200,8 +203,10 @@ void Minesweeper::leftClickAction(int x, int y) {
                 openAllCells();
             }
             else if (getCell(x, y)->getBombNum() == 0) { //if its empty
+                moves++;
                 openNeighboursRec(x, y); //check and open neighbours
             } else {
+                moves++;
                 getCell(x, y)->setRevealed(true);
                 winCounter++;
             }
@@ -243,11 +248,13 @@ void Minesweeper::doubleClickAction(int x, int y) {
             cout << "in the right flagged bomb if " << endl;
             if (!wrongFlaggedBombs) { //if there are no wrong flagged cells
                 cout << "there are no wrongly flagged bombs" << endl;
+                bool moveFlag = false;
                 for (int i = -1; i < 2; i += 1) {
                     for (int j = -1; j < 2; j += 1) {
                         if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
                                 && (y + j <= width - 1)){
                             if (getCell(x + i, y + j)->getBombNum() != 9 && !getCell(x + i, y + j)->isFlagged() && !getCell(x + i, y + j)->isRevealed()) { //it is not a bomb
+                                moveFlag = true;
                                 if (getCell(x + i, y + j)->getBombNum() != 0){
                                     getCell(x + i, y + j)->setRevealed(true);
                                     winCounter++;
@@ -257,6 +264,9 @@ void Minesweeper::doubleClickAction(int x, int y) {
                             }
                         }
                     }
+                }
+                if(moveFlag){
+                    moves++;
                 }
                 cout << "changed neighbours" << endl;
             } else {
@@ -292,6 +302,10 @@ bool Minesweeper::getisQuestionMarked(int x, int y){
 bool Minesweeper::getisRevealed(int x, int y){
     return getCell(x,y)->isRevealed();
 }
+int Minesweeper::getMoves(){
+    return moves;
+}
+
 //checks if game is won
 bool Minesweeper::isGameWon(){
     if (winCounter == height*width - mineCounter){
