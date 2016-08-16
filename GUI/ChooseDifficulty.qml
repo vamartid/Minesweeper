@@ -336,7 +336,7 @@ Rectangle {
             id: fieldmines_input
             validator: IntValidator{}
             inputMethodHints: Qt.ImhDigitsOnly
-            maximumLength: 4
+            maximumLength: 3
             anchors.top: fieldheight_input.bottom
             anchors.left: fieldheight.right
             anchors.right: parent.right
