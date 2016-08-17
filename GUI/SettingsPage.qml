@@ -104,9 +104,10 @@ Rectangle {
     }
     AndroidButton{
         id: mute
-        anchors.bottom: max.top
-        anchors.bottomMargin: height*0.14
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: soundsSlider.bottom
+        anchors.topMargin: height*0.34
+        anchors.left: parent.left
+        anchors.leftMargin: height*0.34
         width: parent.width/3.5
         height: root.height/16
         Text{
@@ -125,9 +126,10 @@ Rectangle {
     }
     AndroidButton{
         id: max
-        anchors.bottom: defaults.top
-        anchors.bottomMargin: height*0.14
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: soundsSlider.bottom
+        anchors.topMargin: height*0.34
+        anchors.left: mute.right
+        anchors.leftMargin: height*0.34
         width: parent.width/3.5
         height: root.height/16
         Text{
@@ -146,9 +148,10 @@ Rectangle {
     }
     AndroidButton{
         id: defaults
-        anchors.bottom: signature.top
-        anchors.bottomMargin: height*0.40
-        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: soundsSlider.bottom
+        anchors.topMargin: height*0.34
+        anchors.right: parent.right
+        anchors.rightMargin: height*0.34
         width: parent.width/3.5
         height: root.height/16
         Text{
@@ -165,6 +168,7 @@ Rectangle {
             defaultsBtn();
         }
     }
+    
     Text{
         id: signature
         //visible:false
@@ -267,4 +271,3 @@ Rectangle {
         }
     }
 }
-
