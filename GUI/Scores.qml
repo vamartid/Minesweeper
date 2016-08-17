@@ -98,12 +98,11 @@ Rectangle {
             myView.model=mediator.myModel3
         }
     }
-    
+
     Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: easyScores.bottom
-        anchors.bottom: myrow.top
         width:parent.width
         height:parent.height*3/4
         anchors.margins: 7
@@ -115,6 +114,8 @@ Rectangle {
             height:parent.height
             anchors.top: parent.top
             anchors.bottom: parent.bottom
+            anchors.right: parent.right
+            anchors.left: parent.left
             anchors.margins: 7
             /*/
             highlight: Rectangle{
@@ -128,19 +129,21 @@ Rectangle {
             delegate: Item{
                 width:parent.width
                 height:50
-
-                Row
-                {
+                FocusScope {
                     anchors.fill: parent
+                    anchors.right: parent.right
+                    anchors.left: parent.left
+
                     Label{
+                        width:parent.width* (2/3)
                         id: nameLabel
                         anchors.left:parent.left
-                        width:parent.width*4/5
                         text:name
                         font.pixelSize: parent.height*0.5
                         color: "#FF5722"
                     }
                     Label{
+                        width:(1/3)/3
                         anchors.left:nameLabel.right
                         anchors.right:scoreLabel.left
                         text:"|"
@@ -148,10 +151,10 @@ Rectangle {
                         color: "#FF5722"
                     }
                     Label{
+                        width:parent.width* ((1/3)-((1/3)/3))
                         id: scoreLabel
                         anchors.right:parent.right
-                        width:parent.width/5
-                        text:score
+                        text:scoreId
                         font.pixelSize: parent.height*0.5
                         color: "#FF5722"
                     }
