@@ -168,6 +168,27 @@ Rectangle {
             defaultsBtn();
         }
     }
+    AndroidButton {
+        id: clearScores
+        anchors.top: max.bottom
+        anchors.topMargin: height*0.34
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: parent.width/2.6
+        height: root.height/16
+        Text{
+            width: parent.width
+            height: parent.height
+            text: qsTr("Clear Scores")
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            wrapMode: Text.Wrap
+            font.pixelSize: parent.height*0.5
+        }
+        onClicked:
+        {
+            clearScoreCheck.visible= true
+        }
+    }
     
     Text{
         id: signature
@@ -182,8 +203,18 @@ Rectangle {
         text: qsTr("Aristotle University of Thessaloniki - 2016")
     }
 
-
-
+    ClearScoreCheck{
+        id: clearScoreCheck
+        visible: false
+        onVisibleChanged: {
+            if(visible == true){
+                //resetButton.enabled = false;
+            } else {
+                //resetButton.enabled = true;
+            }
+        }
+    }
+    
     function muteBtn(){
         /*silenceModeS=true
         silenceModeM=true*/

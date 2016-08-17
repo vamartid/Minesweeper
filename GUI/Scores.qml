@@ -26,8 +26,7 @@ Rectangle {
             wrapMode: Text.Wrap
         }
     }
-    AndroidButton
-    {
+    AndroidButton {
         id: easyScores
         anchors.top: toolbar_game.bottom
         anchors.topMargin: height*0.34
@@ -50,8 +49,7 @@ Rectangle {
             myView.model=mediator.myModel1
         }
     }
-    AndroidButton
-    {
+    AndroidButton {
         id: mediumScores
         anchors.top: toolbar_game.bottom
         anchors.topMargin: height*0.34
@@ -74,8 +72,7 @@ Rectangle {
             myView.model=mediator.myModel2
         }
     }
-    AndroidButton
-    {
+    AndroidButton {
         id: hardScores
         anchors.top: toolbar_game.bottom
         anchors.topMargin: height*0.34
@@ -99,13 +96,47 @@ Rectangle {
         }
     }
 
-    Rectangle {
+    FocusScope {
+        id:labelsForList
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: easyScores.bottom
+        height: root.height/20
+        anchors.leftMargin: 13
+        anchors.topMargin: 10
+        anchors.rightMargin: 13
+        Label {
+            width:parent.width* (2/3)
+            anchors.left:parent.left
+            text:"Name"
+            font.pixelSize: parent.height*0.5
+            color: "#FF5722"
+        }
+        Label {
+            width:parent.width* ((1/3)-((1/3)/3))
+            anchors.right:parent.right
+            text:"Time"
+            font.pixelSize: parent.height*0.5
+            color: "#FF5722"
+        }
+    }
+    Rectangle {
+        id:spliter
+        anchors.top: labelsForList.bottom
+        anchors.left: parent.left
+        anchors.right: parent.right
+        height: root.height/20
+        color: "#303030"
+    }
+    Rectangle {
+        anchors.left: parent.left
+        anchors.right: parent.right
+        anchors.top: spliter.bottom
         width:parent.width
         height:parent.height*3/4
-        anchors.margins: 7
+        anchors.leftMargin: 13
+        anchors.bottomMargin: 7
+        anchors.rightMargin: 13
         color: "#303030"
         ListView
         {
@@ -139,15 +170,7 @@ Rectangle {
                         id: nameLabel
                         anchors.left:parent.left
                         text:name
-                        font.pixelSize: parent.height*0.5
-                        color: "#FF5722"
-                    }
-                    Label{
-                        width:(1/3)/3
-                        anchors.left:nameLabel.right
-                        anchors.right:scoreLabel.left
-                        text:"|"
-                        font.pixelSize: parent.height*0.5
+                        font.pixelSize: parent.height*0.4
                         color: "#FF5722"
                     }
                     Label{
@@ -155,7 +178,7 @@ Rectangle {
                         id: scoreLabel
                         anchors.right:parent.right
                         text:scoreId
-                        font.pixelSize: parent.height*0.5
+                        font.pixelSize: parent.height*0.4
                         color: "#FF5722"
                     }
                 }
@@ -169,3 +192,5 @@ Rectangle {
         }
     }
 }
+
+

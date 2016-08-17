@@ -33,5 +33,6 @@
         <file>Sound/temp.wav</file>
         <file>GUI/icons/mine-greyflagged.png</file>
         <file>Sound/grenade.mp3</file>
+        <file>GUI/ClearScoreCheck.qml</file>
     </qresource>
 </RCC>

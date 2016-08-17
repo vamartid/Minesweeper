@@ -8,7 +8,9 @@ Mediator::Mediator(QObject *parent) : QObject(parent)
     _scoreModel1 = new scoreModel();
     _scoreModel2 = new scoreModel();
     _scoreModel3 = new scoreModel();
-
+    lastScore1 = -1;
+    lastScore2 = -1;
+    lastScore3 = -1;
     QString s ="data.txt";
 
     qDebug(s.toLatin1());
@@ -38,16 +40,16 @@ Mediator::Mediator(QObject *parent) : QObject(parent)
 void Mediator::insertScore(QString scoreName, qint64 scoreId, qint8 what)
 {
     bool change = false;
+    qint8 i = 0;
+    bool lep = true;
+    qint8 place = 0;
     if (what == 0) {
         if((scoreId >= lastScore1) || (_scoreModel1->rowCount()<24)) {
-            qint8 i = 0;
-            bool lep = true;
-            qint8 place = 0;
             while ((i < _scoreModel1->rowCount()) && (lep == true)) {
                 QString scoreName0;
                 qint64 scoreId0;
                 _scoreModel1->getScore(i, scoreName0, scoreId0);
-                place = i;
+                place = i+1;
                 if (scoreId0 > scoreId) {
                     place = i;
                     lep = false;
@@ -64,9 +66,6 @@ void Mediator::insertScore(QString scoreName, qint64 scoreId, qint8 what)
         }
     } else if (what == 1) {
         if((scoreId >= lastScore2) || (_scoreModel2->rowCount()<24)) {
-            qint8 i = 0;
-            bool lep = true;
-            qint8 place = 0;
             while ((i < _scoreModel2->rowCount()) && (lep == true)) {
                 QString scoreName0;
                 qint64 scoreId0;
@@ -92,14 +91,11 @@ void Mediator::insertScore(QString scoreName, qint64 scoreId, qint8 what)
         }
     } else if (what == 2) {
         if((scoreId >= lastScore3) || (_scoreModel3->rowCount()<24)) {
-            qint8 i = 0;
-            bool lep = true;
-            qint8 place = 0;
             while ((i < _scoreModel3->rowCount()) && (lep == true)) {
                 QString scoreName0;
                 qint64 scoreId0;
                 _scoreModel3->getScore(i, scoreName0, scoreId0);
-                place = i;
+                place = i+1;
                 if (scoreId0 > scoreId) {
                     place = i;
                     lep = false;
@@ -153,6 +149,20 @@ void Mediator::insertScore(QString scoreName, qint64 scoreId, qint8 what)
     }
 }
 
+void Mediator::clearScores() {
+    QString s ="data.txt";
+    QFile qf(s);
+    QTextStream out(&qf);
+    qf.open(QIODevice::WriteOnly | QIODevice::Text);
+    out<<"";
+    qf.close();
+    _scoreModel1 = new scoreModel();
+    _scoreModel2 = new scoreModel();
+    _scoreModel3 = new scoreModel();
+    lastScore1 = -1;
+    lastScore2 = -1;
+    lastScore3 = -1;
+}
 
 void Mediator::deleteScore(int row, qint8 what)
 {

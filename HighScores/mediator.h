@@ -56,7 +56,7 @@ signals:
     void scoreModelChanged();
 public slots:
     void insertScore(QString scoreName, qint64 scoreId, qint8 what);
-
+    void clearScores();
     void deleteScore(int row, qint8 what);
 };
 
