@@ -23,7 +23,8 @@ class scoreModel : public QAbstractListModel
 
         scoreModel(QObject *parent = 0);
 
-        void addScore(const myScore &score);
+        void addScore(const myScore &score, qint8 place);
+        void fillScores(const myScore &score);
         void getScore(int row, QString &name, qint64 &score);
 
         int rowCount(const QModelIndex & parent = QModelIndex()) const;

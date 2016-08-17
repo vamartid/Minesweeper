@@ -81,7 +81,14 @@ Rectangle{
             }
             onClicked: {
                 soundMngr.playSound()
-                //Saves data to high scores
+                if (choice.difficulty == 1) {
+                    mediator.insertScore(nameInputField.text+" "+secondCounter.seconds, secondCounter.seconds, 0);
+                } else if (choice.difficulty == 2) {
+                    mediator.insertScore(nameInputField.text+" "+secondCounter.seconds, secondCounter.seconds, 1);
+                } else if (choice.difficulty == 3) {
+                    mediator.insertScore(nameInputField.text+" "+secondCounter.seconds, secondCounter.seconds, 2);
+                }
+                stack.pop(stack.get(0));
             }
         }
         AndroidButton{

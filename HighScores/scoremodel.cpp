@@ -4,7 +4,14 @@ scoreModel::scoreModel(QObject *parent)
     : QAbstractListModel(parent)
 {
 }
-void scoreModel::addScore(const myScore &score)
+void scoreModel::addScore(const myScore &score, qint8 place)
+{
+    beginInsertRows(QModelIndex(), rowCount(), rowCount());
+    m_scores.insert(place, score);
+ //   m_scores << score;
+    endInsertRows();
+}
+void scoreModel::fillScores(const myScore &score)
 {
     beginInsertRows(QModelIndex(), rowCount(), rowCount());
     m_scores << score;

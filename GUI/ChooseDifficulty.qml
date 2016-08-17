@@ -11,6 +11,7 @@ Rectangle {
     property int rows: 9
     property int columns: 9
     property int mines: 10
+    property int difficulty: 0
     property bool customGame: false
 
     AndroidToolbar
@@ -84,6 +85,7 @@ Rectangle {
                 font.pixelSize: parent.height*0.25
             }
             onClicked: {
+                choice.difficulty= 1
                 mineField.initField(choice.columns, choice.rows, choice.mines);
                 stack.push(game)
             }
@@ -121,9 +123,15 @@ Rectangle {
             }
 
             onClicked: {
+                /*/
+                choice.rows= 5
+                choice.columns= 5
+                choice.mines= 2
+                // */
                 choice.rows= 16
                 choice.columns= 16
                 choice.mines= 40
+                choice.difficulty= 2
                 mineField.initField(choice.columns, choice.rows, choice.mines);
                 stack.push(game)
             }
@@ -165,6 +173,7 @@ Rectangle {
                 choice.rows= 30
                 choice.columns= 16
                 choice.mines= 99
+                choice.difficulty= 3
                 mineField.initField(choice.columns, choice.rows, choice.mines);
                 stack.push(game)
             }
