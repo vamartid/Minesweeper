@@ -3,8 +3,6 @@ import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 
 Rectangle {
-    property bool easyFlag: true
-    property bool mediumFlag: false
     id: scoreView
     height: 860
     width: 484
@@ -49,10 +47,7 @@ Rectangle {
         }
         onClicked:
         {
-            easyFlag: true
-            mediumFlag: false
-
-      //      easyFlag: 0
+            myView.model=mediator.myModel1
         }
     }
     AndroidButton
@@ -76,9 +71,7 @@ Rectangle {
         }
         onClicked:
         {
-            easyFlag: false
-            mediumFlag: true
-       //     MainMenu.homePageOfDificultyInHichScores == 1
+            myView.model=mediator.myModel2
         }
     }
     AndroidButton
@@ -102,50 +95,10 @@ Rectangle {
         }
         onClicked:
         {
-            easyFlag: false
-            mediumFlag: false
-         //   MainMenu.homePageOfDificultyInHichScores == 2
+            myView.model=mediator.myModel3
         }
     }
-    Row
-    {
-        anchors.bottom: parent.bottom
-        id:myrow
-        width:parent.width
-        Button
-        {
-            id:myButton
-            text:"add"
-            onClicked: {
-                if (easyFlag) {
-                    mediator.insertScore(babis.text+" "+3, 3, 0);
-                } else if (mediumFlag){
-                    mediator.insertScore(babis.text+" "+3, 10, 1);
-                } else {
-                    mediator.insertScore(babis.text+" "+3, 3, 2);
-                }
-            }
-        }
-        Button
-        {
-            id:myButton2
-            text:"delete"
-            onClicked:  {
-                if (easyFlag) {
-                    mediator.deleteScore(myView.currentIndex, 0);
-                } else if (mediumFlag){
-                    mediator.deleteScore(myView.currentIndex, 1);
-                } else {
-                    mediator.deleteScore(myView.currentIndex, 2);
-                }
-            }
-        }
-        TextField
-        {
-            id:babis
-        }
-    }
-
+    
     Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
@@ -169,14 +122,7 @@ Rectangle {
                 color: "#303030"
             }// */
             model: {
-                //
-                if (easyFlag) {
-                    mediator.myModel1
-                } else if (mediumFlag){
-                    mediator.myModel2
-                } else {
-                    mediator.myModel3
-                }// */
+                mediator.myModel1
             }
 
             delegate: Item{
