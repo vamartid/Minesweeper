@@ -182,11 +182,35 @@ Rectangle {
             delegate: Item{
                 width:parent.width
                 height:50
-                Label{
-                    text:name
-                    font.pixelSize: parent.height*0.5
-                    color: "#FF5722"
+
+                Row
+                {
+                    anchors.fill: parent
+                    Label{
+                        id: nameLabel
+                        anchors.left:parent.left
+                        width:parent.width*4/5
+                        text:name
+                        font.pixelSize: parent.height*0.5
+                        color: "#FF5722"
+                    }
+                    Label{
+                        anchors.left:nameLabel.right
+                        anchors.right:scoreLabel.left
+                        text:"|"
+                        font.pixelSize: parent.height*0.5
+                        color: "#FF5722"
+                    }
+                    Label{
+                        id: scoreLabel
+                        anchors.right:parent.right
+                        width:parent.width/5
+                        text:score
+                        font.pixelSize: parent.height*0.5
+                        color: "#FF5722"
+                    }
                 }
+
                 MouseArea
                 {
                     anchors.fill: parent

@@ -1,5 +1,5 @@
-#ifndef COLORMODEL_H
-#define COLORMODEL_H
+#ifndef SCOREMODEL_H
+#define SCOREMODEL_H
 
 #include <QObject>
 #include <QAbstractListModel>
@@ -38,4 +38,4 @@ class scoreModel : public QAbstractListModel
         QList<myScore> m_scores;
 };
 
-#endif // COLORMODEL_H
+#endif // SCOREMODEL_H

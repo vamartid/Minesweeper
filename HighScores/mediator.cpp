@@ -2,8 +2,7 @@
 #include <QFile>
 #include <QStandardPaths>
 #include <QTextStream>
-#include<iostream>
-using namespace std;
+
 Mediator::Mediator(QObject *parent) : QObject(parent)
 {
     _scoreModel1 = new scoreModel();
@@ -49,11 +48,8 @@ void Mediator::insertScore(QString scoreName, qint64 scoreId, qint8 what)
                 qint64 scoreId0;
                 _scoreModel1->getScore(i, scoreName0, scoreId0);
                 place = i;
-                cout << "A" << scoreId0 << endl;
-                cout << "B" << scoreId << endl;
                 if (scoreId0 > scoreId) {
                     place = i;
-                    cout << "C" << place << endl;
                     lep = false;
                 }
                 i++;
@@ -104,11 +100,8 @@ void Mediator::insertScore(QString scoreName, qint64 scoreId, qint8 what)
                 qint64 scoreId0;
                 _scoreModel3->getScore(i, scoreName0, scoreId0);
                 place = i;
-                cout << "A" << scoreId0 << endl;
-                cout << "B" << scoreId << endl;
                 if (scoreId0 > scoreId) {
                     place = i;
-                    cout << "C" << place << endl;
                     lep = false;
                 }
                 i++;

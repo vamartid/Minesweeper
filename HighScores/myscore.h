@@ -1,5 +1,5 @@
-#ifndef MYCOLOR_H
-#define MYCOLOR_H
+#ifndef MYSCORE_H
+#define MYSCORE_H
 #include <QString>
 
 class myScore
@@ -17,4 +17,4 @@ private:
     qint64 m_score;
 };
 
-#endif // MYCOLOR_H
+#endif // MYSCORE_H
