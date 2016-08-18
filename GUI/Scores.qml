@@ -101,23 +101,36 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.top: easyScores.bottom
-        height: root.height/20
+        height: root.height/18
         anchors.leftMargin: 13
         anchors.topMargin: 10
         anchors.rightMargin: 13
         Label {
-            width:parent.width* (2/3)
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            width:parent.width* (2/4)
             anchors.left:parent.left
             text:"Name"
-            font.pixelSize: parent.height*0.5
-            color: "#FF5722"
-        }
+            font.pixelSize: parent.height*0.7
+            color: "#FFFFFF"
+            //color: "#FF5722"
+            font.family: "droid sans mono"
+            height: root.height/13
+            //font.bold : true
+            //font.family: "droid sans"
+        }//wrapMode: Text.Wrap
         Label {
-            width:parent.width* ((1/3)-((1/3)/3))
+            verticalAlignment: Text.AlignVCenter
+            horizontalAlignment: Text.AlignHCenter
+            width:parent.width* (1/3)
             anchors.right:parent.right
             text:"Time"
-            font.pixelSize: parent.height*0.5
-            color: "#FF5722"
+            font.pixelSize: parent.height*0.7
+            color: "#FFFFFF"
+            font.family: "droid sans mono"
+            height: root.height/13
+            //font.bold : true
+            //font.family: "droid sans"
         }
     }
     Rectangle {
@@ -125,7 +138,7 @@ Rectangle {
         anchors.top: labelsForList.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        height: root.height/20
+        height: root.height/25
         color: "#303030"
     }
     Rectangle {
@@ -153,32 +166,40 @@ Rectangle {
                 width: parent.width
                 color: "#303030"
             }// */
+
             model: {
                 mediator.myModel1
             }
-
             delegate: Item{
+                id : item
                 width:parent.width
-                height:50
+                height:40
+
                 FocusScope {
                     anchors.fill: parent
                     anchors.right: parent.right
                     anchors.left: parent.left
 
                     Label{
-                        width:parent.width* (2/3)
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment:  Text.AlignHCenter
+                        font.family: "droid sans"
+                        width:parent.width* (2/4)
                         id: nameLabel
                         anchors.left:parent.left
                         text:name
-                        font.pixelSize: parent.height*0.4
+                        font.pixelSize: parent.height*0.625
                         color: "#FF5722"
                     }
                     Label{
-                        width:parent.width* ((1/3)-((1/3)/3))
+                        verticalAlignment: Text.AlignVCenter
+                        horizontalAlignment:  Text.AlignHCenter
+                        font.family: "droid sans"
+                        width:parent.width* (1/3)
                         id: scoreLabel
                         anchors.right:parent.right
                         text:scoreId
-                        font.pixelSize: parent.height*0.4
+                        font.pixelSize: parent.height*0.625
                         color: "#FF5722"
                     }
                 }
@@ -192,5 +213,3 @@ Rectangle {
         }
     }
 }
-
-
