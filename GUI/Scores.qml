@@ -22,11 +22,11 @@ Rectangle {
             width: parent.width
             anchors.left: backbutton.right
             anchors.verticalCenter: parent.verticalCenter
-            font.pixelSize: parent.height*0.45
+            font.pixelSize: parent.height*0.37
             wrapMode: Text.Wrap
         }
     }
-    AndroidButton {
+    DarkButton {
         id: easyScores
         anchors.top: toolbar_game.bottom
         anchors.topMargin: height*0.34
@@ -49,7 +49,7 @@ Rectangle {
             myView.model=mediator.myModel1
         }
     }
-    AndroidButton {
+    DarkButton {
         id: mediumScores
         anchors.top: toolbar_game.bottom
         anchors.topMargin: height*0.34
@@ -72,7 +72,7 @@ Rectangle {
             myView.model=mediator.myModel2
         }
     }
-    AndroidButton {
+    DarkButton {
         id: hardScores
         anchors.top: toolbar_game.bottom
         anchors.topMargin: height*0.34

@@ -34,5 +34,6 @@
         <file>GUI/icons/mine-greyflagged.png</file>
         <file>Sound/grenade.mp3</file>
         <file>GUI/ClearScoreCheck.qml</file>
+        <file>GUI/DarkButton.qml</file>
     </qresource>
 </RCC>
