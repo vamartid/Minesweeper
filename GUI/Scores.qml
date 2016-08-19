@@ -44,6 +44,9 @@ Rectangle {
             font.pixelSize: parent.height*0.5
             color: "white"
         }
+        Component.onCompleted: {
+            changeColor(true)
+        }
         onClicked:
         {
             myView.model=mediator.myModel1

@@ -23,6 +23,7 @@ Rectangle {
     property int m: 0
     property int n: 0
 
+    //A counter to count the seconds
     SecondCounter{
         id: secondCounter
     }
@@ -46,6 +47,7 @@ Rectangle {
                 stack.pop(stack.get(0))
             }
         }
+        //The remaining flags
         Rectangle{
             border.color: parent.color
             border.width: parent.height*0.03
@@ -71,6 +73,7 @@ Rectangle {
             width: parent.height*1.7
             color: parent.color
 
+            //The reset button
             AndroidButton{
                 id: resetButton
                 anchors.left: parent.left
@@ -105,6 +108,7 @@ Rectangle {
                     flagButtonImage.source = "icons/flag-greyed.png"
                 }
             }
+            //The flag button
             AndroidButton{
                 id: flagButton
                 anchors.right: parent.right
@@ -129,6 +133,7 @@ Rectangle {
                 }
             }
         }
+        //Timer/move counter
         Rectangle{
             id: timerRectangle
             border.color: parent.color
@@ -168,7 +173,7 @@ Rectangle {
             }
         }
     }
-
+    //ScrollView containing a Grid, which holds all the cells of the minefield
     ScrollView {
         anchors.top: toolbar_game.bottom
         anchors.bottom: parent.bottom
@@ -193,6 +198,8 @@ Rectangle {
             }
         }
     }
+    //A rectangle that shows up when the game is won, to enter a name for the high scores
+    //rectangle is used instead of window, so it works well on mobile platforms(modality is handled manually)
     NameInputDialog{
         id: nameInputDialog
         visible: false

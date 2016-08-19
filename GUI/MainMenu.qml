@@ -67,6 +67,7 @@ Rectangle {
             //anchors.verticalCenter: parent.verticalCenter
         }
     }
+    //Rectangle containing the buttons
     Rectangle{
         color: parent.color
         width:parent.width/1.5
@@ -182,7 +183,7 @@ Rectangle {
         font.pixelSize: parent.height*0.0186
         text: qsTr("Aristotle University of Thessaloniki - 2016")
     }
-
+    //Different components for the stackview
     Component
     {
         id:chooseDifficulty
