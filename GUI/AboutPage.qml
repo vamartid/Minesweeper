@@ -273,8 +273,9 @@ Rectangle {
             }
             //game instructions
             Text{
+                id: instructionText
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredHeight: aboutPage.height*0.55
+                Layout.preferredHeight: contentHeight
                 Layout.preferredWidth: aboutPage.width*0.9
                 color:"#FFFFFF"
                 text: qsTr("-  The reset button starts a new game.<br><br>
@@ -285,7 +286,7 @@ Rectangle {
                 -  A block's number represents the amount of mines in neighbouring blocks.<br><br>
                 -  Double clicking a block, which has as many neighbouring flagged blocks as its number, will reveal the rest of its neighbouring blocks.")
                 horizontalAlignment: Text.AlignJustify
-                font.pixelSize: Layout.preferredHeight*0.045
+                font.pixelSize: aboutPage.height*0.025
                 font.family: "droid sans"
                 wrapMode: Text.Wrap
             }
@@ -304,7 +305,7 @@ Rectangle {
             Text{
                 id: about_body
                 Layout.alignment: Qt.AlignCenter
-                Layout.preferredHeight: aboutPage.height*0.3
+                Layout.preferredHeight: contentHeight
                 Layout.preferredWidth: aboutPage.width*0.9
                 color:"#FFFFFF"
                 text: qsTr("This program was created for a project in a mobile development course, in the Aristotle University of Thessaloniki.<br><br>
@@ -315,7 +316,7 @@ Rectangle {
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/GeorgeKirm\">GeorgeKirm</a> - Giorgos Kirmitsakis")
                 linkColor: "#3b85b0"
                 horizontalAlignment: Text.AlignJustify
-                font.pixelSize: Layout.preferredHeight*0.08
+                font.pixelSize: aboutPage.height*0.025
                 font.family: "droid sans"
                 wrapMode: Text.Wrap
                 onLinkActivated: Qt.openUrlExternally(link)

@@ -33,7 +33,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.leftMargin: height*0.34
         width: (parent.width-height*0.34*4)/3
-        height: root.height/20
+        height: root.height/15
         Text{
             width: parent.width
             height: parent.height
@@ -42,11 +42,14 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.5
-            color: "#FF5722"
+            color: "white"
         }
         onClicked:
         {
             myView.model=mediator.myModel1
+            easyScores.changeColor(true)
+            mediumScores.changeColor(false)
+            hardScores.changeColor(false)
         }
     }
     DarkButton {
@@ -56,7 +59,7 @@ Rectangle {
         anchors.left: easyScores.right
         anchors.leftMargin: height*0.34
         width: (parent.width-height*0.34*4)/3
-        height: root.height/20
+        height: root.height/15
         Text{
             width: parent.width
             height: parent.height
@@ -65,11 +68,15 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.5
-            color: "#FF5722"
+            //color: "#FF5722"
+            color: "white"
         }
         onClicked:
         {
             myView.model=mediator.myModel2
+            easyScores.changeColor(false)
+            mediumScores.changeColor(true)
+            hardScores.changeColor(false)
         }
     }
     DarkButton {
@@ -79,7 +86,7 @@ Rectangle {
         anchors.right: parent.right
         anchors.rightMargin: height*0.34
         width: (parent.width-height*0.34*4)/3
-        height: root.height/20
+        height: root.height/15
         Text{
             width: parent.width
             height: parent.height
@@ -88,11 +95,14 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.5
-            color: "#FF5722"
+            color: "white"
         }
         onClicked:
         {
             myView.model=mediator.myModel3
+            easyScores.changeColor(false)
+            mediumScores.changeColor(false)
+            hardScores.changeColor(true)
         }
     }
 
@@ -161,6 +171,7 @@ Rectangle {
             anchors.right: parent.right
             anchors.left: parent.left
             anchors.margins: 7
+            spacing: root.height*0.013
             /*/
             highlight: Rectangle{
                 width: parent.width
@@ -173,7 +184,7 @@ Rectangle {
             delegate: Item{
                 id : item
                 width:parent.width
-                height:40
+                height: nameLabel.contentHeight
 
                 FocusScope {
                     anchors.fill: parent
@@ -188,7 +199,7 @@ Rectangle {
                         id: nameLabel
                         anchors.left:parent.left
                         text:name
-                        font.pixelSize: parent.height*0.625
+                        font.pixelSize: root.height*0.03
                         color: "#FF5722"
                     }
                     Label{
@@ -199,7 +210,7 @@ Rectangle {
                         id: scoreLabel
                         anchors.right:parent.right
                         text:scoreId
-                        font.pixelSize: parent.height*0.625
+                        font.pixelSize: root.height*0.03
                         color: "#FF5722"
                     }
                 }
