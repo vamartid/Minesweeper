@@ -115,13 +115,13 @@ Rectangle {
         anchors.right: parent.right
         anchors.top: easyScores.bottom
         height: root.height/18
-        anchors.leftMargin: 13
-        anchors.topMargin: 10
-        anchors.rightMargin: 13
+        anchors.leftMargin: parent.width*0.026
+        anchors.topMargin: parent.height*0.012
+        anchors.rightMargin: parent.width*0.026
         Label {
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
-            width:parent.width* (2/4)
+            width:parent.width*0.5
             anchors.left:parent.left
             text:"Name"
             font.pixelSize: parent.height*0.7
@@ -160,20 +160,20 @@ Rectangle {
         anchors.top: spliter.bottom
         width:parent.width
         height:parent.height*3/4
-        anchors.leftMargin: 13
-        anchors.bottomMargin: 7
-        anchors.rightMargin: 13
+        anchors.leftMargin: parent.width*0.026
+        anchors.bottomMargin: parent.width*0.013
+        anchors.rightMargin: parent.width*0.026
         color: "#303030"
         ListView
         {
             id:myView
+            interactive: false
             width:parent.width
             height:parent.height
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.right: parent.right
             anchors.left: parent.left
-            anchors.margins: 7
             spacing: root.height*0.013
             /*/
             highlight: Rectangle{

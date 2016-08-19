@@ -64,7 +64,7 @@ Rectangle {
                 font.pixelSize: height*0.7
                 text: remFlags.toString()
                 color: "white"
-                font.family: "droid-sans-mono"
+                font.family: "whatever"
             }
         }
         Rectangle{
@@ -155,7 +155,7 @@ Rectangle {
                 text: secondCounter.seconds
                 //text: moves
                 color: "white"
-                font.family: "droid-sans-mono"
+                font.family: "whatever"
             }
             MouseArea{
                 id: timerMouseArea

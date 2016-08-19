@@ -18,10 +18,10 @@ Rectangle{
         id: recktangle
         visible:true
         color: "#303030"
-        anchors.horizontalCenterOffset: 1
-        anchors.topMargin: 33
+        anchors.topMargin: parent.height*0.01
         height: parent.height*0.5
         anchors.top: parent.top
+        //anchors.topMargin: parent.height*0.5
         width: parent.width*0.9
         anchors.horizontalCenter: parent.horizontalCenter
         Label {
@@ -36,7 +36,8 @@ Rectangle{
             anchors.leftMargin: 0
             anchors.topMargin: 0
             horizontalAlignment: Text.AlignHCenter
-            font.pixelSize: parent.height*0.2
+            verticalAlignment: Text.AlignVCenter
+            font.pixelSize: parent.height*0.3
         }
     }
     Rectangle{
@@ -44,6 +45,7 @@ Rectangle{
         anchors.top: recktangle.bottom
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height*0.1
+        anchors.topMargin: parent.height*0.15
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width*0.7
         AndroidButton{
@@ -58,7 +60,7 @@ Rectangle{
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
-                font.pixelSize: parent.height*0.4
+                font.pixelSize: parent.height*0.5
             }
             onClicked: {
                 soundMngr.playSound()
@@ -78,7 +80,7 @@ Rectangle{
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
-                font.pixelSize: parent.height*0.4
+                font.pixelSize: parent.height*0.5
             }
             onClicked: {
                 soundMngr.playSound()

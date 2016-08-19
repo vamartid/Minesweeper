@@ -26,6 +26,7 @@ Button{
         font.pixelSize: parent.height*0.7
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
+        font.family: "whatever"
     }
     style: ButtonStyle {
        background:
@@ -42,7 +43,6 @@ Button{
         Image {
             id: backgroundImage
             anchors.fill: parent
-            source: ""
             smooth: true
         }
         onPressAndHold: {

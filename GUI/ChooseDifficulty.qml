@@ -77,7 +77,7 @@ Rectangle {
             Text{
 
                 width: parent.width
-                height: parent.height
+                height: parent.height*0.95
                 text: qsTr("9x9 grid with 10 mines")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom
@@ -114,7 +114,7 @@ Rectangle {
             Text{
 
                 width: parent.width
-                height: parent.height
+                height: parent.height*0.95
                 text: qsTr("16x16 grid with 40 mines")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom
@@ -154,14 +154,14 @@ Rectangle {
                 height: parent.height
                 text: qsTr("Hard")
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter + parent.height*0.3
+                verticalAlignment: Text.AlignVCenter
                 wrapMode: Text.Wrap
                 font.pixelSize: parent.height*0.5
             }
             Text{
 
                 width: parent.width
-                height: parent.height
+                height: parent.height*0.95
                 text: qsTr("30x16 grid with 99 mines")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom
@@ -211,7 +211,7 @@ Rectangle {
             Text{
 
                 width: parent.width
-                height: parent.height
+                height: parent.height*0.95
                 text: qsTr("Choose your paremeters below")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom

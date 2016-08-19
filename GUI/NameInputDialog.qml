@@ -55,6 +55,9 @@ Rectangle{
             anchors.rightMargin: parent.width*0.1
             anchors.bottom: parent.bottom
             font.pixelSize: parent.height*0.5
+            onAccepted: {
+                acceptName()
+            }
         }
     }
     Rectangle{
@@ -81,14 +84,7 @@ Rectangle{
             }
             onClicked: {
                 soundMngr.playSound()
-                if (choice.difficulty == 1) {
-                    mediator.insertScore(nameInputField.text, secondCounter.seconds, 0);
-                } else if (choice.difficulty == 2) {
-                    mediator.insertScore(nameInputField.text, secondCounter.seconds, 1);
-                } else if (choice.difficulty == 3) {
-                    mediator.insertScore(nameInputField.text, secondCounter.seconds, 2);
-                }
-                stack.pop(stack.get(0));
+                acceptName();
             }
         }
         AndroidButton{
@@ -111,5 +107,15 @@ Rectangle{
                 nameInputField.text = ""
             }
         }
+    }
+    function acceptName(){
+        if (choice.difficulty == 1) {
+            mediator.insertScore(nameInputField.text, secondCounter.seconds, 0);
+        } else if (choice.difficulty == 2) {
+            mediator.insertScore(nameInputField.text, secondCounter.seconds, 1);
+        } else if (choice.difficulty == 3) {
+            mediator.insertScore(nameInputField.text, secondCounter.seconds, 2);
+        }
+        stack.pop(stack.get(0));
     }
 }
