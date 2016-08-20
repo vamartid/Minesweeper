@@ -178,7 +178,8 @@ void Minesweeper::rightClickAction(int x, int y) {
             getCell(x, y)->setFlagged(true);
             remFlags -= 1;
             cout << "flagged";
-            moves++;
+            if(moves > 0)
+                moves++;
         } else if (getCell(x, y)->isFlagged()) { //it is flagged
             getCell(x, y)->setFlagged(false);
             getCell(x, y)->setQuestionMarked(true);
