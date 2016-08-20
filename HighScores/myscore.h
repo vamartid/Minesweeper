@@ -1,5 +1,6 @@
 #ifndef MYSCORE_H
 #define MYSCORE_H
+
 #include <QString>
 
 class myScore

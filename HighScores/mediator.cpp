@@ -1,7 +1,4 @@
 #include "mediator.h"
-#include <QFile>
-#include <QStandardPaths>
-#include <QTextStream>
 
 Mediator::Mediator(QObject *parent) : QObject(parent)
 {
@@ -44,120 +41,47 @@ Mediator::Mediator(QObject *parent) : QObject(parent)
  * @param whitchModel The model that the value belongs
  */
 void Mediator::insertScore(QString scoreName, qint64 scoreId, qint8 whitchModel) {
-
-    // LEAVE THIS CLASS, ILL FIX IT
-
     bool change = false; // If a model changed (used to check if update is needed on the file)
     bool newScoreSmaller = false; // The new score is smaller than another
     qint8 i = 0; // Temp to keep the place on the model
     qint8 place = 0; // The place that the score needs to be added
+
+    scoreModel * _scoreModel; // Creat 2 pointers so as to change the right models according of the difficulty choosen
+    qint64 * lastScore;
     if (whitchModel == 0) {
-        // We keep 3 scores in each model
-        if ((scoreId < lastScore1) || (_scoreModel1->rowCount()<3)) {
-            while ((i < _scoreModel1->rowCount()) && (!newScoreSmaller)) { // Check from what score is smaller
-                QString scoreName0;
-                qint64 scoreId0;
-                _scoreModel1->getScore(i, scoreName0, scoreId0);
-                place = i+1; // If score is not smaller then it has last place on model
-                if (scoreId0 > scoreId) { // Score is smaller
-                    place = i; // Place of score that needs to be added in model
-                    newScoreSmaller = true;
-                }
-                i++;
-            }
-            _scoreModel1->addScore(myScore(scoreName,scoreId), place); // Add score to model
-            if(_scoreModel1->rowCount()>3) { // If model is more than 3..
-                deleteScore(_scoreModel1->rowCount()-1, 0); // .. then remove last
-            }
-            QString scoreName0;
-            qint64 scoreId0;
-            _scoreModel1->getScore(_scoreModel1->rowCount()-1, scoreName0, scoreId0); // Get and store last score
-            lastScore1 = scoreId0;
-            change = true; // Change has been done, so update file
-        }
+        _scoreModel = _scoreModel1;
+        lastScore = &lastScore1;
     } else if (whitchModel == 1) {
-        if((scoreId < lastScore2) || (_scoreModel2->rowCount()<3)) {
-            while ((i < _scoreModel2->rowCount()) && (!newScoreSmaller)) {
-                QString scoreName0;
-                qint64 scoreId0;
-                _scoreModel2->getScore(i, scoreName0, scoreId0);
-                place = i+1;
-                if (scoreId0 > scoreId) {
-                    place = i;
-                    newScoreSmaller = true;
-                }
-                i++;
-            }
-            _scoreModel2->addScore(myScore(scoreName,scoreId), place);
-            if(_scoreModel2->rowCount()>=3) {
-                deleteScore(_scoreModel2->rowCount()-1, 0);
-            }
-            QString scoreName0;
-            qint64 scoreId0;
-            _scoreModel2->getScore(_scoreModel2->rowCount()-1, scoreName0, scoreId0);
-            lastScore2 = scoreId0;
-            change = true;
-        }
+        _scoreModel = _scoreModel2;
+        lastScore = &lastScore2;
     } else if (whitchModel == 2) {
-        if((scoreId < lastScore3) || (_scoreModel3->rowCount()<3)) {
-            while ((i < _scoreModel3->rowCount()) && (!newScoreSmaller)) {
-                QString scoreName0;
-                qint64 scoreId0;
-                _scoreModel3->getScore(i, scoreName0, scoreId0);
-                place = i+1;
-                if (scoreId0 > scoreId) {
-                    place = i;
-                    newScoreSmaller = true;
-                }
-                i++;
-            }
-
-            _scoreModel3->addScore(myScore(scoreName,scoreId), place);
-            if(_scoreModel3->rowCount()>=3) {
-                deleteScore(_scoreModel3->rowCount()-1, 0);
-            }
+        _scoreModel = _scoreModel3;
+        lastScore = &lastScore3;
+    }
+    if((scoreId < *lastScore) || (_scoreModel->rowCount()<=14)) {
+        while ((i < _scoreModel->rowCount()) && (!newScoreSmaller)) { // Check from what score is smaller
             QString scoreName0;
             qint64 scoreId0;
-            _scoreModel3->getScore(_scoreModel3->rowCount()-1, scoreName0, scoreId0);
-            lastScore3 = scoreId0;
-            change = true;
+            _scoreModel->getScore(i, scoreName0, scoreId0);
+            place = i+1; // If score is not smaller then it has last place on model
+            if (scoreId0 > scoreId) {
+                place = i; // Place of score that needs to be added in model
+                newScoreSmaller = true;
+            }
+            i++;
         }
+        _scoreModel->addScore(myScore(scoreName,scoreId), place); // Add score to model
+        if(_scoreModel->rowCount()>14) { // If model is more than limit then remove the extra score
+            deleteScore(_scoreModel->rowCount()-1, 0);
+        }
+        QString scoreName0;
+        qint64 scoreId0;
+        _scoreModel->getScore(_scoreModel->rowCount()-1, scoreName0, scoreId0); // Get and store last score for next time
+        *lastScore = scoreId0;
+        change = true; // Hard file needs update
     }
-
     if (change == true) {
-        QString s ="data.txt";
-        QFile qf(s);
-        QTextStream out(&qf);
-
-        qf.open(QIODevice::WriteOnly | QIODevice::Text);
-        for (int i=0;i<_scoreModel1->rowCount();i++)
-        {
-            QString n;
-            qint64 c;
-            _scoreModel1->getScore(i,n,c);
-            out<<1<<endl;
-            out<<n<<endl;
-            out<<c<<endl;
-        }
-        for (int i=0;i<_scoreModel2->rowCount();i++)
-        {
-            QString n;
-            qint64 c;
-            _scoreModel2->getScore(i,n,c);
-            out<<2<<endl;
-            out<<n<<endl;
-            out<<c<<endl;
-        }
-        for (int i=0;i<_scoreModel3->rowCount();i++)
-        {
-            QString n;
-            qint64 c;
-            _scoreModel3->getScore(i,n,c);
-            out<<3<<endl;
-            out<<n<<endl;
-            out<<c<<endl;
-        }
-        qf.close();
+        updateFile();
     }
 }
 
@@ -192,8 +116,13 @@ void Mediator::deleteScore(int row, qint8 whitchModel) {
     } else if (whitchModel == 2) {
         _scoreModel3->deleteScore(row);
     }
+    updateFile();
+}
 
-    // Update the file
+/**
+ * @brief Mediator::updateFile Update file on hard drive
+ */
+void Mediator::updateFile() {
     QString s ="data.txt";
     QFile qf(s);
     QTextStream out(&qf);

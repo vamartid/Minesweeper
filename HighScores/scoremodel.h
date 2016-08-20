@@ -5,11 +5,6 @@
 #include <QAbstractListModel>
 #include <stdlib.h>
 
-#include <iostream>
-#include <list>
-#include <string>
-#include <cctype>
-
 #include "myscore.h"
 
 class scoreModel : public QAbstractListModel

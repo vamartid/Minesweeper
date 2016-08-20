@@ -208,9 +208,19 @@ Rectangle {
         visible: false
         onVisibleChanged: {
             if(visible == true){
-                //resetButton.enabled = false;
+                musicSlider.enabled = false;
+                soundsSlider.enabled = false;
+                mute.enabled = false;
+                max.enabled = false;
+                defaults.enabled = false;
+                clearScores.enabled = false;
             } else {
-                //resetButton.enabled = true;
+                musicSlider.enabled = true;
+                soundsSlider.enabled = true;
+                mute.enabled = true;
+                max.enabled = true;
+                defaults.enabled = true;
+                clearScores.enabled = true;
             }
         }
     }

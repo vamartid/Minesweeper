@@ -1,9 +1,12 @@
 #ifndef MEDIATOR_H
 #define MEDIATOR_H
 
-#include <QObject>
+#include <QFile>
+#include <QStandardPaths>
+#include <QTextStream>
+
 #include"scoremodel.h"
-#include<iostream>
+
 class Mediator : public QObject
 {
     scoreModel *_scoreModel1;
@@ -58,6 +61,7 @@ public slots:
     void insertScore(QString scoreName, qint64 scoreId, qint8 what);
     void clearScores();
     void deleteScore(int row, qint8 what);
+    void updateFile();
 };
 
 #endif // MEDIATOR_H
