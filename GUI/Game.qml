@@ -32,19 +32,24 @@ Rectangle {
     width: parent.width
     visible: true
     color: "#303030"
+    Keys.enabled: true
+    focus: true
+    Keys.onReleased: {
+        if(event.key === Qt.Key_Back){
+            event.accepted = true;
+            back();
+        }
+    }
+    function back(){
+        stack.pop(stack.get(0))
+    }
 
     AndroidToolbar{
         id: toolbar_game
         BackButton{
             id: backButton_game
-            Keys.onBackPressed:{
-                //game.moves=0
-                stack.pop(stack.get(0))
-            }
-
             onClicked:{
-                //game.moves=0
-                stack.pop(stack.get(0))
+                back();
             }
         }
         //The remaining flags
@@ -204,14 +209,16 @@ Rectangle {
         id: nameInputDialog
         visible: false
         onVisibleChanged: {
-            if(visible == true){
+            if(visible === true){
                 resetButton.enabled = false;
                 backButton_game.enabled = false;
                 flagButton.enabled = false;
+                forceActiveFocus();
             } else {
                 resetButton.enabled = true;
                 backButton_game.enabled = true;
                 flagButton.enabled = true;
+                game.forceActiveFocus();
             }
         }
     }

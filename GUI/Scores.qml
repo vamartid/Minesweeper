@@ -8,19 +8,30 @@ Rectangle {
     width: 484
     visible: true
     color: "#303030"
+    Keys.enabled: true
+    focus: true
+    Keys.onReleased: {
+        if(event.key === Qt.Key_Back){
+            event.accepted = true;
+            back();
+        }
+    }
+    function back(){
+        stack.pop();
+    }
     AndroidToolbar{
         id: toolbar_game
         BackButton{
-            id: backbutton
+            id: backbutton_scores
             onClicked:{
-                stack.pop(stack.pop())
+                back();
             }
         }
         Text{
             color: "#FFFFFF"
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
-            anchors.left: backbutton.right
+            anchors.left: backbutton_scores.right
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: parent.height*0.37
             wrapMode: Text.Wrap

@@ -14,6 +14,13 @@ Rectangle{
     border.color: "#9e9e9e"
     border.width: height*0.01
     radius: 2
+    Keys.enabled: true
+    Keys.onReleased: {
+        if(event.key === Qt.Key_Back){
+            event.accepted = true;
+            clearScoreCheck.visible = false;
+        }
+    }
     Rectangle {
         id: recktangle
         visible:true

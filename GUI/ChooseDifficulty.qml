@@ -13,22 +13,35 @@ Rectangle {
     property int mines: 10
     property int difficulty: 0
     property bool customGame: false
-
+    Keys.enabled: true
+    focus: true
+    //Component.onCompleted: {
+        //forceActiveFocus()
+    //}
+    Keys.onReleased: {
+        if(event.key === Qt.Key_Back){
+            event.accepted = true;
+            back();
+        }
+    }
+    function back(){
+        stack.pop();
+    }
     AndroidToolbar
     {
         id: toolbar_difficulty_menu
         BackButton{
-        id: backbutton
-        onClicked:
+            id: backbutton_choice
+            onClicked:
             {
-                stack.pop();
+                back();
             }
         }
         Text{
             color: "#FFFFFF"
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
-            anchors.left: backbutton.right
+            anchors.left: backbutton_choice.right
             anchors.verticalCenter: parent.verticalCenter
             font.pixelSize: parent.height*0.37
             wrapMode: Text.Wrap
@@ -193,10 +206,11 @@ Rectangle {
             height: root.height/10
             onClicked:{
                 if(customRectangle.state == "Visible"){
-                     customRectangle.state = "Invisible"
+                    customRectangle.state = "Invisible"
+                    choice.forceActiveFocus()
                 }else{
-                    fieldwidth_input.forceActiveFocus()
                     customRectangle.state = "Visible"
+                    fieldwidth_input.forceActiveFocus()
                 }
             }
             Text{

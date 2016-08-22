@@ -8,7 +8,17 @@ Rectangle {
     width: parent.width
     visible: true
     color: "#303030"
-
+    Keys.enabled: true
+    focus: true
+    Keys.onReleased: {
+        if(event.key === Qt.Key_Back){
+            event.accepted = true;
+            back();
+        }
+    }
+    function back(){
+        stack.pop();
+    }
     property double volumeS: 0.0
     property double volumeM: 0.0
     property bool temp: false
@@ -18,7 +28,7 @@ Rectangle {
         BackButton{
             id: backButton_settingsPage
             onClicked:{
-                stack.pop()
+                back();
             }
         }
         Text{
@@ -214,6 +224,7 @@ Rectangle {
                 max.enabled = false;
                 defaults.enabled = false;
                 clearScores.enabled = false;
+                forceActiveFocus();
             } else {
                 musicSlider.enabled = true;
                 soundsSlider.enabled = true;
@@ -221,6 +232,7 @@ Rectangle {
                 max.enabled = true;
                 defaults.enabled = true;
                 clearScores.enabled = true;
+                settingsPage.forceActiveFocus();
             }
         }
     }

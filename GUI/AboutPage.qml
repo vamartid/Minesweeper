@@ -8,12 +8,23 @@ Rectangle {
     width: parent.width
     visible: true
     color: "#303030"
+    Keys.enabled: true
+    focus: true
+    Keys.onReleased: {
+        if(event.key === Qt.Key_Back){
+            event.accepted = true;
+            back();
+        }
+    }
+    function back(){
+        stack.pop();
+    }
     AndroidToolbar{
         id: toolbar_about
         BackButton{
             id: backButton_aboutPage
             onClicked:{
-                stack.pop()
+                back();
             }
         }
         Text{
