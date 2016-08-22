@@ -30,7 +30,7 @@ Rectangle {
         }
         Text{
             color: "#FFFFFF"
-            text: qsTr("Minesweeper - Settings Page")
+            text: qsTr("Minesweeper - Qt quick")
             width: parent.width
             anchors.left: backButton_settingsPage.right
             anchors.verticalCenter: parent.verticalCenter
