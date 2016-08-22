@@ -15,9 +15,9 @@ Rectangle {
     property bool customGame: false
     Keys.enabled: true
     focus: true
-    //Component.onCompleted: {
-        //forceActiveFocus()
-    //}
+    Component.onCompleted: {
+        forceActiveFocus()
+    }
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
             event.accepted = true;

@@ -34,6 +34,9 @@ Rectangle {
     color: "#303030"
     Keys.enabled: true
     focus: true
+    Component.onCompleted: {
+        forceActiveFocus()
+    }
     function back_game(){
         if(mineField.isGameWon() || mineField.isGameLost()){
             stack.pop(stack.get(0))

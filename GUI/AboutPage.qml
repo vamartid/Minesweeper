@@ -10,6 +10,9 @@ Rectangle {
     color: "#303030"
     Keys.enabled: true
     focus: true
+    Component.onCompleted: {
+        forceActiveFocus()
+    }
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
             event.accepted = true;
