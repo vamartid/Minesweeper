@@ -34,22 +34,21 @@ Rectangle {
     color: "#303030"
     Keys.enabled: true
     focus: true
+    function back_game(){
+        stack.pop(stack.get(0))
+    }
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
             event.accepted = true;
-            back();
+            back_game();
         }
     }
-    function back(){
-        stack.pop(stack.get(0))
-    }
-
     AndroidToolbar{
         id: toolbar_game
         BackButton{
             id: backButton_game
             onClicked:{
-                back();
+                back_game();
             }
         }
         //The remaining flags

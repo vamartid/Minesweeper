@@ -16,9 +16,6 @@ Rectangle {
             back();
         }
     }
-    function back(){
-        stack.pop();
-    }
     AndroidToolbar{
         id: toolbar_game
         BackButton{

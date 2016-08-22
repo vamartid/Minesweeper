@@ -16,9 +16,6 @@ Rectangle {
             back();
         }
     }
-    function back(){
-        stack.pop();
-    }
     property double volumeS: 0.0
     property double volumeM: 0.0
     property bool temp: false
