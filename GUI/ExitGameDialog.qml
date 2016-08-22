@@ -4,7 +4,7 @@ import QtQuick.Window 2.2
 
 
 Rectangle{
-    id: clearScoreCheck
+    id: exitGameDialog
     property int minDim: Math.min(parent.height, parent.width);
     width: minDim*0.9
     height: minDim*0.5
@@ -18,11 +18,11 @@ Rectangle{
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
             event.accepted = true;
-            clearScoreCheck.visible = false;
+            exitGameDialog.visible = false;
         }
     }
     Rectangle {
-        id: recktangle
+        id: exitRectangle
         visible:true
         color: "#303030"
         anchors.topMargin: parent.height*0.01
@@ -38,19 +38,19 @@ Rectangle{
             anchors.bottom: parent.bottom
             color: "white"
             width: parent.width
-            text: qsTr("Are you sure you want to clear all the high scores?")
+            text: qsTr("Are you sure you want to exit the game?")
             anchors.bottomMargin: 0
             anchors.leftMargin: 0
             anchors.topMargin: 0
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
-            font.pixelSize: parent.height*0.3
             wrapMode: Text.Wrap
+            font.pixelSize: parent.height*0.3
         }
     }
     Rectangle{
         color: "#303030"
-        anchors.top: recktangle.bottom
+        anchors.top: exitRectangle.bottom
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height*0.1
         anchors.topMargin: parent.height*0.15
@@ -72,7 +72,6 @@ Rectangle{
             }
             onClicked: {
                 soundMngr.playSound()
-                mediator.clearScores()
                 stack.pop(stack.get(0))
             }
         }
@@ -92,7 +91,7 @@ Rectangle{
             }
             onClicked: {
                 soundMngr.playSound()
-                clearScoreCheck.visible = false
+                exitGameDialog.visible = false
             }
         }
     }

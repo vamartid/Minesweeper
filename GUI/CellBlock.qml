@@ -17,7 +17,6 @@ Button{
     property int m: 0
     property int n: 0
 
-
     Text{
         id: cellTextArea
         anchors.fill: parent
@@ -48,133 +47,38 @@ Button{
         onPressAndHold: {
             if(mouse.button & Qt.LeftButton){
                 if(game.flagClick){
-                    cellBlock.leftClicked()
+                    game.leftClicked(x_position, y_position)
                 } else {
-                    cellBlock.rightClicked()
+                    game.rightClicked(x_position, y_position)
                 }
             }
         }
-
+        //if statements for checking for flag mode/reveal mode
         onClicked:
         {
             if(mouse.button & Qt.LeftButton){
                 if(game.flagClick){
-                    cellBlock.rightClicked()
+                    game.rightClicked(x_position, y_position)
                 } else {
-                    cellBlock.leftClicked()
+                    game.leftClicked(x_position, y_position)
                 }
             }else if(mouse.button & Qt.RightButton) {
                 if(game.flagClick){
-                    cellBlock.leftClicked()
+                    game.leftClicked(x_position, y_position)
                 } else {
-                    cellBlock.rightClicked()
+                    game.rightClicked(x_position, y_position)
                 }
             }
         }
 
         onDoubleClicked: {
             if(mouse.button & Qt.LeftButton){
-               cellBlock.doubleClicked()
+               game.doubleClicked(x_position, y_position)
             }
         }
     }
 
-
-
-
-    function reveal() {
-        for (m = 0; m < gridid.rows; m++) {
-            for (n = 0; n < gridid.columns; n++) {
-                if(mineField.isGameWon()){
-                    repeaterId.itemAt(m*columns+n).enabled = false;
-                    resetButtonImage.source = "icons/sunglasses.png"
-                    secondCounter.stop();
-                }else if(mineField.isGameLost()){
-                    if(mineField.getisFlagged(m, n)){
-                        repeaterId.itemAt(m*columns+n).clearImage();
-                    }
-                    repeaterId.itemAt(m*columns+n).enabled = false;
-                    resetButtonImage.source = "icons/crying.png"
-                    secondCounter.stop();
-                }
-
-                if(mineField.getisRevealed(m,n)){
-                    if(mineField.getBombNum(m,n)===9){
-                        if(!game.lost){
-                            sound3Mngr.playSound();
-                            game.lost=!game.lost
-                        }
-                        if(mineField.getisFlagged(m, n)){
-                            repeaterId.itemAt(m*columns+n).setFlaggedBombImage();
-                        }else{
-                            repeaterId.itemAt(m*columns+n).setBombImage();
-                        }
-                    }else{
-                        if (mineField.getBombNum(m,n) !== 0){
-                            repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
-                            repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n)); 
-                        }
-                        repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
-                    }
-                }
-            }
-        }
-    }
-
-    function leftClicked(){
-        if(mineField.getMoves()===0){
-            secondCounter.start();
-            mineField.bombGenerator(x_position, y_position);
-            mineField.leftClickAction(x_position, y_position);
-
-        }else{
-           mineField.leftClickAction(x_position, y_position);
-        }
-        sound2Mngr.playSound();
-        reveal();
-        if(mineField.isGameWon() && !choice.customGame){
-            nameInputDialog.visible = true;
-        }
-        game.moves = mineField.getMoves();
-    }
-
-    function rightClicked(){
-        mineField.rightClickAction(x_position, y_position);
-        sound2Mngr.playSound();
-        if(!mineField.getisRevealed(x_position, y_position)){
-            if(game.remFlags === 0 && mineField.getRemFlags() === 0){
-                toast.show("No more flags left!")
-            }
-            if(mineField.getisFlagged(x_position, y_position)){
-                repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
-                repeaterId.itemAt(x_position*columns+y_position).cellText = "";
-            }else{
-                if(mineField.getisQuestionMarked(x_position, y_position)){
-                    repeaterId.itemAt(x_position*columns+y_position).clearImage();
-                    repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
-                }else{
-                    repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
-                }
-            }
-        }
-        game.remFlags = mineField.getRemFlags();
-        game.moves = mineField.getMoves();
-    }
-
-    function doubleClicked(){
-        if(mineField.getisRevealed(x_position, y_position)){
-            if(!(mineField.getBombNum(x_position, y_position)===9)){
-                mineField.doubleClickAction(x_position, y_position);
-                sound2Mngr.playSound();
-                reveal();
-                if(mineField.isGameWon() && !choice.customGame){
-                    nameInputDialog.visible = true;
-                }
-            }
-        }
-        game.moves = mineField.getMoves();
-    }
-
+    //functions for setting the cell image
     function setBombImage() {
         backgroundImage.source = "icons/mine-red.png";
     }
@@ -191,29 +95,7 @@ Button{
         backgroundImage.source = "icons/mine-greyflagged.png";
     }
 
-    function getNumberColor(number){
-        switch(number) {
-            case 1:
-                return game.colorOne;
-            case 2:
-                return game.colorTwo;
-            case 3:
-                return game.colorThree;
-            case 4:
-                return game.colorFour;
-            case 5:
-                return game.colorFive;
-            case 6:
-                return game.colorSix;
-            case 7:
-                return game.colorSeven;
-            case 8:
-                return game.colorEight;
-            default:
-                return game.colorSeven;
-        }
-    }
-
+    //resets this particular cell
     function reset() {
         cellText = "";
         enabled = true;

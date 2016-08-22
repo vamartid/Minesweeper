@@ -35,7 +35,11 @@ Rectangle {
     Keys.enabled: true
     focus: true
     function back_game(){
-        stack.pop(stack.get(0))
+        if(mineField.isGameWon() || mineField.isGameLost()){
+            stack.pop(stack.get(0))
+        } else {
+            exitGameDialog.visible = true;
+        }
     }
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
@@ -99,8 +103,10 @@ Rectangle {
 
                         }
                     }
+                    flagButton.enabled = true;
                     timerText.text = Qt.binding(function() { return secondCounter.seconds})
                     timerRectangle.timer = true;
+                    timerMouseArea.enabled = true;
                     secondCounter.stop();
                     secondCounter.seconds = 0;
                     //secondCounter.restart();
@@ -202,6 +208,7 @@ Rectangle {
             }
         }
     }
+
     //A rectangle that shows up when the game is won, to enter a name for the high scores
     //rectangle is used instead of window, so it works well on mobile platforms(modality is handled manually)
     NameInputDialog{
@@ -211,14 +218,170 @@ Rectangle {
             if(visible === true){
                 resetButton.enabled = false;
                 backButton_game.enabled = false;
-                flagButton.enabled = false;
+                timerMouseArea.enabled = false;
                 forceActiveFocus();
             } else {
                 resetButton.enabled = true;
                 backButton_game.enabled = true;
-                flagButton.enabled = true;
+                timerMouseArea.enabled = true;
                 game.forceActiveFocus();
             }
+        }
+    }
+    //A rectangle that shows up when you try to exit the game and it is not yet finished
+    //Similar functionality to NameInputDialog
+    ExitGameDialog{
+        id: exitGameDialog
+        visible: false
+        onVisibleChanged: {
+            if(visible === true){
+                resetButton.enabled = false;
+                backButton_game.enabled = false;
+                flagButton.enabled = false;
+                timerMouseArea.enabled = false;
+                forceActiveFocus();
+                secondCounter.stop();
+                pauseGame(true);
+            } else {
+                resetButton.enabled = true;
+                backButton_game.enabled = true;
+                flagButton.enabled = true;
+                timerMouseArea.enabled = true;
+                game.forceActiveFocus();
+                secondCounter.start();
+                pauseGame(false);
+            }
+
+        }
+    }
+
+    //functions for left, right and double click
+    function leftClicked(x_position, y_position){
+        if(mineField.getMoves()===0){
+            secondCounter.start();
+            mineField.bombGenerator(x_position, y_position);
+            mineField.leftClickAction(x_position, y_position);
+
+        }else{
+           mineField.leftClickAction(x_position, y_position);
+        }
+        sound2Mngr.playSound();
+        game.update();
+        if(mineField.isGameWon() && !choice.customGame){
+            nameInputDialog.visible = true;
+        }
+        game.moves = mineField.getMoves();
+    }
+
+    function rightClicked(x_position, y_position){
+        mineField.rightClickAction(x_position, y_position);
+        sound2Mngr.playSound();
+        if(!mineField.getisRevealed(x_position, y_position)){
+            if(game.remFlags === 0 && mineField.getRemFlags() === 0){
+                toast.show("No more flags left!")
+            }
+            if(mineField.getisFlagged(x_position, y_position)){
+                repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
+                repeaterId.itemAt(x_position*columns+y_position).cellText = "";
+            }else{
+                if(mineField.getisQuestionMarked(x_position, y_position)){
+                    repeaterId.itemAt(x_position*columns+y_position).clearImage();
+                    repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
+                }else{
+                    repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
+                }
+            }
+        }
+        game.remFlags = mineField.getRemFlags();
+        game.moves = mineField.getMoves();
+    }
+
+    function doubleClicked(x_position, y_position){
+        if(mineField.getisRevealed(x_position, y_position)){
+            if(!(mineField.getBombNum(x_position, y_position)===9)){
+                mineField.doubleClickAction(x_position, y_position);
+                sound2Mngr.playSound();
+                game.update();
+                if(mineField.isGameWon() && !choice.customGame){
+                    nameInputDialog.visible = true;
+                }
+            }
+        }
+        game.moves = mineField.getMoves();
+    }
+
+    //a function that pauses the game
+    function pauseGame(pause){
+        for (m = 0; m < gridid.rows; m++) {
+            for (n = 0; n < gridid.columns; n++) {
+                if(!mineField.getisRevealed(m,n)){
+                    if(pause){
+                        repeaterId.itemAt(m*columns+n).enabled = false;
+                    } else {
+                        repeaterId.itemAt(m*columns+n).enabled = true;
+                    }
+                }
+            }
+        }
+    }
+
+    //a function that updates the minefield grid
+    function update() {
+        for (m = 0; m < gridid.rows; m++) {
+            for (n = 0; n < gridid.columns; n++) {
+                if(mineField.isGameWon()){
+                    repeaterId.itemAt(m*columns+n).enabled = false;
+                    resetButtonImage.source = "icons/sunglasses.png"
+                    flagButton.enabled = false;
+                    secondCounter.stop();
+                }else if(mineField.isGameLost()){
+                    if(mineField.getisFlagged(m, n)){
+                        repeaterId.itemAt(m*columns+n).setFlaggedBombImage();
+                    }
+                    if(!game.lost){
+                        sound3Mngr.playSound();
+                        game.lost=!game.lost
+                    }
+                    flagButton.enabled = false;
+                    repeaterId.itemAt(m*columns+n).enabled = false;
+                    resetButtonImage.source = "icons/crying.png"
+                    secondCounter.stop();
+                }
+                if(mineField.getisRevealed(m,n)){
+                    if(mineField.getBombNum(m,n)===9){
+                        repeaterId.itemAt(m*columns+n).setBombImage();
+                    }else{
+                        if (mineField.getBombNum(m,n) !== 0){
+                            repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
+                            repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n));
+                        }
+                        repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
+                    }
+                }
+            }
+        }
+    }
+    //simple switch to get the correct number color
+    function getNumberColor(number){
+        switch(number) {
+            case 1:
+                return game.colorOne;
+            case 2:
+                return game.colorTwo;
+            case 3:
+                return game.colorThree;
+            case 4:
+                return game.colorFour;
+            case 5:
+                return game.colorFive;
+            case 6:
+                return game.colorSix;
+            case 7:
+                return game.colorSeven;
+            case 8:
+                return game.colorEight;
+            default:
+                return game.colorSeven;
         }
     }
 }

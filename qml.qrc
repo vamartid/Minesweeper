@@ -35,5 +35,6 @@
         <file>Sound/grenade.mp3</file>
         <file>GUI/ClearScoreCheck.qml</file>
         <file>GUI/DarkButton.qml</file>
+        <file>GUI/ExitGameDialog.qml</file>
     </qresource>
 </RCC>
