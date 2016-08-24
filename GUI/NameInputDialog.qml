@@ -65,6 +65,8 @@ Rectangle{
             font.pixelSize: parent.height*0.5
             maximumLength: 15
             horizontalAlignment: Text.AlignHCenter
+            validator: RegExpValidator{regExp: /\S*/}
+            //inputMethodHints: Qt.ImhDigitsOnly
             onAccepted: {
                 acceptName()
             }
@@ -119,13 +121,17 @@ Rectangle{
         }
     }
     function acceptName(){
-        if (choice.difficulty == 1) {
-            mediator.insertScore(nameInputField.text, secondCounter.seconds, 0);
-        } else if (choice.difficulty == 2) {
-            mediator.insertScore(nameInputField.text, secondCounter.seconds, 1);
-        } else if (choice.difficulty == 3) {
-            mediator.insertScore(nameInputField.text, secondCounter.seconds, 2);
+        if(nameInputField.length === 0){
+            toast.show("Please enter a name");
+        } else {
+            if (choice.difficulty == 1) {
+                mediator.insertScore(nameInputField.text, secondCounter.seconds, 0);
+            } else if (choice.difficulty == 2) {
+                mediator.insertScore(nameInputField.text, secondCounter.seconds, 1);
+            } else if (choice.difficulty == 3) {
+                mediator.insertScore(nameInputField.text, secondCounter.seconds, 2);
+            }
+            stack.pop(stack.get(0));
         }
-        stack.pop(stack.get(0));
     }
 }
