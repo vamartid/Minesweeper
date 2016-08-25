@@ -129,7 +129,8 @@ Rectangle{
             } else if (choice.difficulty == 3) {
                 mediator.insertScore(nameInputField.text, secondCounter.seconds, 2);
             }
-            stack.pop(stack.get(0));
+            nameInputDialog.visible = false;
+            nameInputField.text = ""
         }
     }
 }

@@ -8,7 +8,7 @@ Rectangle {
     property int columns: parseInt(choice.columns)
     property int remFlags: parseInt(choice.mines)
     property bool flagClick: false
-    property bool lost: false
+    //property bool lost: false
     property string colorOne: "#0B0CA5"
     property string colorTwo: "#147116"
     property string colorThree: "#A92322"
@@ -99,7 +99,7 @@ Rectangle {
                     smooth: true
                 }
                 onClicked:{
-                    lost = false
+                    //lost = false
                     for (m = 0; m < gridid.rows; m++) {
                         for (n = 0; n < gridid.columns; n++) {
                            repeaterId.itemAt(m*columns+n).reset();
@@ -112,7 +112,7 @@ Rectangle {
                     timerMouseArea.enabled = true;
                     secondCounter.stop();
                     secondCounter.seconds = 0;
-                    //secondCounter.restart();
+                    gridid.enabled = true;
                     mineField.initField(columns, rows, mines);
                     moves = mineField.getMoves();
                     resetButtonImage.source = "icons/smiling.png"
@@ -244,7 +244,7 @@ Rectangle {
                 timerMouseArea.enabled = false;
                 forceActiveFocus();
                 secondCounter.stop();
-                pauseGame(true);
+                gridid.enabled = false;
             } else {
                 resetButton.enabled = true;
                 backButton_game.enabled = true;
@@ -252,7 +252,7 @@ Rectangle {
                 timerMouseArea.enabled = true;
                 game.forceActiveFocus();
                 secondCounter.start();
-                pauseGame(false);
+                gridid.enabled = true;
             }
 
         }
@@ -277,7 +277,7 @@ Rectangle {
 
     function rightClicked(x_position, y_position){
         if(mineField.getMoves() === 0){
-            toast.show("Reveal a block to start the game")
+            toast.show("Reveal a cell to start the game")
         } else {
             mineField.rightClickAction(x_position, y_position);
             sound2Mngr.playSound();
@@ -316,57 +316,70 @@ Rectangle {
         game.moves = mineField.getMoves();
     }
 
-    //a function that pauses the game
-    function pauseGame(pause){
+    //a function that updates the minefield grid
+    function update() {
+        if(mineField.isGameWon()){
+            gameMove();
+            winGame();
+        }else if(mineField.isGameLost()){
+            loseGame();
+        } else {
+            gameMove();
+        }
+    }
+
+    //function that makes a normal move in the game, when one or more cells are revealed
+    function gameMove(){
         for (m = 0; m < gridid.rows; m++) {
             for (n = 0; n < gridid.columns; n++) {
-                if(!mineField.getisRevealed(m,n)){
-                    if(pause){
-                        repeaterId.itemAt(m*columns+n).enabled = false;
-                    } else {
-                        repeaterId.itemAt(m*columns+n).enabled = true;
+                if(mineField.getisRevealed(m,n)){
+                    if (mineField.getBombNum(m,n) !== 0){
+                        repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
+                        repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n));
                     }
+                    repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
                 }
             }
         }
     }
 
-    //a function that updates the minefield grid
-    function update() {
+    //function to call when the game is lost
+    function loseGame(){
+        flagButton.enabled = false;
+        resetButtonImage.source = "icons/crying.png"
+        secondCounter.stop();
+        sound3Mngr.playSound();
         for (m = 0; m < gridid.rows; m++) {
             for (n = 0; n < gridid.columns; n++) {
-                if(mineField.isGameWon()){
-                    repeaterId.itemAt(m*columns+n).enabled = false;
-                    resetButtonImage.source = "icons/sunglasses.png"
-                    flagButton.enabled = false;
-                    secondCounter.stop();
-                }else if(mineField.isGameLost()){
+                if(mineField.getBombNum(m,n) === 9){
                     if(mineField.getisFlagged(m, n)){
                         repeaterId.itemAt(m*columns+n).setFlaggedBombImage();
-                    }
-                    if(!game.lost){
-                        sound3Mngr.playSound();
-                        game.lost=!game.lost
-                    }
-                    flagButton.enabled = false;
-                    repeaterId.itemAt(m*columns+n).enabled = false;
-                    resetButtonImage.source = "icons/crying.png"
-                    secondCounter.stop();
-                }
-                if(mineField.getisRevealed(m,n)){
-                    if(mineField.getBombNum(m,n)===9){
+                    }else {
                         repeaterId.itemAt(m*columns+n).setBombImage();
-                    }else{
-                        if (mineField.getBombNum(m,n) !== 0){
-                            repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
-                            repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n));
-                        }
-                        repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
                     }
+                } else {
+                    if (mineField.getBombNum(m,n) !== 0){
+                        repeaterId.itemAt(m*columns+n).cellText = mineField.getBombNum(m,n).toString();
+                        repeaterId.itemAt(m*columns+n).cellTextColor = getNumberColor(mineField.getBombNum(m,n));
+                    }
+                    if(mineField.getisFlagged(m,n)){
+                        repeaterId.itemAt(m*columns+n).clearImage();
+                    }
+                    repeaterId.itemAt(m*columns+n).cellColor = game.cellColorPressed;
                 }
             }
         }
+        gridid.enabled = false;
     }
+
+    //function to call when the game is won
+    function winGame(){
+        resetButtonImage.source = "icons/sunglasses.png"
+        flagButton.enabled = false;
+        secondCounter.stop();
+        gridid.enabled = false;
+    }
+
     //simple switch to get the correct number color
     function getNumberColor(number){
         switch(number) {
