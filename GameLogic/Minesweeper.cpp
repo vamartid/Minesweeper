@@ -177,17 +177,13 @@ void Minesweeper::rightClickAction(int x, int y) {
         if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked() && remFlags != 0) { //if it is not flagged
             getCell(x, y)->setFlagged(true);
             remFlags -= 1;
-            cout << "flagged";
-            if(moves > 0)
-                moves++;
+            moves++;
         } else if (getCell(x, y)->isFlagged()) { //it is flagged
             getCell(x, y)->setFlagged(false);
             getCell(x, y)->setQuestionMarked(true);
             remFlags += 1;
-            cout << "add question mark";
         } else {
             getCell(x, y)->setQuestionMarked(false);
-            //remFlags += 1;
         }
     }
 }
@@ -212,10 +208,7 @@ void Minesweeper::leftClickAction(int x, int y) {
                 winCounter++;
             }
         } else {
-            cout << "cell is flagged" << endl;
         }
-    } else {
-        cout << "cell is already revealed" << endl;
     }
 }
 
@@ -242,13 +235,9 @@ void Minesweeper::doubleClickAction(int x, int y) {
                 }
             }
         }
-//		cout << "rightFlaggedBombs " <<rightFlaggedBombs<< endl;
-//		cout << "wrongFlaggedBombs " <<wrongFlaggedBombs<< endl;
         if (rightFlaggedBombs == (getCell(x, y)->getBombNum())) {
             //if the cell value is equal to the number of the flagged bombs
-            cout << "in the right flagged bomb if " << endl;
             if (!wrongFlaggedBombs) { //if there are no wrong flagged cells
-                cout << "there are no wrongly flagged bombs" << endl;
                 bool moveFlag = false;
                 for (int i = -1; i < 2; i += 1) {
                     for (int j = -1; j < 2; j += 1) {
@@ -269,20 +258,12 @@ void Minesweeper::doubleClickAction(int x, int y) {
                 if(moveFlag){
                     moves++;
                 }
-                cout << "changed neighbours" << endl;
-            } else {
-                cout << "did nothing" << endl;
             }
-            //else he have a wrong placed flag among all the rights one so do nothing
+        //else he have a wrong placed flag among all the rights one so do nothing
         } else { //if he didn't marked all the bombs
-            cout << "in the wrong flagged bomb if " << endl;
             if (wrongFlaggedBombs) { //he marked wrong cell as bomb
-                cout << "there are wrong flagged bombs" << endl;
-                cout << "you lost" << endl; //he loses
                 gameLost = true;
                 openAllCells();
-            } else {
-                cout << "did nothing" << endl;
             }
         }
     }
