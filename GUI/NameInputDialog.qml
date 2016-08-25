@@ -63,10 +63,8 @@ Rectangle{
             anchors.rightMargin: parent.width*0.1
             anchors.bottom: parent.bottom
             font.pixelSize: parent.height*0.5
-            maximumLength: 15
             horizontalAlignment: Text.AlignHCenter
-            validator: RegExpValidator{regExp: /\S*/}
-            //inputMethodHints: Qt.ImhDigitsOnly
+            validator: RegExpValidator{regExp: /\S{0,15}/}
             onAccepted: {
                 acceptName()
             }

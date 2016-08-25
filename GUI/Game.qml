@@ -261,10 +261,9 @@ Rectangle {
     //functions for left, right and double click
     function leftClicked(x_position, y_position){
         if(mineField.getMoves()===0){
-            secondCounter.start();
             mineField.bombGenerator(x_position, y_position);
             mineField.leftClickAction(x_position, y_position);
-
+            secondCounter.start();
         }else{
            mineField.leftClickAction(x_position, y_position);
         }
@@ -277,26 +276,30 @@ Rectangle {
     }
 
     function rightClicked(x_position, y_position){
-        mineField.rightClickAction(x_position, y_position);
-        sound2Mngr.playSound();
-        if(!mineField.getisRevealed(x_position, y_position)){
-            if(game.remFlags === 0 && mineField.getRemFlags() === 0){
-                toast.show("No more flags left!")
-            }
-            if(mineField.getisFlagged(x_position, y_position)){
-                repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
-                repeaterId.itemAt(x_position*columns+y_position).cellText = "";
-            }else{
-                if(mineField.getisQuestionMarked(x_position, y_position)){
-                    repeaterId.itemAt(x_position*columns+y_position).clearImage();
-                    repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
+        if(mineField.getMoves() === 0){
+            toast.show("Reveal a block to start the game")
+        } else {
+            mineField.rightClickAction(x_position, y_position);
+            sound2Mngr.playSound();
+            if(!mineField.getisRevealed(x_position, y_position)){
+                if(game.remFlags === 0 && mineField.getRemFlags() === 0){
+                    toast.show("No more flags left!")
+                }
+                if(mineField.getisFlagged(x_position, y_position)){
+                    repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
+                    repeaterId.itemAt(x_position*columns+y_position).cellText = "";
                 }else{
-                    repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
+                    if(mineField.getisQuestionMarked(x_position, y_position)){
+                        repeaterId.itemAt(x_position*columns+y_position).clearImage();
+                        repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
+                    }else{
+                        repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
+                    }
                 }
             }
+            game.remFlags = mineField.getRemFlags();
+            game.moves = mineField.getMoves();
         }
-        game.remFlags = mineField.getRemFlags();
-        game.moves = mineField.getMoves();
     }
 
     function doubleClicked(x_position, y_position){
