@@ -42,7 +42,6 @@ int main(int argc, char *argv[])
     engine.load(QUrl(QStringLiteral("qrc:/GUI/main.qml")));
     /*Setting the default font*/
     QFont appFont = QFont("droid sans");
-    appFont.setHintingPreference(QFont::PreferFullHinting);
     app.setFont(appFont);
     /*Run*/
     return app.exec();

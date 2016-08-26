@@ -69,9 +69,6 @@ Rectangle {
         AndroidButton
         {
             id: easybutton
-            //anchors.horizontalCenter: parent.horizontalCenter
-            //anchors.bottom: mediumbutton.top
-            //anchors.bottomMargin: height*0.14
             anchors.top: parent.top
             width: parent.width
             height: root.height/10
@@ -104,10 +101,6 @@ Rectangle {
         AndroidButton
         {
             id: mediumbutton
-            //anchors.verticalCenter: parent.verticalCenter
-            //anchors.horizontalCenter: parent.horizontalCenter
-            //width: parent.width/2
-            //height: parent.height/16
             anchors.top: easybutton.bottom
             anchors.topMargin: height*0.14
             width: parent.width
@@ -133,11 +126,6 @@ Rectangle {
             }
 
             onClicked: {
-                /*/
-                choice.rows= 5
-                choice.columns= 5
-                choice.mines= 2
-                // */
                 choice.rows= 16
                 choice.columns= 16
                 choice.mines= 40
@@ -150,11 +138,6 @@ Rectangle {
         AndroidButton
         {
             id: hardbutton
-            //anchors.top: mediumbutton.bottom
-            //anchors.topMargin: height*0.14
-            //anchors.horizontalCenter: parent.horizontalCenter
-            //width: parent.width/2
-            //height: parent.height/16
             anchors.top: mediumbutton.bottom
             anchors.topMargin: height*0.14
             width: parent.width
@@ -164,7 +147,7 @@ Rectangle {
                 height: parent.height
                 text: qsTr("Hard")
                 horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
+                verticalAlignment: Text.AlignVCenter + parent.height*0.3
                 wrapMode: Text.Wrap
                 font.pixelSize: parent.height*0.5
             }
@@ -192,11 +175,6 @@ Rectangle {
         AndroidButton
         {
             id: custombutton
-            //anchors.top: hardbutton.bottom
-            //anchors.topMargin: height*0.14
-            //anchors.horizontalCenter: parent.horizontalCenter
-            //width: parent.width/2
-            //height: parent.height/16
             anchors.top: hardbutton.bottom
             anchors.topMargin: height*0.14
             width: parent.width
