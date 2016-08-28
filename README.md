@@ -6,7 +6,7 @@
 	<br>The basics are done, the game is fully functional and playable.
 <li><h3>Screenshot of the game running on Android</h3>
 <img src="https://i.imgur.com/fouKmXm.png" alt="Minesweeper Screenshot" width="35%" height="35%"/>
-<li><h3>Some sample gamplay, on desktop</h3>
+<li><h3>Some sample gameplay, on desktop</h3>
 <a href="https://youtu.be/Im8neuUnxPI">
 <img src="https://i.imgur.com/LIjDwdm.png" alt="Minesweeper Qt quick gameplay" /></a>
 <li><h3>Where can I find the latest .apk of Minesweeper for my Android device?</h3>
