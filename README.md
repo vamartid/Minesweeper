@@ -8,7 +8,7 @@
 <img src="https://i.imgur.com/fouKmXm.png" alt="Minesweeper Screenshot" width="35%" height="35%"/>
 <li><h3>Some sample gamplay, on desktop</h3>
 <a href="https://youtu.be/Im8neuUnxPI">
-<img src="https://i.ytimg.com/vi/Im8neuUnxPI/hqdefault.jpg" alt="Minesweeper Qt quick gameplay" /></a>
+<img src="https://i.imgur.com/LIjDwdm.png" alt="Minesweeper Qt quick gameplay" /></a>
 <li><h3>Where can I find the latest .apk of Minesweeper for my Android device?</h3>
 <ul>
 <li>
