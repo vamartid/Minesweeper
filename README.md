@@ -12,7 +12,7 @@
 <li><h3>Where can I find the latest .apk of Minesweeper for my Android device?</h3>
 <ul>
 <li>
-<a href="https://www.sendspace.com/file/wxvvdp">Here</a>
+<a href="https://www.sendspace.com/file/kz25yx">Here</a>
 </li>
 </ul>
 <li><h3>License</h3>
