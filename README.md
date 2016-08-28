@@ -4,8 +4,8 @@
   This project is clasic minesweeper game implemented on Qt Creator
 	<br>using basicaly C++ and QML and Javascript
 	<br>Basics are done the game is finally functional and playable.
-<li><h3>Screenshot of the  game</h3>
-<img src="https://raw.githubusercontent.com/GeorgeKirm/Minesweeper/master/GUI/icons/screenshot.jpg?token=AQAqJXQ22A4HoEC15jPthkjIrIrmDjTmks5XycbawA%3D%3D" alt="Minesweeper Screenshot">
+<li><h3>Screenshot of the game running on Android</h3>
+<img src="https://i.imgur.com/fouKmXm.png" alt="Minesweeper Screenshot" width="35%" height="35%"/>
 
 <li><h3>Where can I find an the latest .apk of Minesweeper for my Android device?</h3>
 <ul>
