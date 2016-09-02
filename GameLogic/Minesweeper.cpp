@@ -31,7 +31,6 @@ void Minesweeper::initField(int width, int height, int mineCounter) {
     for(int i = 0; i < height*width; i++){
         cells[i].setRevealed(false);
         cells[i].setFlagged(false);
-        cells[i].setQuestionMarked(false);
         cells[i].setBombNum(0);
     }
 }
@@ -174,16 +173,13 @@ void Minesweeper::openNeighboursRec(int x, int y) {
  */
 void Minesweeper::rightClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
-        if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked() && remFlags != 0) { //if it is not flagged
+        if (!getCell(x, y)->isFlagged() && remFlags != 0) { //if it is not flagged
             getCell(x, y)->setFlagged(true);
             remFlags -= 1;
             moves++;
-        } else if (getCell(x, y)->isFlagged()) { //it is flagged
+        } else {//it is flagged
             getCell(x, y)->setFlagged(false);
-            getCell(x, y)->setQuestionMarked(true);
             remFlags += 1;
-        } else {
-            getCell(x, y)->setQuestionMarked(false);
         }
     }
 }
@@ -194,12 +190,11 @@ void Minesweeper::rightClickAction(int x, int y) {
 
 void Minesweeper::leftClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
-        if (!getCell(x, y)->isFlagged() && !getCell(x, y)->isQuestionMarked()) { //it is flagged
+        if (!getCell(x, y)->isFlagged()) { //it is flagged
             if (getCell(x, y)->getBombNum() == 9) { //it is bomb
                 gameLost = true;
                 openAllCells();
-            }
-            else if (getCell(x, y)->getBombNum() == 0) { //if its empty
+            } else if (getCell(x, y)->getBombNum() == 0) { //if its empty
                 moves++;
                 openNeighboursRec(x, y); //check and open neighbours
             } else {
@@ -207,7 +202,6 @@ void Minesweeper::leftClickAction(int x, int y) {
                 getCell(x, y)->setRevealed(true);
                 winCounter++;
             }
-        } else {
         }
     }
 }
@@ -277,9 +271,6 @@ int Minesweeper::getRemFlags(){
 }
 bool Minesweeper::getisFlagged(int x, int y){
     return getCell(x,y)->isFlagged();
-}
-bool Minesweeper::getisQuestionMarked(int x, int y){
-    return getCell(x,y)->isQuestionMarked();
 }
 bool Minesweeper::getisRevealed(int x, int y){
     return getCell(x,y)->isRevealed();

@@ -53,7 +53,6 @@ public slots:
     int getBombNum(int, int);
     int getRemFlags();
     bool getisFlagged(int, int);
-    bool getisQuestionMarked(int, int);
     bool getisRevealed(int, int); 
     bool isGameWon();
     bool isGameLost();

@@ -196,7 +196,7 @@ Rectangle {
         Grid{
             id: gridid
             anchors.top: parent.top
-            spacing: parent.width*0.001
+            spacing: root.width*0.001
             columns: game.columns
             rows: game.rows
             Repeater{
@@ -289,12 +289,8 @@ Rectangle {
                     repeaterId.itemAt(x_position*columns+y_position).setFlagImage();
                     repeaterId.itemAt(x_position*columns+y_position).cellText = "";
                 }else{
-                    if(mineField.getisQuestionMarked(x_position, y_position)){
-                        repeaterId.itemAt(x_position*columns+y_position).clearImage();
-                        repeaterId.itemAt(x_position*columns+y_position).cellText = "?";
-                    }else{
-                        repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
-                    }
+                    repeaterId.itemAt(x_position*columns+y_position).clearImage();
+                    repeaterId.itemAt(x_position*columns+y_position).cellText = " ";
                 }
             }
             game.remFlags = mineField.getRemFlags();

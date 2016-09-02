@@ -1,13 +1,12 @@
 #include "Cell.h"
 /**
 * Constructor for square class
-* marks revealed, flagged, questionMarked as false
+* marks revealed, flagged as false
 */
 Cell::Cell(){
 	bombNum = 0;
     revealed = false;
 	flagged = false;
-	questionMarked = false;
 }
 
 bool Cell::isRevealed(){
@@ -16,10 +15,6 @@ bool Cell::isRevealed(){
 
 bool Cell::isFlagged(){
 	return flagged;
-}
-
-bool Cell::isQuestionMarked(){
-	return questionMarked;
 }
 
 int Cell::getBombNum(){
@@ -32,10 +27,6 @@ void Cell::setRevealed(bool revealed){
 
 void Cell::setFlagged(bool flagged){
 	this->flagged = flagged;
-}
-
-void Cell::setQuestionMarked(bool questionMarked){
-	this->questionMarked = questionMarked;
 }
 
 void Cell::setBombNum(int bombNum){
