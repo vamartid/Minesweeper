@@ -20,4 +20,5 @@
 	<li>"GNU GENERAL PUBLIC LICENSE" Version 3, 29 June 2007
 	<br>   For more info see the licence file
 </ul>
+<li>The emojis used in the game are modified versions of <a href="http://emojione.com/">EmojiOne</a>
 </ul>
