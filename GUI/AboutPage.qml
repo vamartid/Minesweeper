@@ -66,7 +66,10 @@ Rectangle {
             Image{
                 source: "icons/screenshot.png"
                 Layout.preferredWidth: aboutPage.width*0.9
+                Layout.preferredHeight: aboutPage.width*0.9
                 Layout.alignment: Qt.AlignCenter
+                Layout.maximumWidth: implicitWidth
+                Layout.maximumHeight: implicitHeight
                 fillMode: Image.PreserveAspectFit
             }
             //reset button description
