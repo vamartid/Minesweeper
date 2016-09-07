@@ -64,7 +64,7 @@ Rectangle {
                 wrapMode: Text.Wrap
             }
             Image{
-                source: "icons/screenshot.jpg"
+                source: "icons/screenshot.png"
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.alignment: Qt.AlignCenter
                 fillMode: Image.PreserveAspectFit
