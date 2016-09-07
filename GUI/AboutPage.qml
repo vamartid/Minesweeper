@@ -99,7 +99,7 @@ Rectangle {
                                 resetButtonImage.source = "icons/sunglasses.png"
                                 clicks = 1;
                             } else if (clicks === 1) {
-                                resetButtonImage.source = "icons/crying.png"
+                                resetButtonImage.source = "icons/dazed.png"
                                 clicks = 2;
                             } else if (clicks === 2){
                                 resetButtonImage.source = "icons/smiling.png"
@@ -320,11 +320,12 @@ Rectangle {
                 Layout.preferredWidth: aboutPage.width*0.9
                 color:"#FFFFFF"
                 text: qsTr("This program was created for a project in a mobile development course, in the Aristotle University of Thessaloniki.<br><br>
-                It is licensed under GNU GPL v3 and the code is available  <a href=\"http://i.imgur.com/27nLhLy.gif\">on github</a>.<br><br>
+                It is licensed under <a href=\"https://www.gnu.org/licenses/gpl.html\">GNU GPL v3</a> and the code is available  <a href=\"http://i.imgur.com/27nLhLy.gif\">on github</a>.<br><br>
                 The main contributors are:
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/vamartid\">vamartid</a> - Vasilis Martidis<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/rigopoui\">rigopoui</a> - Yanis Rigopoulos<br>
-                &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/GeorgeKirm\">GeorgeKirm</a> - Giorgos Kirmitsakis")
+                &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/GeorgeKirm\">GeorgeKirm</a> - Giorgos Kirmitsakis<br><br>
+                The emojis used in the game are modified versions of <a href=\"http://emojione.com\">EmojiOne</a>, licensed under <a href=\"https://creativecommons.org/licenses/by/4.0\">Creative Commons BY 4.0</a>")
                 linkColor: "#3b85b0"
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: aboutPage.height*0.025

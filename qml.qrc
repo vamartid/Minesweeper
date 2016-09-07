@@ -21,7 +21,6 @@
         <file>GUI/Toast.qml</file>
         <file>GUI/ToastManager.qml</file>
         <file>GUI/AndroidButton.qml</file>
-        <file>GUI/icons/crying.png</file>
         <file>GUI/icons/smiling.png</file>
         <file>GUI/icons/sunglasses.png</file>
         <file>GUI/icons/flag-greyed.png</file>
@@ -36,5 +35,7 @@
         <file>GUI/ClearScoreCheck.qml</file>
         <file>GUI/DarkButton.qml</file>
         <file>GUI/ExitGameDialog.qml</file>
+        <file>GUI/icons/dazed.png</file>
+        <file>GUI/icons/open-mouth.png</file>
     </qresource>
 </RCC>

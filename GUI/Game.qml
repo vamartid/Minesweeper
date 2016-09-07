@@ -8,7 +8,6 @@ Rectangle {
     property int columns: parseInt(choice.columns)
     property int remFlags: parseInt(choice.mines)
     property bool flagClick: false
-    //property bool lost: false
     property string colorOne: "#0B0CA5"
     property string colorTwo: "#147116"
     property string colorThree: "#A92322"
@@ -260,6 +259,9 @@ Rectangle {
 
     //functions for left, right and double click
     function leftClicked(x_position, y_position){
+        if(!mineField.getisRevealed(x_position, y_position) && mineField.getBombNum(x_position, y_position) !== 9){
+            sound2Mngr.playSound();
+        }
         if(mineField.getMoves()===0){
             mineField.bombGenerator(x_position, y_position);
             mineField.leftClickAction(x_position, y_position);
@@ -267,7 +269,6 @@ Rectangle {
         }else{
            mineField.leftClickAction(x_position, y_position);
         }
-        sound2Mngr.playSound();
         game.update();
         if(mineField.isGameWon() && !choice.customGame){
             nameInputDialog.visible = true;
@@ -280,8 +281,8 @@ Rectangle {
             toast.show("Reveal a cell to start the game")
         } else {
             mineField.rightClickAction(x_position, y_position);
-            sound2Mngr.playSound();
             if(!mineField.getisRevealed(x_position, y_position)){
+                sound2Mngr.playSound();
                 if(game.remFlags === 0 && mineField.getRemFlags() === 0){
                     toast.show("No more flags left!")
                 }
@@ -342,7 +343,7 @@ Rectangle {
     //function to call when the game is lost
     function loseGame(){
         flagButton.enabled = false;
-        resetButtonImage.source = "icons/crying.png"
+        resetButtonImage.source = "icons/dazed.png"
         secondCounter.stop();
         sound3Mngr.playSound();
         for (m = 0; m < gridid.rows; m++) {

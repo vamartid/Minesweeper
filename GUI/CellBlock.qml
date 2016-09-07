@@ -70,6 +70,18 @@ Button{
                 }
             }
         }
+        onPressed: {
+            //if(!(mineField.getisRevealed(x_position, y_position) || mineField.getisFlagged(x_position, y_position))){
+            if(!mineField.getisFlagged(x_position, y_position)){
+                resetButtonImage.source = "icons/open-mouth.png"
+            }
+        }
+
+        onReleased: {
+            if(!(mineField.isGameLost() || mineField.isGameWon())){
+                resetButtonImage.source = "icons/smiling.png"
+            }
+        }
 
         onDoubleClicked: {
             if(mouse.button & Qt.LeftButton){
