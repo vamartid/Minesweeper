@@ -4,7 +4,6 @@
         <file>GUI/main.qml</file>
         <file>GUI/MainMenu.qml</file>
         <file>GUI/icons/back-arrow.png</file>
-        <file>GUI/icons/mine-grey.png</file>
         <file>GUI/icons/mine-white.png</file>
         <file>GUI/ChooseDifficulty.qml</file>
         <file>GUI/AndroidToolbar.qml</file>
@@ -38,5 +37,6 @@
         <file>GUI/icons/dazed.png</file>
         <file>GUI/icons/open-mouth.png</file>
         <file>GUI/icons/screenshot.png</file>
+        <file>GUI/AndroidSlider.qml</file>
     </qresource>
 </RCC>

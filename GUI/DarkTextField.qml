@@ -8,7 +8,7 @@ TextField{
         selectionColor: "#ff7043"
         background: Rectangle {
             radius: 5
-            color: "#303030"
+            color: "#3f3f3f"
             border.color: "#9e9e9e"
             border.width: 1
         }

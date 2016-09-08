@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
+import QtGraphicalEffects 1.0
 
 //A rectangle for entering a players name, for the highscore section
 Rectangle{
@@ -9,11 +10,18 @@ Rectangle{
     width: minDim*0.9
     height: minDim*0.5
     visible: true
-    color: "#303030"
+    color: "#3f3f3f"
     anchors.centerIn: parent
-    border.color: "#9e9e9e"
-    border.width: height*0.01
-    radius: 2
+    DropShadow {
+        anchors.fill: nameInputDialog
+        cached: true
+        verticalOffset: nameInputDialog.height*0.03
+        horizontalOffset: nameInputDialog.height*0.03
+        samples: 16
+        color: "#282828"
+        source: nameInputDialog
+    }
+    radius: 4
     Keys.enabled: true
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
@@ -37,7 +45,7 @@ Rectangle{
     Rectangle{
         id: nameRect
         visible:true
-        color: "#303030"
+        color: "#3f3f3f"
         height: parent.height*0.2
         anchors.top: parent.top
         anchors.topMargin: parent.height*0.3
@@ -71,7 +79,7 @@ Rectangle{
         }
     }
     Rectangle{
-        color: "#303030"
+        color: "#3f3f3f"
         anchors.top: nameRect.bottom
         anchors.bottom: parent.bottom
         anchors.topMargin: parent.height*0.15

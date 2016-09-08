@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
+import QtGraphicalEffects 1.0
 
 
 Rectangle{
@@ -9,11 +10,18 @@ Rectangle{
     width: minDim*0.9
     height: minDim*0.5
     visible: true
-    color: "#303030"
+    color: "#3f3f3f"
     anchors.centerIn: parent
-    border.color: "#9e9e9e"
-    border.width: height*0.01
-    radius: 2
+    DropShadow {
+        anchors.fill: clearScoreCheck
+        cached: true
+        verticalOffset: clearScoreCheck.height*0.03
+        horizontalOffset: clearScoreCheck.height*0.03
+        samples: 16
+        color: "#282828"
+        source: clearScoreCheck
+    }
+    radius: 4
     Keys.enabled: true
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
@@ -24,7 +32,7 @@ Rectangle{
     Rectangle {
         id: recktangle
         visible:true
-        color: "#303030"
+        color: "#3f3f3f"
         anchors.topMargin: parent.height*0.01
         height: parent.height*0.5
         anchors.top: parent.top
@@ -49,7 +57,7 @@ Rectangle{
         }
     }
     Rectangle{
-        color: "#303030"
+        color: "#3f3f3f"
         anchors.top: recktangle.bottom
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height*0.1

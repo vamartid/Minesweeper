@@ -199,7 +199,7 @@ Rectangle {
 
                 width: parent.width
                 height: parent.height*0.95
-                text: qsTr("Choose your paremeters below")
+                text: qsTr("Press to choose parameters")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom
                 wrapMode: Text.Wrap
@@ -216,7 +216,7 @@ Rectangle {
             anchors.topMargin: parent.height*0.02
             anchors.bottom: parent.bottom
             anchors.horizontalCenter: parent.horizontalCenter
-            width: parent.width*0.95
+            width: parent.width*1.3
             states: [
                 State{
                     name: "Visible"
@@ -285,13 +285,13 @@ Rectangle {
                 height: parent.height*0.14
                 width: root.width*0.14
                 color: "#FFFFFF"
-                text: widthSlider.value
+                text: Math.floor(widthSlider.value)
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: parent.height*0.1
             }
 
-            Slider{
+            AndroidSlider{
                 id: widthSlider
                 anchors.top: parent.top.bottom
                 anchors.left: fieldwidth_number.right
@@ -300,14 +300,11 @@ Rectangle {
                 value: 5
                 maximumValue: 50
                 minimumValue : 5
-                stepSize: 1
                 updateValueWhileDragging : true
-
                 onValueChanged: {
                     parent.changeMineMax()
                 }
             }
-
             Text{
                 id: fieldheight
                 anchors.top: fieldwidth.bottom
@@ -326,13 +323,13 @@ Rectangle {
                 height: parent.height*0.14
                 width: root.width*0.14
                 color: "#FFFFFF"
-                text: heightSlider.value
+                text: Math.floor(heightSlider.value)
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: parent.height*0.1
             }
 
-            Slider{
+            AndroidSlider{
                 id: heightSlider
                 anchors.top: widthSlider.bottom
                 anchors.left: fieldheight_number.right
@@ -341,7 +338,6 @@ Rectangle {
                 value: 5
                 maximumValue: 50
                 minimumValue : 5
-                stepSize: 1
                 updateValueWhileDragging : true
 
                 onValueChanged: {
@@ -367,13 +363,13 @@ Rectangle {
                 height: parent.height*0.14
                 width: root.width*0.14
                 color: "#FFFFFF"
-                text: minesSlider.value
+                text: Math.floor(minesSlider.value)
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
                 font.pixelSize: parent.height*0.1
             }
 
-            Slider{
+            AndroidSlider{
                 property int oldMaxValue: 8
                 id: minesSlider
                 anchors.top: heightSlider.bottom
@@ -383,7 +379,6 @@ Rectangle {
                 value: 1
                 maximumValue: 8
                 minimumValue : 1
-                stepSize: 1
                 updateValueWhileDragging : true
             }
 
@@ -410,15 +405,15 @@ Rectangle {
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: parent.height*0.2
-                width: parent.height*0.3
+                anchors.bottomMargin: parent.height*0.13
+                width: parent.height*0.4
                 height:width
 
                 onClicked: {
                     soundMngr.playSound();
-                    choice.rows = parseInt(heightSlider.value);
-                    choice.columns = parseInt(widthSlider.value);
-                    choice.mines = parseInt(minesSlider.value);
+                    choice.rows = Math.floor(parseInt(heightSlider.value));
+                    choice.columns = Math.floor(parseInt(widthSlider.value));
+                    choice.mines = Math.floor(parseInt(minesSlider.value));
                     mineField.initField(choice.columns, choice.rows, choice.mines);
                     customGame = true;
                     stack.push(game)
