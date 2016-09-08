@@ -1,6 +1,5 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
-import QtQuick.Window 2.2
 
 Rectangle {
     id: settingsPage
@@ -67,12 +66,13 @@ Rectangle {
         font.family: "droid sans"
         wrapMode: Text.Wrap
     }
-    Slider{
+    AndroidSlider{
         id: musicSlider
         anchors.top: musicText.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width-parent.width/3
-        value: 50.0
+        height: parent.height*0.06
+        value: 0.0
         maximumValue: 100.0
         minimumValue : 0.0
         stepSize: 1.0
@@ -95,11 +95,12 @@ Rectangle {
         font.family: "droid sans"
         wrapMode: Text.Wrap
     }
-    Slider{
+    AndroidSlider{
         id: soundsSlider
         anchors.top: soundsText.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width-parent.width/3
+        height: parent.height*0.06
         value: 50.0
         maximumValue: 100.0
         minimumValue : 0.0
@@ -319,7 +320,7 @@ Rectangle {
                 volumeM=musicSlider.value
                 volumeS=soundsSlider.value
             }
-            musicSlider.value=50.0
+            musicSlider.value=0.0
             soundsSlider.value=50.0
         }
     }
