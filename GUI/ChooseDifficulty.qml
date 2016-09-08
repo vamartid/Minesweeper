@@ -1,6 +1,5 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
-import QtQuick.Controls.Styles 1.4
 
 Rectangle {
     id:choice
@@ -271,18 +270,18 @@ Rectangle {
                 id: fieldwidth
                 anchors.top: parent.top
                 anchors.left: parent.left
-                height: parent.height*0.14
+                height: parent.height*0.17
                 color: "#FFFFFF"
                 text: qsTr("Width:")
                 verticalAlignment: Text.AlignVCenter
-                font.pixelSize: parent.height*0.1
+                font.pixelSize: height*0.1/0.14
             }
 
             Text{
                 id: fieldwidth_number
                 anchors.top: parent.top
                 anchors.left: fieldheight.right
-                height: parent.height*0.14
+                height: fieldwidth.height
                 width: root.width*0.14
                 color: "#FFFFFF"
                 text: Math.floor(widthSlider.value)
@@ -309,7 +308,7 @@ Rectangle {
                 id: fieldheight
                 anchors.top: fieldwidth.bottom
                 anchors.left: parent.left
-                height: parent.height*0.14
+                height: fieldwidth.height
                 color: "#FFFFFF"
                 text: qsTr("Height:")
                 verticalAlignment: Text.AlignVCenter
@@ -320,7 +319,7 @@ Rectangle {
                 id: fieldheight_number
                 anchors.top: fieldwidth_number.bottom
                 anchors.left: fieldheight.right
-                height: parent.height*0.14
+                height: fieldwidth.height
                 width: root.width*0.14
                 color: "#FFFFFF"
                 text: Math.floor(heightSlider.value)
@@ -349,7 +348,7 @@ Rectangle {
                 id: fieldmines
                 anchors.top: fieldheight.bottom
                 anchors.left: parent.left
-                height: parent.height*0.14
+                height: fieldwidth.height
                 color: "#FFFFFF"
                 text: qsTr("Mines:")
                 verticalAlignment: Text.AlignVCenter
@@ -360,7 +359,7 @@ Rectangle {
                 id: fieldmines_number
                 anchors.top: fieldheight_number.bottom
                 anchors.left: fieldheight.right
-                height: parent.height*0.14
+                height: fieldwidth.height
                 width: root.width*0.14
                 color: "#FFFFFF"
                 text: Math.floor(minesSlider.value)
@@ -388,24 +387,26 @@ Rectangle {
                 id: acceptButton
                 Image
                 {
+                    id: acceptImage
                     width: parent.width*0.8
                     height: parent.height*0.8
                     source: "icons/forward-arrow.png"
                     anchors.horizontalCenter: parent.horizontalCenter
-                    anchors.verticalCenter: parent.verticalCenter
+                    anchors.top: parent.top
                 }
                 Text{
                     text: qsTr("Accept")
                     color: "#FFFFFF"
-                    verticalAlignment: Text.AlignBottom
                     horizontalAlignment: Text.AlignHCenter
-                    anchors.fill: parent
+                    anchors.top: acceptImage.bottom
+                    anchors.left: acceptImage.left
+                    anchors.right: acceptImage.right
                     font.pixelSize: parent.height*0.2
                 }
 
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.bottom: parent.bottom
-                anchors.bottomMargin: parent.height*0.13
+                anchors.bottomMargin: parent.height*0.1
                 width: parent.height*0.4
                 height:width
 

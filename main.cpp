@@ -20,7 +20,7 @@ int main(int argc, char *argv[])
     /*Sounds And Music*/
     //About the music
     SoundManager *musicMngr = new SoundManager();
-    musicMngr->initFields(50,true,QUrl("qrc:/Sound/Rob Hubbard - Nemesis The Warlock (Maf464 remix).mp3"));
+    musicMngr->initFields(0,true,QUrl("qrc:/Sound/Rob Hubbard - Nemesis The Warlock (Maf464 remix).mp3"));
     musicMngr->playSound();
     engine.rootContext()->setContextProperty("musicMngr",musicMngr);
     //About the sounds of the buttons
