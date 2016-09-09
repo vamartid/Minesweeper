@@ -295,10 +295,10 @@ Rectangle {
                 text: qsTr("-  The reset button starts a new game.<br><br>
                 -  The flag mode button changes your mode from reveal mode to flag mode.<br><br>
                 -  In reveal mode, left click reveals blocks and right click / left hold flags a block.<br><br>
-                -  Clicking the seconds timer will change it to display the number of moves you have made.<br><br>
                 -  In flag mode, left click flags blocks and right click/ left hold reveals a block.<br><br>
                 -  A block's number represents the amount of mines in neighbouring blocks.<br><br>
-                -  Double clicking a block, which has as many neighbouring flagged blocks as its number, will reveal the rest of its neighbouring blocks.")
+                -  Double clicking a block, which has as many neighbouring flagged blocks as its number, will reveal the rest of its neighbouring blocks.<br><br>
+                -  Clicking the seconds timer will change it to display the number of moves you have made.")
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: aboutPage.height*0.025
                 font.family: "droid sans"
