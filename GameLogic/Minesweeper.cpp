@@ -249,10 +249,10 @@ void Minesweeper::doubleClickAction(int x, int y) {
                         }
                     }
                 }
+            }
             if(moveFlag){
                 moves++;
             }
-        }
         //else he have a wrong placed flag among all the rights one so do nothing
         } else if(rightFlaggedBombs + wrongFlaggedBombs == getCell(x,y)->getBombNum()) { //if he didn't marked all the bombs
             gameLost = true;
