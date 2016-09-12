@@ -173,13 +173,15 @@ void Minesweeper::openNeighboursRec(int x, int y) {
  */
 void Minesweeper::rightClickAction(int x, int y) {
     if (!getCell(x, y)->isRevealed()) { //if it is not open
-        if (!getCell(x, y)->isFlagged() && remFlags != 0) { //if it is not flagged
-            getCell(x, y)->setFlagged(true);
-            remFlags -= 1;
-            moves++;
-        } else {//it is flagged
-            getCell(x, y)->setFlagged(false);
-            remFlags += 1;
+        if (remFlags != 0) { //if there are flags left
+            if(!getCell(x, y)->isFlagged()){//if it is not flagged
+                getCell(x, y)->setFlagged(true);
+                remFlags -= 1;
+                moves++;
+            } else {//it is flagged
+                getCell(x, y)->setFlagged(false);
+                remFlags += 1;
+            }
         }
     }
 }
@@ -213,14 +215,14 @@ void Minesweeper::leftClickAction(int x, int y) {
 void Minesweeper::doubleClickAction(int x, int y) {
     if (getCell(x, y)->isRevealed()) { //if it is open
         int rightFlaggedBombs = 0;
-        bool wrongFlaggedBombs = false;
+        int wrongFlaggedBombs = 0;
         for (int i = -1; i < 2; i += 1) {
             for (int j = -1; j < 2; j += 1) {
                 if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
                         && (y + j <= width - 1)){
                     if (getCell(x + i, y + j)->isFlagged()) { //it is flagged
                         if (getCell(x + i, y + j)->getBombNum() != 9) { //it is not bomb
-                            wrongFlaggedBombs = true;
+                            wrongFlaggedBombs++;
                         } else { //it is bomb
                             //flagged and bomb
                             rightFlaggedBombs++; //count how many
@@ -229,36 +231,32 @@ void Minesweeper::doubleClickAction(int x, int y) {
                 }
             }
         }
-        if (rightFlaggedBombs == (getCell(x, y)->getBombNum())) {
+        if (rightFlaggedBombs == getCell(x, y)->getBombNum() && wrongFlaggedBombs == 0) {
             //if the cell value is equal to the number of the flagged bombs
-            if (!wrongFlaggedBombs) { //if there are no wrong flagged cells
-                bool moveFlag = false;
-                for (int i = -1; i < 2; i += 1) {
-                    for (int j = -1; j < 2; j += 1) {
-                        if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
-                                && (y + j <= width - 1)){
-                            if (getCell(x + i, y + j)->getBombNum() != 9 && !getCell(x + i, y + j)->isFlagged() && !getCell(x + i, y + j)->isRevealed()) { //it is not a bomb
-                                moveFlag = true;
-                                if (getCell(x + i, y + j)->getBombNum() != 0){
-                                    getCell(x + i, y + j)->setRevealed(true);
-                                    winCounter++;
-                                } else {
-                                    openNeighboursRec(x + i, y + j);
-                                }
+            bool moveFlag = false;
+            for (int i = -1; i < 2; i += 1) {
+                for (int j = -1; j < 2; j += 1) {
+                    if ((x + i >= 0) && (x + i <= height - 1) && (y + j >= 0)
+                            && (y + j <= width - 1)){
+                        if (getCell(x + i, y + j)->getBombNum() != 9 && !getCell(x + i, y + j)->isFlagged() && !getCell(x + i, y + j)->isRevealed()) { //it is not a bomb
+                            moveFlag = true;
+                            if (getCell(x + i, y + j)->getBombNum() != 0){
+                                getCell(x + i, y + j)->setRevealed(true);
+                                winCounter++;
+                            } else {
+                                openNeighboursRec(x + i, y + j);
                             }
                         }
                     }
                 }
-                if(moveFlag){
-                    moves++;
-                }
+            if(moveFlag){
+                moves++;
             }
+        }
         //else he have a wrong placed flag among all the rights one so do nothing
-        } else { //if he didn't marked all the bombs
-            if (wrongFlaggedBombs) { //he marked wrong cell as bomb
-                gameLost = true;
-                openAllCells();
-            }
+        } else if(rightFlaggedBombs + wrongFlaggedBombs == getCell(x,y)->getBombNum()) { //if he didn't marked all the bombs
+            gameLost = true;
+            openAllCells();
         }
     }
 }
