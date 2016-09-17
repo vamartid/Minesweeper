@@ -34,8 +34,8 @@ Slider{
         handle: Rectangle {
             anchors.centerIn: parent
             gradient: Gradient {
-                GradientStop { position: 0 ; color: control.pressed ? Style.color.android_Button_Pressed : Style.color.android_Button_Released }
-                GradientStop { position: 1 ; color: control.pressed ? Style.color.android_Button_Released : Style.color.android_Button_Pressed }
+                GradientStop { position: 0 ; color: control.pressed ? Style.color.android_Button_Pressed_0 : Style.color.android_Button_Released_0 }
+                GradientStop { position: 1 ; color: control.pressed ? Style.color.android_Button_Released_1 : Style.color.android_Button_Pressed_1 }
             }
             border.color: Style.color.androidSlider_Border
             border.width: androidSlider.height*0.03

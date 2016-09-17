@@ -10,10 +10,6 @@ Button
     style: ButtonStyle{
         id:buttonStyle
         background: Rectangle {
-            //id: buttonColor
-            //border.width: control.activeFocus ? 2 : 1
-            border.width: 0
-            border.color: Style.color.android_Button_Border
             color: buttonColor
             radius: 2;
         }

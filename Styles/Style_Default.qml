@@ -9,8 +9,10 @@ QtObject {
 
         property color android_Button_Border    : "#888"
 
-        property color android_Button_Pressed   : "#efefef"
-        property color android_Button_Released  : "#fbfbfb"
+        property color android_Button_Pressed_0 : "#e1e1e1"
+        property color android_Button_Released_0: "#fbfbfb"
+        property color android_Button_Pressed_1 : "#ebebeb"
+        property color android_Button_Released_1: "#efefef"
         property color android_Button_Text      : "#000000"
 
         property color android_Button2_Pressed   : "#4c4c4c"

@@ -343,7 +343,6 @@ Rectangle {
                 }
             }
             Text{
-                //visible:false
                 Layout.alignment: Qt.AlignCenter
                 width: parent.width*0.9
                 color: Style.color.text_Epiloge
