@@ -5,7 +5,7 @@ import QtQuick.Controls 1.4
 ApplicationWindow {
     id: root
     visible: true
-    width: 406
+    width: 432
     height: 768
     title: qsTr("Minesweeper - Qt")
     minimumHeight: 640

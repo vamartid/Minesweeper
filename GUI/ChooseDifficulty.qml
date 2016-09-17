@@ -158,7 +158,7 @@ Rectangle {
                 color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height*0.95
-                text: qsTr("30x16 grid with 99 mines")
+                text: qsTr("16x30 grid with 99 mines")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom
                 wrapMode: Text.Wrap

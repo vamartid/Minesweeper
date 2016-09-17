@@ -14,18 +14,18 @@ Slider{
                     height: androidSlider.height*0.19
                     width: androidSlider.width
                     gradient: Gradient {
-                        GradientStop { position: 0 ; color: Style.color.androidSlider_colorL_0 }
-                        GradientStop { position: 1 ; color: Style.color.androidSlider_colorL_1 }
+                        GradientStop { position: 0 ; color: Style.color.androidSlider_colorR_0 }
+                        GradientStop { position: 1 ; color: Style.color.androidSlider_colorR_1 }
                     }
                     radius: 8
                 }
                 Rectangle {
                     anchors.verticalCenter: parent.verticalCenter
                     height: androidSlider.height*0.19
-                    width: androidSlider.width*(value-minimumValue*0.9)/(maximumValue - minimumValue*0.9)
+                    width: androidSlider.width*(value-minimumValue+0.01*maximumValue)/(maximumValue-minimumValue+0.01*maximumValue)
                     gradient: Gradient {
-                        GradientStop { position: 0 ; color: Style.color.androidSlider_colorR_0 }
-                        GradientStop { position: 1 ; color: Style.color.androidSlider_colorR_1 }
+                        GradientStop { position: 0 ; color: Style.color.androidSlider_colorL_0 }
+                        GradientStop { position: 1 ; color: Style.color.androidSlider_colorL_1 }
                     }
                     radius: 8
                 }

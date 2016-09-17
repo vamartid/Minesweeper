@@ -40,10 +40,10 @@ QtObject {
         property color colorSeven               : "#000000"
         property color colorEight               : "#808080"
 
-        property color androidSlider_colorL_0   : "#434343"
-        property color androidSlider_colorL_1   : "#3f3f3f"
-        property color androidSlider_colorR_0   : "#ff774c"
-        property color androidSlider_colorR_1   : "#FF5722"
+        property color androidSlider_colorR_0   : "#434343"
+        property color androidSlider_colorR_1   : "#3f3f3f"
+        property color androidSlider_colorL_0   : "#ff774c"
+        property color androidSlider_colorL_1   : "#FF5722"
         property color androidSlider_Border     : "#dddddd"
 
         property color scores                   : "#FF5722"

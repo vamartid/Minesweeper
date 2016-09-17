@@ -5,8 +5,10 @@ import "qrc:/Styles/" 1.0
 
 Button{
     id: cellBlock
-    height: game.height*0.0608
-    width: game.height*0.0608
+    //cell size changes when width becomes larger than height, best for bigger devices like tablets or computers
+    property double cellSize: gameFlickable.height > gameFlickable.width ? gameFlickable.width/9 : gameFlickable.height/14
+    height: cellSize
+    width: cellSize
     property string cellText
     property string cellTextColor: Style.color.cellTextColor
     property string cellColor: Style.color.cellColorNotPressed
