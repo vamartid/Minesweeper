@@ -55,7 +55,6 @@ Rectangle {
         color: Style.color.background
         z: 0
         Flickable{
-            //horizontalScrollBarPolicy: Qt.ScrollBarAlwaysOff
             id: flickArea
             anchors.top: parent.top
             anchors.left: parent.left
@@ -376,7 +375,6 @@ Rectangle {
                 }
                 Text{
                     id: downT
-                    //visible:false
                     Layout.alignment: Qt.AlignCenter
                     width: parent.width*0.9
                     color: Style.color.text_Epiloge

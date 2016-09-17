@@ -5,11 +5,8 @@ import "qrc:/Styles/" 1.0
 
 Button{
     id: cellBlock
-    property int minDim: Math.min(game.height, game.width);
-    //height: game.height*0.057
-    width : minDim*0.108
-    height : minDim*0.108
-    //width: game.height*0.057
+    height: game.height*0.061
+    width: game.height*0.061
     property string cellText
     property string cellTextColor: Style.color.cellTextColor
     property string cellColor: Style.color.cellColorNotPressed

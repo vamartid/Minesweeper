@@ -186,11 +186,11 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: parent.width*0.01
+        anchors.margins: root.minDim*0.01
         Grid{
             id: gridid
             anchors.top: parent.top
-            spacing: root.width*0.001
+            spacing: root.minDim*0.001
             columns: game.columns
             rows: game.rows
 
