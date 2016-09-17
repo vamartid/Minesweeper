@@ -70,8 +70,12 @@ Rectangle {
             case Qt.Key_S:
                 gameFlickable.flick(0,-500);
                 break;
+//            case Qt.Key_Control && Qt.WheelFocus.:
+//                gameFlickable.flick(0,-500);
+//                break;
         }
     }
+
     AndroidToolbar{
         id: toolbar_game
         z: 10
@@ -223,6 +227,31 @@ Rectangle {
         clip: true
         focus: true
         z: 0
+        MouseArea{
+            anchors.top: parent.top
+            anchors.bottom: parent.bottom
+            anchors.left: parent.left
+            anchors.right: parent.right
+            id:flickMouseArea
+            property double temp: 0.7
+            onWheel: {
+                if (wheel.modifiers & Qt.ControlModifier){
+                    if (wheel.angleDelta.y > 0){
+                        if(!(gridid.scale+0.07>=5.06)){
+                        gridid.scale += 0.07
+                        console.log(gridid.scale)
+                        }
+                    }else {
+                        if(!(gridid.scale+0.07<=0.29)){
+                        gridid.scale -= 0.07
+                        console.log(gridid.scale)
+                        }
+                    }
+                }else{
+                    wheel.accepted=false
+                }
+            }
+        }
         Grid{
             id: gridid
             anchors.top: parent.top
@@ -241,6 +270,7 @@ Rectangle {
                 }
             }
         }
+
     }
 
     //A rectangle that shows up when the game is won, to enter a name for the high scores
