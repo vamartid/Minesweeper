@@ -1,4 +1,5 @@
 import QtQuick 2.5
+import "qrc:/Styles/" 1.0
 
 /**
 * @brief An Android-like timed message text in a box that selfdestroys when finished if desired
@@ -50,12 +51,12 @@ Rectangle{
     //anchors.bottom: parent.bottom
 
     opacity: 0
-    color: "#616161"
+    color: Style.color.toast
 
     Text{
         id: theText
         text: ""
-        color: "white"
+        color: Style.color.toast_Text
         horizontalAlignment: Text.AlignHCenter
         x: margin
         y: margin

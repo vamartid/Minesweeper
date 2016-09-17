@@ -2,7 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
-
+import "qrc:/Styles/" 1.0
 
 Rectangle{
     id: exitGameDialog
@@ -10,7 +10,7 @@ Rectangle{
     width: minDim*0.9
     height: minDim*0.5
     visible: true
-    color: "#3f3f3f"
+    color: Style.color.dialog_Background
     anchors.centerIn: parent
     DropShadow {
         anchors.fill: exitGameDialog
@@ -18,7 +18,7 @@ Rectangle{
         verticalOffset: exitGameDialog.height*0.03
         horizontalOffset: exitGameDialog.height*0.03
         samples: 16
-        color: "#282828"
+        color: Style.color.dialog_Shadow
         source: exitGameDialog
     }
     radius: 4
@@ -32,7 +32,7 @@ Rectangle{
     Rectangle {
         id: exitRectangle
         visible:true
-        color: "#3f3f3f"
+        color: Style.color.dialog_Background
         anchors.topMargin: parent.height*0.01
         height: parent.height*0.5
         anchors.top: parent.top
@@ -44,7 +44,7 @@ Rectangle{
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
-            color: "white"
+            color: Style.color.dialog_Text
             width: parent.width
             text: qsTr("Are you sure you want to exit the game?")
             anchors.bottomMargin: 0
@@ -57,7 +57,7 @@ Rectangle{
         }
     }
     Rectangle{
-        color: "#3f3f3f"
+        color: Style.color.dialog_Background
         anchors.top: exitRectangle.bottom
         anchors.bottom: parent.bottom
         anchors.bottomMargin: parent.height*0.1
@@ -70,6 +70,7 @@ Rectangle{
             anchors.left: parent.left
             width: parent.width*0.4
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Accept")
@@ -89,6 +90,7 @@ Rectangle{
             anchors.right: parent.right
             width: parent.width*0.4
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Cancel")

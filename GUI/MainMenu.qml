@@ -2,18 +2,19 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
 import QtQuick.Window 2.2
+import "qrc:/Styles/" 1.0
 
 Rectangle {
     height: parent.height
     width: parent.width
     visible: true
-    color: "#303030"
+    color: Style.color.background
 
     AndroidToolbar
     {
         id: toolbar_main_menu
         Text{
-            color: "#FFFFFF"
+            color: Style.color.text_On_Bar
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
             anchors.left: parent.left
@@ -40,12 +41,12 @@ Rectangle {
             anchors.right: logotext.left
             width: parent.height*0.5
             height: parent.height*0.5
-            source: "icons/mine-white.png"
+            source: Style.icons.logo
             //anchors.verticalCenter: parent.verticalCenter
         }
         Text{
             id: logotext
-            color:"#FFFFFF"
+            color: Style.color.text
             text: qsTr("mine\nsweeper")
             width: height*0.88
             height: parent.height
@@ -63,7 +64,7 @@ Rectangle {
             anchors.left: logotext.right
             width: parent.height*0.5
             height: parent.height*0.5
-            source: "icons/mine-white.png"
+            source: Style.icons.logo
             //anchors.verticalCenter: parent.verticalCenter
         }
     }
@@ -83,6 +84,7 @@ Rectangle {
             width: parent.width
             height: root.height/10
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("New game")
@@ -105,6 +107,7 @@ Rectangle {
             width: parent.width
             height: root.height/10
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("High scores")
@@ -126,6 +129,7 @@ Rectangle {
             width: parent.width/2 - height*0.07
             height: root.height/10
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("About")
@@ -154,11 +158,12 @@ Rectangle {
                 width: parent.height
                 fillMode: Image.PreserveAspectFit
                 anchors.fill: parent
-                source: "/GUI/icons/gear.png"
+                source: Style.icons.gear
                 smooth: true
             }
 
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("")
@@ -177,7 +182,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width*0.9
-        color: "#FFFFFF"
+        color: Style.color.text_Epiloge
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         font.pixelSize: parent.height*0.0186

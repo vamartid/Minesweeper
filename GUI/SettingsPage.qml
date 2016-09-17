@@ -1,12 +1,13 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import "qrc:/Styles/" 1.0
 
 Rectangle {
     id: settingsPage
     height: parent.height
     width: parent.width
     visible: true
-    color: "#303030"
+    color: Style.color.background
     Keys.enabled: true
     focus: true
     Component.onCompleted: {
@@ -31,7 +32,7 @@ Rectangle {
             }
         }
         Text{
-            color: "#FFFFFF"
+            color: Style.color.text_On_Bar
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
             anchors.left: backButton_settingsPage.right
@@ -45,7 +46,7 @@ Rectangle {
         anchors.top: toolbar_settings.bottom
         width: parent.width
         height: parent.height*0.1
-        color:"#FFFFFF"
+        color: Style.color.text
         text: qsTr("Settings")
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -58,7 +59,7 @@ Rectangle {
         anchors.top: settings_header.bottom
         width: parent.width
         height: root.height/13
-        color:"#FFFFFF"
+        color:Style.color.text
         text: qsTr("Music:")
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -87,7 +88,7 @@ Rectangle {
         anchors.top: musicSlider.bottom
         width: parent.width
         height: root.height/13
-        color:"#FFFFFF"
+        color:Style.color.text
         text: qsTr("Sounds:")
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
@@ -122,6 +123,7 @@ Rectangle {
         width: parent.width/3.5
         height: root.height/16
         Text{
+            color: Style.color.android_Button_Text
             width: parent.width
             height: parent.height
             text: qsTr("Mute")
@@ -144,6 +146,7 @@ Rectangle {
         width: parent.width/3.5
         height: root.height/16
         Text{
+            color: Style.color.android_Button_Text
             width: parent.width
             height: parent.height
             text: qsTr("Max")
@@ -166,6 +169,7 @@ Rectangle {
         width: parent.width/3.5
         height: root.height/16
         Text{
+            color: Style.color.android_Button_Text
             width: parent.width
             height: parent.height
             text: qsTr("Defaults")
@@ -187,6 +191,7 @@ Rectangle {
         width: parent.width/2.6
         height: root.height/16
         Text{
+            color: Style.color.android_Button_Text
             width: parent.width
             height: parent.height
             text: qsTr("Clear Scores")
@@ -207,7 +212,7 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width*0.9
-        color: "#FFFFFF"
+        color: Style.color.text_Epiloge
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         font.pixelSize: parent.height*0.0186

@@ -1,15 +1,16 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
+import "qrc:/Styles/" 1.0
 
 TextField{
     style: TextFieldStyle {
-        textColor: "white"
-        selectionColor: "#ff7043"
+        textColor: Style.color.text
+        selectionColor: Style.color.text_Selected
         background: Rectangle {
             radius: 5
-            color: "#3f3f3f"
-            border.color: "#9e9e9e"
+            color: Style.color.dialog_Background
+            border.color: Style.color.aboutPage_Rect_Border
             border.width: 1
         }
     }

@@ -1,13 +1,14 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
+import "qrc:/Styles/" 1.0
 
 Rectangle {
     id: scoreView
     height: 860
     width: 484
     visible: true
-    color: "#303030"
+    color: Style.color.background
     Keys.enabled: true
     focus: true
     Component.onCompleted: {
@@ -28,7 +29,7 @@ Rectangle {
             }
         }
         Text{
-            color: "#FFFFFF"
+            color: Style.color.text_On_Bar
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
             anchors.left: backbutton_scores.right
@@ -53,7 +54,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.5
-            color: "white"
+            color: Style.color.text
         }
         Component.onCompleted: {
             changeColor(true)
@@ -83,7 +84,7 @@ Rectangle {
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.5
             //color: "#FF5722"
-            color: "white"
+            color: Style.color.text
         }
         onClicked:
         {
@@ -109,7 +110,7 @@ Rectangle {
             verticalAlignment: Text.AlignVCenter
             wrapMode: Text.Wrap
             font.pixelSize: parent.height*0.5
-            color: "white"
+            color: Style.color.text
         }
         onClicked:
         {
@@ -136,7 +137,7 @@ Rectangle {
             anchors.left:parent.left
             text:"Name"
             font.pixelSize: parent.height*0.7
-            color: "#FFFFFF"
+            color: Style.color.text
             //color: "#FF5722"
             font.family: "droid sans mono"
             height: root.height/13
@@ -150,7 +151,7 @@ Rectangle {
             anchors.right:parent.right
             text:"Time"
             font.pixelSize: parent.height*0.7
-            color: "#FFFFFF"
+            color: Style.color.text
             font.family: "droid sans mono"
             height: root.height/13
             //font.bold : true
@@ -163,7 +164,7 @@ Rectangle {
         anchors.left: parent.left
         anchors.right: parent.right
         height: root.height/25
-        color: "#303030"
+        color: Style.color.background
     }
     Rectangle {
         anchors.left: parent.left
@@ -174,7 +175,7 @@ Rectangle {
         anchors.leftMargin: parent.width*0.026
         anchors.bottomMargin: parent.width*0.013
         anchors.rightMargin: parent.width*0.026
-        color: "#303030"
+        color: Style.color.background
         ListView
         {
             id:myView
@@ -214,7 +215,7 @@ Rectangle {
                         anchors.left:parent.left
                         text:name
                         font.pixelSize: root.height*0.03
-                        color: "#FF5722"
+                        color: Style.color.scores
                     }
                     Label{
                         verticalAlignment: Text.AlignVCenter
@@ -225,7 +226,7 @@ Rectangle {
                         anchors.right:parent.right
                         text:scoreId
                         font.pixelSize: root.height*0.03
-                        color: "#FF5722"
+                        color: Style.color.scores
                     }
                 }
 

@@ -1,12 +1,13 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
+import "qrc:/Styles/" 1.0
 
 Rectangle {
     id:choice
     height: parent.height
     width: parent.width
     visible: true
-    color: "#303030"
+    color: Style.color.background
     property int rows: 9
     property int columns: 9
     property int mines: 10
@@ -34,7 +35,7 @@ Rectangle {
             }
         }
         Text{
-            color: "#FFFFFF"
+            color: Style.color.text_On_Bar
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
             anchors.left: backbutton_choice.right
@@ -49,7 +50,7 @@ Rectangle {
         anchors.top: toolbar_difficulty_menu.bottom
         width: parent.width
         height: parent.height*0.2
-        color:"#FFFFFF"
+        color: Style.color.text
         text: qsTr("Choose a difficulty")
         horizontalAlignment: Text.AlignHCenter
         font.pixelSize: height*0.3
@@ -72,6 +73,7 @@ Rectangle {
             width: parent.width
             height: root.height/10
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Easy")
@@ -81,7 +83,7 @@ Rectangle {
                 font.pixelSize: parent.height*0.5
             }
             Text{
-
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height*0.95
                 text: qsTr("9x9 grid with 10 mines")
@@ -105,6 +107,7 @@ Rectangle {
             width: parent.width
             height: root.height/10
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Medium")
@@ -114,7 +117,7 @@ Rectangle {
                 font.pixelSize: parent.height*0.5
             }
             Text{
-
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height*0.95
                 text: qsTr("16x16 grid with 40 mines")
@@ -142,6 +145,7 @@ Rectangle {
             width: parent.width
             height: root.height/10
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Hard")
@@ -151,7 +155,7 @@ Rectangle {
                 font.pixelSize: parent.height*0.5
             }
             Text{
-
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height*0.95
                 text: qsTr("30x16 grid with 99 mines")
@@ -186,6 +190,7 @@ Rectangle {
                 }
             }
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Custom")
@@ -195,7 +200,7 @@ Rectangle {
                 font.pixelSize: parent.height*0.5
             }
             Text{
-
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height*0.95
                 text: qsTr("Press to choose parameters")
@@ -210,7 +215,7 @@ Rectangle {
         Rectangle{
             id: customRectangle
             state: "Invisible"
-            color: "#303030"
+            color: Style.color.background
             anchors.top: custombutton.bottom
             anchors.topMargin: parent.height*0.02
             anchors.bottom: parent.bottom
@@ -271,7 +276,7 @@ Rectangle {
                 anchors.top: parent.top
                 anchors.left: parent.left
                 height: parent.height*0.17
-                color: "#FFFFFF"
+                color: Style.color.text
                 text: qsTr("Width:")
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: height*0.1/0.14
@@ -283,7 +288,7 @@ Rectangle {
                 anchors.left: fieldheight.right
                 height: fieldwidth.height
                 width: root.width*0.14
-                color: "#FFFFFF"
+                color: Style.color.text
                 text: Math.floor(widthSlider.value)
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -309,7 +314,7 @@ Rectangle {
                 anchors.top: fieldwidth.bottom
                 anchors.left: parent.left
                 height: fieldwidth.height
-                color: "#FFFFFF"
+                color: Style.color.text
                 text: qsTr("Height:")
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: parent.height*0.1
@@ -321,7 +326,7 @@ Rectangle {
                 anchors.left: fieldheight.right
                 height: fieldwidth.height
                 width: root.width*0.14
-                color: "#FFFFFF"
+                color: Style.color.text
                 text: Math.floor(heightSlider.value)
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -349,7 +354,7 @@ Rectangle {
                 anchors.top: fieldheight.bottom
                 anchors.left: parent.left
                 height: fieldwidth.height
-                color: "#FFFFFF"
+                color: Style.color.text
                 text: qsTr("Mines:")
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: parent.height*0.1
@@ -361,7 +366,7 @@ Rectangle {
                 anchors.left: fieldheight.right
                 height: fieldwidth.height
                 width: root.width*0.14
-                color: "#FFFFFF"
+                color: Style.color.text
                 text: Math.floor(minesSlider.value)
                 verticalAlignment: Text.AlignVCenter
                 horizontalAlignment: Text.AlignHCenter
@@ -390,13 +395,13 @@ Rectangle {
                     id: acceptImage
                     width: parent.width*0.8
                     height: parent.height*0.8
-                    source: "icons/forward-arrow.png"
+                    source: Style.icons.f_arrow
                     anchors.horizontalCenter: parent.horizontalCenter
                     anchors.top: parent.top
                 }
                 Text{
                     text: qsTr("Accept")
-                    color: "#FFFFFF"
+                    color: Style.color.text
                     horizontalAlignment: Text.AlignHCenter
                     anchors.top: acceptImage.bottom
                     anchors.left: acceptImage.left

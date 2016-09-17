@@ -1,13 +1,14 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Layouts 1.1
+import "qrc:/Styles/" 1.0
 
 Rectangle {
     id: aboutPage
     height: parent.height
     width: parent.width
     visible: true
-    color: "#303030"
+    color: Style.color.background
     Keys.enabled: true
     focus: true
     Component.onCompleted: {
@@ -28,7 +29,7 @@ Rectangle {
             }
         }
         Text{
-            color: "#FFFFFF"
+            color: Style.color.text_On_Bar
             text: qsTr("Minesweeper - Qt quick")
             width: parent.width
             anchors.left: backButton_aboutPage.right
@@ -47,7 +48,7 @@ Rectangle {
             spacing: root.height*0.02
             width: aboutPage.width
             Rectangle{
-                color: "#303030"
+                color: Style.color.background
                 Layout.preferredHeight: 1
             }
             Text{
@@ -55,7 +56,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.preferredHeight: aboutPage.height*0.05
-                color:"#FFFFFF"
+                color: Style.color.text
                 text: qsTr("How to play:")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -64,7 +65,7 @@ Rectangle {
                 wrapMode: Text.Wrap
             }
             Image{
-                source: "icons/screenshot.png"
+                source: Style.icons.screenshot
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.preferredHeight: aboutPage.width*0.9
                 Layout.alignment: Qt.AlignCenter
@@ -74,7 +75,7 @@ Rectangle {
             }
             //reset button description
             Rectangle{
-                color: "#303030"
+                color: Style.color.background
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.preferredHeight: aboutPage.height*0.2/3
@@ -93,19 +94,19 @@ Rectangle {
                             id: resetButtonImage
                             anchors.margins: parent.height*0.1
                             anchors.fill: parent
-                            source: "icons/smiling.png"
+                            source: Style.icons.smile
                             smooth: true
                         }
                         property int clicks: 0
                         onClicked:{
                             if(clicks === 0){
-                                resetButtonImage.source = "icons/sunglasses.png"
+                                resetButtonImage.source = Style.icons.sunglasses
                                 clicks = 1;
                             } else if (clicks === 1) {
-                                resetButtonImage.source = "icons/dazed.png"
+                                resetButtonImage.source = Style.icons.dazed
                                 clicks = 2;
                             } else if (clicks === 2){
-                                resetButtonImage.source = "icons/smiling.png"
+                                resetButtonImage.source = Style.icons.smile
                                 clicks = 0;
                             }
                         }
@@ -119,14 +120,14 @@ Rectangle {
                         font.pixelSize: parent.height*0.5
                         horizontalAlignment: Text.AlignJustify
                         verticalAlignment: Text.AlignVCenter
-                        color: "#FFFFFF"
+                        color: Style.color.text
                         font.family: "droid sans"
                     }
                 }
             }
             //flag button description
             Rectangle{
-                color: "#303030"
+                color: Style.color.background
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.preferredHeight: aboutPage.height*0.2/3
@@ -146,16 +147,16 @@ Rectangle {
                             id: flagButtonImage
                             anchors.margins: parent.height*0.1
                             anchors.fill: parent
-                            source: "icons/flag.png"
+                            source: Style.icons.flag
                             smooth: true
                         }
                         property bool flagClick: true
                         onClicked:{
                             if(flagClick){
-                                flagButtonImage.source = "icons/flag-greyed.png"
+                                flagButtonImage.source = Style.icons.flag_greyed
                                 flagClick = false;
                             } else {
-                                flagButtonImage.source = "icons/flag.png"
+                                flagButtonImage.source = Style.icons.flag
                                 flagClick = true;
                             }
                         }
@@ -168,14 +169,14 @@ Rectangle {
                         font.pixelSize: parent.height*0.5
                         horizontalAlignment: Text.AlignJustify
                         verticalAlignment: Text.AlignVCenter
-                        color: "#FFFFFF"
+                        color: Style.color.text
                         font.family: "droid sans"
                     }
                 }
             }
             //second counter description
             Rectangle{
-                color: "#303030"
+                color: Style.color.background
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.preferredHeight: aboutPage.height*0.2/3
@@ -186,10 +187,10 @@ Rectangle {
                     height: parent.height
                     Rectangle{
                         id: secCounterReference
-                        border.color: "#9e9e9e"
+                        border.color: Style.color.aboutPage_Rect_Border
                         border.width: parent.height*0.03
                         radius: 6
-                        color: "#303030"
+                        color: Style.color.background
                         anchors.right: parent.horizontalCenter
                         anchors.rightMargin: resetDescription.width*0.7
                         anchors.verticalCenter: parent.verticalCenter
@@ -203,7 +204,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             font.pixelSize: height*0.7
                             text: sampleSecondCounter.seconds
-                            color: "white"
+                            color: Style.color.text
                             font.family: "droid-sans-mono"
                         }
                         MouseArea{
@@ -235,14 +236,14 @@ Rectangle {
                         font.pixelSize: parent.height*0.5
                         horizontalAlignment: Text.AlignJustify
                         verticalAlignment: Text.AlignVCenter
-                        color: "#FFFFFF"
+                        color: Style.color.text
                         font.family: "droid sans"
                     }
                 }
             }
             //remaining flags description
             Rectangle{
-                color: "#303030"
+                color: Style.color.background
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.preferredHeight: aboutPage.height*0.2/3
@@ -253,10 +254,10 @@ Rectangle {
                     height: parent.height
                     Rectangle{
                         id: remFlagsReferrence
-                        border.color: "#9e9e9e"
+                        border.color: Style.color.aboutPage_Rect_Border
                         border.width: parent.height*0.03
                         radius: 6
-                        color: "#303030"
+                        color: Style.color.background
                         anchors.right: parent.horizontalCenter
                         anchors.rightMargin: resetDescription.width*0.7
                         anchors.verticalCenter: parent.verticalCenter
@@ -268,7 +269,7 @@ Rectangle {
                             verticalAlignment: Text.AlignVCenter
                             font.pixelSize: height*0.7
                             text: "7"
-                            color: "white"
+                            color: Style.color.text
                             font.family: "droid-sans-mono"
                         }
                     }
@@ -280,7 +281,7 @@ Rectangle {
                         font.pixelSize: parent.height*0.5
                         horizontalAlignment: Text.AlignJustify
                         verticalAlignment: Text.AlignVCenter
-                        color: "#FFFFFF"
+                        color: Style.color.text
                         font.family: "droid sans"
                     }
                 }
@@ -291,7 +292,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: contentHeight
                 Layout.preferredWidth: aboutPage.width*0.9
-                color:"#FFFFFF"
+                color: Style.color.text
                 text: qsTr("-  The reset button starts a new game.<br><br>
                 -  The flag mode button changes your mode from reveal mode to flag mode.<br><br>
                 -  In reveal mode, left click reveals blocks and right click / left hold flags a block.<br><br>
@@ -308,7 +309,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredWidth: aboutPage.width*0.9
                 Layout.preferredHeight: aboutPage.height*0.05
-                color:"#FFFFFF"
+                color: Style.color.text
                 text: qsTr("About this program:")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
@@ -321,7 +322,7 @@ Rectangle {
                 Layout.alignment: Qt.AlignCenter
                 Layout.preferredHeight: contentHeight
                 Layout.preferredWidth: aboutPage.width*0.9
-                color:"#FFFFFF"
+                color: Style.color.text
                 text: qsTr("This program was created for a project in a mobile development course, in the Aristotle University of Thessaloniki.<br><br>
                 It is licensed under <a href=\"https://www.gnu.org/licenses/gpl.html\">GNU GPL v3</a> and the code is available  <a href=\"http://i.imgur.com/27nLhLy.gif\">on github</a>.<br><br>
                 The main contributors are:
@@ -329,7 +330,7 @@ Rectangle {
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/rigopoui\">rigopoui</a> - Yanis Rigopoulos<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/GeorgeKirm\">GeorgeKirm</a> - Giorgos Kirmitsakis<br><br>
                 The emojis used in the game are modified versions of <a href=\"http://emojione.com\">EmojiOne</a>, licensed under <a href=\"https://creativecommons.org/licenses/by/4.0\">Creative Commons BY 4.0</a>")
-                linkColor: "#3b85b0"
+                linkColor: Style.color.text_Link
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: aboutPage.height*0.025
                 font.family: "droid sans"
@@ -345,7 +346,7 @@ Rectangle {
                 //visible:false
                 Layout.alignment: Qt.AlignCenter
                 width: parent.width*0.9
-                color: "#FFFFFF"
+                color: Style.color.text_Epiloge
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: root.height*0.0186

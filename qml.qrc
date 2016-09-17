@@ -38,5 +38,7 @@
         <file>GUI/icons/open-mouth.png</file>
         <file>GUI/icons/screenshot.png</file>
         <file>GUI/AndroidSlider.qml</file>
+        <file>Styles/qmldir</file>
+        <file>Styles/Style_Default.qml</file>
     </qresource>
 </RCC>

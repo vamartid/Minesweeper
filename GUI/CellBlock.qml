@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
+import "qrc:/Styles/" 1.0
 
 Button{
     id: cellBlock
@@ -10,8 +11,8 @@ Button{
     height : minDim*0.108
     //width: game.height*0.057
     property string cellText
-    property string cellTextColor: "#000000"
-    property string cellColor: game.cellColorNotPressed
+    property string cellTextColor: Style.color.cellTextColor
+    property string cellColor: Style.color.cellColorNotPressed
     property int x_position
     property int y_position
     property int m: 0
@@ -72,13 +73,13 @@ Button{
         }
         onPressed: {
             if(!mineField.getisFlagged(x_position, y_position)){
-                resetButtonImage.source = "icons/open-mouth.png"
+                resetButtonImage.source = Style.icons.mouth
             }
         }
 
         onReleased: {
             if(!(mineField.isGameLost() || mineField.isGameWon())){
-                resetButtonImage.source = "icons/smiling.png"
+                resetButtonImage.source = Style.icons.smile
             }
         }
 
@@ -91,27 +92,27 @@ Button{
 
     //functions for setting the cell image
     function setBombImage() {
-        backgroundImage.source = "icons/mine-red.png";
+        backgroundImage.source = Style.icons.red_mine;
     }
 
     function setFlagImage() {
-        backgroundImage.source = "icons/flag.png";
+        backgroundImage.source = Style.icons.flag;
     }
 
     function clearImage(){
-        backgroundImage.source = "";
+        backgroundImage.source = Style.icons.clear;
     }
 
     function setFlaggedBombImage() {
-        backgroundImage.source = "icons/mine-greyflagged.png";
+        backgroundImage.source = Style.icons.flagged_mine;
     }
 
     //resets this particular cell
     function reset() {
         cellText = "";
         enabled = true;
-        backgroundImage.source = "";
+        backgroundImage.source = Style.icons.clear;
         cellColor = game.cellColorNotPressed;
-        cellTextColor = "#000000"
+        cellTextColor = Style.color.cellTextColor
     }
 }

@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
+import "qrc:/Styles/" 1.0
 
 Rectangle {
     property int mines: parseInt(choice.mines)
@@ -8,16 +9,10 @@ Rectangle {
     property int columns: parseInt(choice.columns)
     property int remFlags: parseInt(choice.mines)
     property bool flagClick: false
-    property string colorOne: "#0B0CA5"
-    property string colorTwo: "#147116"
-    property string colorThree: "#A92322"
-    property string colorFour: "#080846"
-    property string colorFive: "#4D1514"
-    property string colorSix: "#1F7373"
-    property string colorSeven: "#000000"
-    property string colorEight: "#808080"
-    property string cellColorPressed: "#D1D1D1"
-    property string cellColorNotPressed: "#F4F4F4"
+
+    property string cellColorPressed: Style.color.cellColorPressed
+    property string cellColorNotPressed: Style.color.cellColorNotPressed
+
     property int moves: 0
     property int m: 0
     property int n: 0
@@ -30,7 +25,7 @@ Rectangle {
     height: parent.height
     width: parent.width
     visible: true
-    color: "#303030"
+    color: Style.color.background
     Keys.enabled: true
     focus: true
     Component.onCompleted: {
@@ -62,7 +57,7 @@ Rectangle {
             border.color: parent.color
             border.width: parent.height*0.03
             radius: 6
-            color: "#303030"
+            color: Style.color.background
             anchors.left: backButton_game.right
             anchors.verticalCenter: parent.verticalCenter
             height: parent.height*0.7
@@ -73,7 +68,7 @@ Rectangle {
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: height*0.7
                 text: remFlags.toString()
-                color: "white"
+                color: Style.color.text
                 font.family: "whatever"
             }
         }
@@ -94,7 +89,7 @@ Rectangle {
                     anchors.margins: parent.height*0.1
                     id: resetButtonImage
                     anchors.fill: parent
-                    source: "icons/smiling.png"
+                    source: Style.icons.smile
                     smooth: true
                 }
                 onClicked:{
@@ -114,10 +109,10 @@ Rectangle {
                     gridid.enabled = true;
                     mineField.initField(columns, rows, mines);
                     moves = mineField.getMoves();
-                    resetButtonImage.source = "icons/smiling.png"
+                    resetButtonImage.source = Style.icons.smile
                     remFlags = mines;
                     flagClick = false;
-                    flagButtonImage.source = "icons/flag-greyed.png"
+                    flagButtonImage.source = Style.icons.flag_greyed
                 }
             }
             //The flag button
@@ -131,15 +126,15 @@ Rectangle {
                     anchors.margins: parent.height*0.1
                     id: flagButtonImage
                     anchors.fill: parent
-                    source: "icons/flag-greyed.png"
+                    source: Style.icons.flag_greyed
                     smooth: true
                 }
                 onClicked:{
                     if(flagClick){
-                        flagButtonImage.source = "icons/flag-greyed.png"
+                        flagButtonImage.source = Style.icons.flag_greyed
                         flagClick = false;
                     } else {
-                        flagButtonImage.source = "icons/flag.png"
+                        flagButtonImage.source = Style.icons.flag
                         flagClick = true;
                     }
                 }
@@ -151,7 +146,7 @@ Rectangle {
             border.color: parent.color
             border.width: parent.height*0.03
             radius: 6
-            color: "#303030"
+            color: Style.color.background
             anchors.right: parent.right
             anchors.rightMargin: backButton_game.width
             anchors.verticalCenter: parent.verticalCenter
@@ -166,7 +161,7 @@ Rectangle {
                 font.pixelSize: height*0.7
                 text: secondCounter.seconds
                 //text: moves
-                color: "white"
+                color: Style.color.text
                 font.family: "whatever"
             }
             MouseArea{
@@ -198,6 +193,7 @@ Rectangle {
             spacing: root.width*0.001
             columns: game.columns
             rows: game.rows
+
             Repeater{
                 id: repeaterId
                 model:gridid.rows*gridid.columns
@@ -343,7 +339,7 @@ Rectangle {
     //function to call when the game is lost
     function loseGame(){
         flagButton.enabled = false;
-        resetButtonImage.source = "icons/dazed.png"
+        resetButtonImage.source = Style.icons.dazed
         secondCounter.stop();
         sound3Mngr.playSound();
         for (m = 0; m < gridid.rows; m++) {
@@ -371,7 +367,7 @@ Rectangle {
 
     //function to call when the game is won
     function winGame(){
-        resetButtonImage.source = "icons/sunglasses.png"
+        resetButtonImage.source = Style.icons.sunglasses
         flagButton.enabled = false;
         secondCounter.stop();
         gridid.enabled = false;
@@ -381,23 +377,23 @@ Rectangle {
     function getNumberColor(number){
         switch(number) {
             case 1:
-                return game.colorOne;
+                return Style.color.colorOne;
             case 2:
-                return game.colorTwo;
+                return Style.color.colorTwo;
             case 3:
-                return game.colorThree;
+                return Style.color.colorThree;
             case 4:
-                return game.colorFour;
+                return Style.color.colorFour;
             case 5:
-                return game.colorFive;
+                return Style.color.colorFive;
             case 6:
-                return game.colorSix;
+                return Style.color.colorSix;
             case 7:
-                return game.colorSeven;
+                return Style.color.colorSeven;
             case 8:
-                return game.colorEight;
+                return Style.color.colorEight;
             default:
-                return game.colorSeven;
+                return Style.color.colorSeven;
         }
     }
 }

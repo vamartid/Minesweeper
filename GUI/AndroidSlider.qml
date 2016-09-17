@@ -1,6 +1,7 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Controls.Styles 1.4
+import "qrc:/Styles/" 1.0
 
 Slider{
     id: androidSlider
@@ -13,8 +14,8 @@ Slider{
                     height: androidSlider.height*0.19
                     width: androidSlider.width
                     gradient: Gradient {
-                        GradientStop { position: 0 ; color: "#434343" }
-                        GradientStop { position: 1 ; color: "#3f3f3f" }
+                        GradientStop { position: 0 ; color: Style.color.androidSlider_colorL_0 }
+                        GradientStop { position: 1 ; color: Style.color.androidSlider_colorL_1 }
                     }
                     radius: 8
                 }
@@ -23,8 +24,8 @@ Slider{
                     height: androidSlider.height*0.19
                     width: androidSlider.width*(value-minimumValue*0.9)/(maximumValue - minimumValue*0.9)
                     gradient: Gradient {
-                        GradientStop { position: 0 ; color: "#ff774c" }
-                        GradientStop { position: 1 ; color: "#FF5722" }
+                        GradientStop { position: 0 ; color: Style.color.androidSlider_colorR_0 }
+                        GradientStop { position: 1 ; color: Style.color.androidSlider_colorR_1 }
                     }
                     radius: 8
                 }
@@ -33,10 +34,10 @@ Slider{
         handle: Rectangle {
             anchors.centerIn: parent
             gradient: Gradient {
-                GradientStop { position: 0 ; color: control.pressed ? "#e1e1e1" : "#fbfbfb" }
-                GradientStop { position: 1 ; color: control.pressed ? "#ebebeb" : "#efefef" }
+                GradientStop { position: 0 ; color: control.pressed ? Style.color.android_Button_Pressed : Style.color.android_Button_Released }
+                GradientStop { position: 1 ; color: control.pressed ? Style.color.android_Button_Released : Style.color.android_Button_Pressed }
             }
-            border.color: "lightgray"
+            border.color: Style.color.androidSlider_Border
             border.width: androidSlider.height*0.03
             implicitWidth: androidSlider.height*0.62
             implicitHeight: androidSlider.height*0.62

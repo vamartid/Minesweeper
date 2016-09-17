@@ -2,6 +2,7 @@ import QtQuick 2.5
 import QtQuick.Controls 1.4
 import QtQuick.Window 2.2
 import QtGraphicalEffects 1.0
+import "qrc:/Styles/" 1.0
 
 //A rectangle for entering a players name, for the highscore section
 Rectangle{
@@ -10,7 +11,7 @@ Rectangle{
     width: minDim*0.9
     height: minDim*0.5
     visible: true
-    color: "#3f3f3f"
+    color: Style.color.dialog_Background
     anchors.centerIn: parent
     DropShadow {
         anchors.fill: nameInputDialog
@@ -18,7 +19,7 @@ Rectangle{
         verticalOffset: nameInputDialog.height*0.03
         horizontalOffset: nameInputDialog.height*0.03
         samples: 16
-        color: "#282828"
+        color: Style.color.dialog_Shadow
         source: nameInputDialog
     }
     radius: 4
@@ -35,7 +36,7 @@ Rectangle{
         anchors.left: parent.left
         anchors.right: parent.right
         anchors.topMargin: parent.height*0.05
-        color: "white"
+        color: Style.color.dialog_Text
         text: qsTr("Please enter your name")
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
@@ -45,7 +46,7 @@ Rectangle{
     Rectangle{
         id: nameRect
         visible:true
-        color: "#3f3f3f"
+        color: Style.color.dialog_Background
         height: parent.height*0.2
         anchors.top: parent.top
         anchors.topMargin: parent.height*0.3
@@ -56,7 +57,7 @@ Rectangle{
             anchors.top: parent.top
             anchors.left: parent.left
             anchors.bottom: parent.bottom
-            color: "white"
+            color: Style.color.dialog_Text
             width: parent.width*0.3
             text: qsTr("Name: ")
             verticalAlignment: Text.AlignVCenter
@@ -79,7 +80,7 @@ Rectangle{
         }
     }
     Rectangle{
-        color: "#3f3f3f"
+        color: Style.color.dialog_Background
         anchors.top: nameRect.bottom
         anchors.bottom: parent.bottom
         anchors.topMargin: parent.height*0.15
@@ -92,6 +93,7 @@ Rectangle{
             anchors.left: parent.left
             width: parent.width*0.4
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Accept")
@@ -111,6 +113,7 @@ Rectangle{
             anchors.right: parent.right
             width: parent.width*0.4
             Text{
+                color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height
                 text: qsTr("Cancel")
