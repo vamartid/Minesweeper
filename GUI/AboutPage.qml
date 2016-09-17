@@ -22,10 +22,10 @@ Rectangle {
     }
     Keys.onPressed: {
         if(event.key === Qt.Key_Down || event.key === Qt.Key_S){
-            flickArea.contentY+=-10;
+            flickArea.flick(0,-500);
         }
         else if(event.key === Qt.Key_Up|| event.key === Qt.Key_W){
-                flickArea.contentY+=10;
+            flickArea.flick(0,500);
         }
     }
     AndroidToolbar{
