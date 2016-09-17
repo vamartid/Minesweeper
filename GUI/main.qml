@@ -11,7 +11,6 @@ ApplicationWindow {
     minimumHeight: 640
     minimumWidth: 360
     maximumHeight: width*16/9
-    property int minDim: Math.min(height, width);
     Component{
         id: menu
         MainMenu{}

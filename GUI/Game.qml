@@ -44,8 +44,37 @@ Rectangle {
             back_game();
         }
     }
+    Keys.onPressed: {
+        switch(event.key) {
+            case Qt.Key_Left:
+                gameFlickable.flick(+500,0);
+                break;
+            case Qt.Key_A:
+                gameFlickable.flick(+500,0);
+                break;
+            case Qt.Key_Right:
+                gameFlickable.flick(-500,0);
+                break;
+            case Qt.Key_D:
+                gameFlickable.flick(-500,0);
+                break;
+            case Qt.Key_Up:
+                gameFlickable.flick(0,+500);
+                break;
+            case Qt.Key_W:
+                gameFlickable.flick(0,+500);
+                break;
+            case Qt.Key_Down:
+                gameFlickable.flick(0,-500);
+                break;
+            case Qt.Key_S:
+                gameFlickable.flick(0,-500);
+                break;
+        }
+    }
     AndroidToolbar{
         id: toolbar_game
+        z: 10
         BackButton{
             id: backButton_game
             onClicked:{
@@ -181,16 +210,23 @@ Rectangle {
         }
     }
     //ScrollView containing a Grid, which holds all the cells of the minefield
-    ScrollView {
+    Flickable {
+        id: gameFlickable
         anchors.top: toolbar_game.bottom
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: root.minDim*0.01
+        anchors.margins: game.height*0.0035
+        boundsBehavior: Flickable.StopAtBounds
+        contentHeight: gridid.height
+        contentWidth: gridid.width
+        clip: true
+        focus: true
+        z: 0
         Grid{
             id: gridid
             anchors.top: parent.top
-            spacing: root.minDim*0.001
+            spacing: game.height*0.001
             columns: game.columns
             rows: game.rows
 

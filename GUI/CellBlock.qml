@@ -5,8 +5,8 @@ import "qrc:/Styles/" 1.0
 
 Button{
     id: cellBlock
-    height: game.height*0.061
-    width: game.height*0.061
+    height: game.height*0.0608
+    width: game.height*0.0608
     property string cellText
     property string cellTextColor: Style.color.cellTextColor
     property string cellColor: Style.color.cellColorNotPressed
