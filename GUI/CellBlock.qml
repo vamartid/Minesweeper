@@ -5,8 +5,8 @@ import "qrc:/Styles/" 1.0
 
 Button{
     id: cellBlock
-    //cell size is set so 9 cells fit on the screen's width by default
-    property double cellSize: (gameFlickable.width-8*game.height*0.001)/9
+    //cell size is set so 9 cells fit on the screen's width by default and 14 cells fit on the screen's width on widescreen setups
+    property double cellSize: root.height > root.width ? (gameFlickable.width-8*game.height*0.001)/9 : (gameFlickable.width-13*game.height*0.001)/14
     height: cellSize
     width: cellSize
     property string cellText

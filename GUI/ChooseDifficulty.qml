@@ -158,7 +158,7 @@ Rectangle {
                 color: Style.color.android_Button_Text
                 width: parent.width
                 height: parent.height*0.95
-                text: qsTr("16x30 grid with 99 mines")
+                text: root.height > root.width ? qsTr("16x30 grid with 99 mines") : qsTr("30x16 grid with 99 mines")
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignBottom
                 wrapMode: Text.Wrap
@@ -166,8 +166,13 @@ Rectangle {
             }
 
             onClicked: {
-                choice.rows= 30
-                choice.columns= 16
+                if(root.height > root.width){
+                    choice.rows= 30
+                    choice.columns= 16
+                } else {
+                    choice.rows= 16
+                    choice.columns= 30
+                }
                 choice.mines= 99
                 choice.difficulty= 3
                 mineField.initField(choice.columns, choice.rows, choice.mines);
