@@ -70,10 +70,15 @@ Rectangle {
             case Qt.Key_S:
                 gameFlickable.flick(0,-500);
                 break;
-//            case Qt.Key_Control && Qt.WheelFocus.:
-//                gameFlickable.flick(0,-500);
-//                break;
         }
+    }
+
+    onHeightChanged: {
+        gridid.scale = 1
+    }
+
+    onWidthChanged: {
+        gridid.scale = 1
     }
 
     AndroidToolbar{
@@ -126,7 +131,6 @@ Rectangle {
                     smooth: true
                 }
                 onClicked:{
-                    //lost = false
                     for (m = 0; m < gridid.rows; m++) {
                         for (n = 0; n < gridid.columns; n++) {
                            repeaterId.itemAt(m*columns+n).reset();
@@ -220,31 +224,30 @@ Rectangle {
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: parent.right
-        anchors.margins: game.height*0.0035
+        anchors.margins: Math.max(game.height, game.width)*0.0035
         boundsBehavior: Flickable.StopAtBounds
-        contentHeight: gridid.height
-        contentWidth: gridid.width
+        contentHeight: gridid.height*gridid.scale > height ? gridid.height*gridid.scale : height
+        contentWidth: gridid.width*gridid.scale > width ? gridid.width*gridid.scale : width
         clip: true
         focus: true
         z: 0
         MouseArea{
+            id:flickMouseArea
             anchors.top: parent.top
             anchors.bottom: parent.bottom
             anchors.left: parent.left
             anchors.right: parent.right
-            id:flickMouseArea
-            property double temp: 0.7
             onWheel: {
-                if (wheel.modifiers & Qt.ControlModifier){
+                if (wheel.modifiers && Qt.ControlModifier && !nameInputDialog.visible && !exitGameDialog.visible){
                     if (wheel.angleDelta.y > 0){
-                        if(!(gridid.scale+0.07>=5.06)){
-                        gridid.scale += 0.07
-                        console.log(gridid.scale)
+                        if(!(gridid.scale + 0.07 >= 2)){
+                            gridid.scale += 0.07
                         }
                     }else {
-                        if(!(gridid.scale+0.07<=0.29)){
-                        gridid.scale -= 0.07
-                        console.log(gridid.scale)
+                        if((gridid.scale - 0.07)*gridid.width > gameFlickable.width || (gridid.scale - 0.07)*gridid.height > gameFlickable.height){
+                            gridid.scale -= 0.07
+                        } else {
+                            gridid.scale = gameFlickable.height/gridid.height > gameFlickable.width/gridid.width ? gameFlickable.width/gridid.width : gameFlickable.height/gridid.height;
                         }
                     }
                 }else{
@@ -252,25 +255,38 @@ Rectangle {
                 }
             }
         }
-        Grid{
-            id: gridid
-            anchors.top: parent.top
-            spacing: game.height*0.001
-            columns: game.columns
-            rows: game.rows
-
-            Repeater{
-                id: repeaterId
-                model:gridid.rows*gridid.columns
-                onItemAdded:{
-                    itemAt(index).x_position = index/gridid.columns
-                    itemAt(index).y_position = index % gridid.columns
-                }
-                CellBlock{
+        PinchArea{
+            id: gamePinchArea
+            anchors.fill: parent
+            pinch.target: gridid
+            pinch.minimumScale: gameFlickable.height/gridid.height > gameFlickable.width/gridid.width ? gameFlickable.width/gridid.width : gameFlickable.height/gridid.height
+            pinch.maximumScale: 2
+            onPinchStarted: {
+                gameFlickable.interactive = false;
+            }
+            onPinchFinished: {
+                gameFlickable.interactive = true;
+            }
+            Grid{
+                id: gridid
+                anchors.top: parent.top
+                anchors.left: parent.left
+                spacing: Math.max(game.height, game.width)*0.001
+                columns: game.columns
+                rows: game.rows
+                transformOrigin: Item.TopLeft
+                Repeater{
+                    id: repeaterId
+                    model:gridid.rows*gridid.columns
+                    onItemAdded:{
+                        itemAt(index).x_position = index/gridid.columns
+                        itemAt(index).y_position = index % gridid.columns
+                    }
+                    CellBlock{
+                    }
                 }
             }
         }
-
     }
 
     //A rectangle that shows up when the game is won, to enter a name for the high scores
@@ -283,11 +299,15 @@ Rectangle {
                 resetButton.enabled = false;
                 backButton_game.enabled = false;
                 timerMouseArea.enabled = false;
+                gameFlickable.interactive = false;
+                gamePinchArea.enabled = false;
                 forceActiveFocus();
             } else {
                 resetButton.enabled = true;
                 backButton_game.enabled = true;
                 timerMouseArea.enabled = true;
+                gameFlickable.interactive = true;
+                gamePinchArea.enabled = true;
                 game.forceActiveFocus();
             }
         }
@@ -303,6 +323,8 @@ Rectangle {
                 backButton_game.enabled = false;
                 flagButton.enabled = false;
                 timerMouseArea.enabled = false;
+                gameFlickable.interactive = false;
+                gamePinchArea.enabled = false;
                 forceActiveFocus();
                 secondCounter.stop();
                 gridid.enabled = false;
@@ -311,8 +333,12 @@ Rectangle {
                 backButton_game.enabled = true;
                 flagButton.enabled = true;
                 timerMouseArea.enabled = true;
+                gameFlickable.interactive = true;
+                gamePinchArea.enabled = true;
                 game.forceActiveFocus();
-                secondCounter.start();
+                if(mineField.getMoves() !== 0){
+                    secondCounter.start();
+                }
                 gridid.enabled = true;
             }
 

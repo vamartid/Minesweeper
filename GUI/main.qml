@@ -11,10 +11,12 @@ ApplicationWindow {
     minimumHeight: 640
     minimumWidth: 360
     maximumHeight: width*16/9
+
     Component{
         id: menu
         MainMenu{}
     }
+
     ToastManager{
         id: toast
     }

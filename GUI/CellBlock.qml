@@ -5,8 +5,8 @@ import "qrc:/Styles/" 1.0
 
 Button{
     id: cellBlock
-    //cell size changes when width becomes larger than height, best for bigger devices like tablets or computers
-    property double cellSize: gameFlickable.height > gameFlickable.width ? gameFlickable.width/9 : gameFlickable.height/14
+    //cell size is set so 9 cells fit on the screen's width by default
+    property double cellSize: (gameFlickable.width-8*game.height*0.001)/9
     height: cellSize
     width: cellSize
     property string cellText
@@ -68,17 +68,6 @@ Button{
                 } else {
                     game.rightClicked(x_position, y_position)
                 }
-            }
-        }
-        onPressed: {
-            if(!mineField.getisFlagged(x_position, y_position)){
-                resetButtonImage.source = Style.icons.mouth
-            }
-        }
-
-        onReleased: {
-            if(!(mineField.isGameLost() || mineField.isGameWon())){
-                resetButtonImage.source = Style.icons.smile
             }
         }
 

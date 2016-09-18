@@ -35,7 +35,6 @@
         <file>GUI/DarkButton.qml</file>
         <file>GUI/ExitGameDialog.qml</file>
         <file>GUI/icons/dazed.png</file>
-        <file>GUI/icons/open-mouth.png</file>
         <file>GUI/icons/screenshot.png</file>
         <file>GUI/AndroidSlider.qml</file>
         <file>Styles/qmldir</file>
