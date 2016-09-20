@@ -22,6 +22,6 @@
 </ul>
 <li>The emojis used in the game are modified versions of <a href="http://emojione.com/">EmojiOne</a>, licensed under <a href="https://creativecommons.org/licenses/by/4.0/">Creative Commons BY 4.0</a>
 </ul>
-
-[![forthebadge](http://forthebadge.com/images/badges/built-with-love.svg)](http://forthebadge.com)
+<a href="http://forthebadge.com">
+<img src="http://forthebadge.com/images/badges/built-for-android.svg" alt="Built for Android" width="28.4%" height="28.4%"/></a>
 [![forthebadge](http://forthebadge.com/images/badges/gluten-free.svg)](http://forthebadge.com)
