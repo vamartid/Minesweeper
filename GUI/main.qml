@@ -11,6 +11,7 @@ ApplicationWindow {
     minimumHeight: 640
     minimumWidth: 360
     maximumHeight: width*16/9
+    maximumWidth: height*2.2
 
     Component{
         id: menu

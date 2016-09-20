@@ -350,7 +350,7 @@ Rectangle {
                 Layout.preferredWidth: aboutPage.width*0.9
                 color: Style.color.text
                 text: qsTr("This program was created for a project in a mobile development course, in the Aristotle University of Thessaloniki.<br><br>
-                It is licensed under <a href=\"https://www.gnu.org/licenses/gpl.html\">GNU GPL v3</a> and the code is available  <a href=\"http://i.imgur.com/27nLhLy.gif\">on github</a>.<br><br>
+                It is licensed under <a href=\"https://www.gnu.org/licenses/gpl.html\">GNU GPL v3</a> and the code is available  <a href=\"https://github.com/vamartid/Minesweeper\">on github</a>.<br><br>
                 The main contributors are:
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/vamartid\">vamartid</a> - Vasilis Martidis<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/rigopoui\">rigopoui</a> - Yanis Rigopoulos<br>
