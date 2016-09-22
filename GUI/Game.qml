@@ -32,7 +32,7 @@ Rectangle {
         forceActiveFocus()
     }
     function back_game(){
-        if(mineField.isGameWon() || mineField.isGameLost()){
+        if(mineField.isGameWon() || mineField.isGameLost() || mineField.getMoves() === 0){
             stack.pop(stack.get(0))
         } else {
             exitGameDialog.visible = true;
@@ -293,6 +293,7 @@ Rectangle {
     //rectangle is used instead of window, so it works well on mobile platforms(modality is handled manually)
     NameInputDialog{
         id: nameInputDialog
+        z: 11
         visible: false
         onVisibleChanged: {
             if(visible === true){
@@ -316,6 +317,7 @@ Rectangle {
     //Similar functionality to NameInputDialog
     ExitGameDialog{
         id: exitGameDialog
+        z: 11
         visible: false
         onVisibleChanged: {
             if(visible === true){

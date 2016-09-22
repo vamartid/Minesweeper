@@ -248,8 +248,8 @@ Rectangle {
                            NumberAnimation {
                                target: customRectangle
                                property: "opacity"
-                               duration: 500
-                               easing.type: Easing.InOutQuad
+                               duration: 200
+                               easing.type: Easing.OutQuad
                            }
                            NumberAnimation {
                                target: customRectangle
@@ -270,8 +270,8 @@ Rectangle {
                            NumberAnimation {
                                target: customRectangle
                                property: "opacity"
-                               duration: 500
-                               easing.type: Easing.InOutQuad
+                               duration: 200
+                               easing.type: Easing.InQuad
                            }
                         }
                     }

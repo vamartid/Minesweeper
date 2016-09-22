@@ -230,6 +230,7 @@ Rectangle {
                 max.enabled = false;
                 defaults.enabled = false;
                 clearScores.enabled = false;
+                backButton_settingsPage.enabled = false;
                 forceActiveFocus();
             } else {
                 musicSlider.enabled = true;
@@ -238,6 +239,7 @@ Rectangle {
                 max.enabled = true;
                 defaults.enabled = true;
                 clearScores.enabled = true;
+                backButton_settingsPage.enabled = true;
                 settingsPage.forceActiveFocus();
             }
         }
