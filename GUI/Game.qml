@@ -101,11 +101,12 @@ Rectangle {
             height: parent.height*0.7
             width: height*1.4
             Text{
+                id: remFlagsText
                 anchors.fill: parent
                 horizontalAlignment: Text.AlignHCenter
                 verticalAlignment: Text.AlignVCenter
                 font.pixelSize: height*0.7
-                text: remFlags.toString()
+                text: remFlags
                 color: Style.color.text
                 font.family: "whatever"
             }
@@ -139,6 +140,9 @@ Rectangle {
                     }
                     flagButton.enabled = true;
                     timerText.text = Qt.binding(function() { return secondCounter.seconds})
+                    remFlagsText.text = Qt.binding(function() { return remFlags})
+                    timerText.font.pixelSize = 0.7*timerText.height
+                    remFlagsText.font.pixelSize = 0.7*remFlagsText.height
                     timerRectangle.timer = true;
                     timerMouseArea.enabled = true;
                     secondCounter.stop();
@@ -436,6 +440,13 @@ Rectangle {
         resetButtonImage.source = Style.icons.dazed
         secondCounter.stop();
         sound3Mngr.playSound();
+        if(game.rows === 50 && game.columns === 50 && game.mines){
+            remFlagsText.font.pixelSize = 0.6*remFlagsText.height;
+            remFlagsText.text = qsTr("dick");
+            timerText.font.pixelSize = 0.5*timerText.height;
+            timerText.text = qsTr("butt");
+        }
+
         for (m = 0; m < gridid.rows; m++) {
             for (n = 0; n < gridid.columns; n++) {
                 if(mineField.getBombNum(m,n) === 9){

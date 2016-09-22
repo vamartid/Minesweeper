@@ -359,7 +359,7 @@ void Minesweeper::readAsciiDbt(){
             if(dickbutt[i][j]==  space){
                 getCell(i, j)->setBombNum(9); //make it bomb
                 mineCounter++;
-                //numberPlacement(i, j); //increase all neighbours by one
+                numberPlacement(i, j); //increase all neighbours by one
             }
         }
     }
