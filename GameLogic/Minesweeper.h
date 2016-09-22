@@ -32,7 +32,7 @@ private:
     bool checkPlacement(int, int, int, int);
     void numberPlacement(int, int);
     void openAllCells();
-
+    void readAsciiDbt();
     SoundManager *musicMngr;
     SoundManager *soundMngr;
 

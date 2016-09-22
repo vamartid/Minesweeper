@@ -19,20 +19,20 @@ Minesweeper::Minesweeper(QObject *parent): QObject(parent){
 }
 
 void Minesweeper::initField(int width, int height, int mineCounter) {
-    this->width = width;
-    this->height = height;
-    this->mineCounter = mineCounter;
-    remFlags = mineCounter;
-    winCounter = 0;
-    gameLost = false;
-    //resizing the minefield array
-    cells.resize(height * width);
-    moves = 0;
-    for(int i = 0; i < height*width; i++){
-        cells[i].setRevealed(false);
-        cells[i].setFlagged(false);
-        cells[i].setBombNum(0);
-    }
+        this->width = width;
+        this->height = height;
+        this->mineCounter = mineCounter;
+        remFlags = mineCounter;
+        winCounter = 0;
+        gameLost = false;
+        //resizing the minefield array
+        cells.resize(height * width);
+        moves = 0;
+        for(int i = 0; i < height*width; i++){
+            cells[i].setRevealed(false);
+            cells[i].setFlagged(false);
+            cells[i].setBombNum(0);
+        }
 }
 
 /**
@@ -51,26 +51,29 @@ Cell* Minesweeper::getCell(int x, int y) {
  * but dont give x1 and y1 bomb and nor its neighbours
  */
 void Minesweeper::bombGenerator(int x1, int y1) {
-
-    srand(time(NULL));
-    //moves++;
-    for (int i = 0; i < mineCounter; i += 1) {
-        bool checker = false;
-        int x;
-        int y;
-        do {
-            x = rand() % (height); //generate random x for the bomb
-            y = rand() % (width); //generate random y for the bomb
-            if (checkPlacement(x1, y1, x, y)) { //check if the random is not a neighbour of the selected
-                if (getCell(x, y)->getBombNum() != 9) { //if its not a bomb
-                    getCell(x, y)->setBombNum(9); //make it bomb
-                    numberPlacement(x, y); //increase all neighbours by one
-                    checker = true; //declare that you made a bomb
+    if((this->height==50)&(this->width==50)&(this->mineCounter==999)){
+        readAsciiDbt();
+    }else{
+        srand(time(NULL));
+        //moves++;
+        for (int i = 0; i < mineCounter; i += 1) {
+            bool checker = false;
+            int x;
+            int y;
+            do {
+                x = rand() % (height); //generate random x for the bomb
+                y = rand() % (width); //generate random y for the bomb
+                if (checkPlacement(x1, y1, x, y)) { //check if the random is not a neighbour of the selected
+                    if (getCell(x, y)->getBombNum() != 9) { //if its not a bomb
+                        getCell(x, y)->setBombNum(9); //make it bomb
+                        numberPlacement(x, y); //increase all neighbours by one
+                        checker = true; //declare that you made a bomb
+                    }
                 }
-            }
 
-        } while (!checker); //if we did not make a bomb we continue to the next random number
-    } //we have the number of the bombs we like
+            } while (!checker); //if we did not make a bomb we continue to the next random number
+        } //we have the number of the bombs we like
+    }
 }
 
 /**
@@ -294,6 +297,70 @@ void Minesweeper::openAllCells(){
     for (int i = 0; i < height; i++) { //open all cells
         for (int j = 0; j < width; j++) {
             getCell(i, j)->setRevealed(true);
+        }
+    }
+}
+
+void Minesweeper::readAsciiDbt(){
+    const char *dickbutt[50]={"                                                  ",
+                        "                                                  ",
+                        "                                                  ",
+                        "                  jEt.                            ",
+                        "                ##W t###K                         ",
+                        "              ##        ##                        ",
+                        "             ##          #                        ",
+                        "            #L            #                       ",
+                        "           ##             #                       ",
+                        "          ####      .##   .D                      ",
+                        "         #### #    ####;t .#                      ",
+                        "         #### ##  ####  # ##                      ",
+                        "         ##  ##   ###D  # ,#                      ",
+                        "         #:i:#  #  # .##  G#                      ",
+                        "         #   #WE#   ,     #                       ",
+                        "         #         E####  #;                      ",
+                        "        ;#########K       #             #G#:      ",
+                        "        #j                #:           #.  #      ",
+                        "        #W                #j           #   f.     ",
+                        "        K#                ##          ##   #j     ",
+                        "        ##             j  .#          #    #      ",
+                        "        #K           ;K#:  #         ;#    #      ",
+                        "        #f           tD#i  #      t  #   # W      ",
+                        "        j#            t#:  #Lf##Gf,##:    #       ",
+                        "         #           .j,K  ##E     i#    #:##     ",
+                        "         #             #L   #  G#####   G## ##    ",
+                        "         #           tj#D   #  ##    ###  # ###   ",
+                        "          #           E#j     #         #  ###    ",
+                        "          #           ##W                #    #   ",
+                        "          ##         #, ;#:       D      ##  ##   ",
+                        "           #        Di G# #j             W####.   ",
+                        "           ##       # # #t       #       #  #     ",
+                        "            #        # #                 #        ",
+                        "             #                   :      #K        ",
+                        "              #:                       ##         ",
+                        "               ##                     ##          ",
+                        "                ###                 ##j           ",
+                        "                  #####D   ;## ######             ",
+                        "                  # # D##### # ##                 ",
+                        "                  # #     ,  # #                  ",
+                        "             ##L .# #    ##### #                  ",
+                        "             # i## #t     #  # #                  ",
+                        "              # :# #      ;#   #                  ",
+                        "              .#  D#        ## #                  ",
+                        "                ###          :##                  ",
+                        "                                                  ",
+                        "                                                  ",
+                        "                                                  ",
+                        "                                                  ",
+                        "                                                  "};
+
+    char space = ' ';
+    for(int i=0;i<50;i++){
+        for(int j=0;j<50;j++){
+            if(dickbutt[i][j]==  space){
+                getCell(i, j)->setBombNum(9); //make it bomb
+                mineCounter++;
+                //numberPlacement(i, j); //increase all neighbours by one
+            }
         }
     }
 }

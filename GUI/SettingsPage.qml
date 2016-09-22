@@ -19,9 +19,11 @@ Rectangle {
             back();
         }
     }
-    property double volumeS: 0.0
+    property double defaultS: 50.0
+    property double defaultM: 0.0
+    property double volumeS: 50.0
     property double volumeM: 0.0
-    property bool temp: false
+    property bool tmp_bool:false
 
     AndroidToolbar{
         id: toolbar_settings
@@ -244,25 +246,24 @@ Rectangle {
             }
         }
     }
-    
+
     function muteBtn(){
-        /*silenceModeS=true
-        silenceModeM=true*/
         if((musicMngr.getMuteSound())&&(soundMngr.getMuteSound())){
-            musicMngr.muteSound(false);
-            soundMngr.muteSound(false);
-            sound2Mngr.muteSound(false);
-            sound3Mngr.muteSound(false);
-            if((musicSlider.value==0.0)&&(soundsSlider.value==0.0)){
-                musicSlider.value=volumeM
-                soundsSlider.value=volumeS
-                temp=false
+            musicSlider.value=volumeM
+            soundsSlider.value=volumeS
+            if((volumeM==0.0)&&(volumeS==0.0)){
+                tmp_bool=true;
+                muteMan();
+            }else if(volumeS==0.0){
+                soundMngr.muteSound(true);
+                sound2Mngr.muteSound(true);
+                sound3Mngr.muteSound(true);
+            }else if(volumeM==0.0){
+                musicMngr.muteSound(true);
             }
         }else{
-            musicMngr.muteSound(true);
-            soundMngr.muteSound(true);
-            sound2Mngr.muteSound(true);
-            sound3Mngr.muteSound(true);
+            tmp_bool=true;
+            muteMan();
             volumeM=musicSlider.value
             volumeS=soundsSlider.value
             musicSlider.value=0.0
@@ -271,64 +272,63 @@ Rectangle {
     }
 
     function maxBtn(){
-        if(musicMngr.getMuteSound()){
-            musicMngr.muteSound(false);
-            soundMngr.muteSound(false);
-            sound2Mngr.muteSound(false);
-            sound3Mngr.muteSound(false);
-            temp=true
-        }
-
         if((musicSlider.value==100.0)&&(soundsSlider.value==100.0)){
-            if(temp){
-                musicMngr.muteSound(true);
+            musicSlider.value=volumeM
+            soundsSlider.value=volumeS
+            if((volumeM==0.0)&&(volumeS==0.0)){
+                tmp_bool=true;
+                muteMan();
+            }else if(volumeS==0.0){
                 soundMngr.muteSound(true);
                 sound2Mngr.muteSound(true);
                 sound3Mngr.muteSound(true);
-                musicSlider.value=0.0
-                soundsSlider.value=0.0
-            }else{
-                musicSlider.value=volumeM
-                soundsSlider.value=volumeS
+            }else if(volumeM==0.0){
+                musicMngr.muteSound(true);
             }
         }else{
-            if(!temp){
-                volumeM=musicSlider.value
-                volumeS=soundsSlider.value
+            if(tmp_bool==true){
+                tmp_bool=false;
+                muteMan();
             }
+            volumeM=musicSlider.value
+            volumeS=soundsSlider.value
             musicSlider.value=100.0
             soundsSlider.value=100.0
         }
     }
 
     function defaultsBtn(){
-        if(musicMngr.getMuteSound()){
-            musicMngr.muteSound(false);
-            soundMngr.muteSound(false);
-            sound2Mngr.muteSound(false);
-            sound3Mngr.muteSound(false);
-            temp=true
-        }
-
-        if((musicSlider.value==50.0)&&(soundsSlider.value==50.0)){
-            if(temp){
-                musicMngr.muteSound(true);
+        if((musicSlider.value==defaultM)&&(soundsSlider.value==defaultS)){
+            musicSlider.value=volumeM
+            soundsSlider.value=volumeS
+            if((volumeM==0.0)&&(volumeS==0.0)){
+                tmp_bool=true;
+                muteMan();
+            }else if(volumeS==0.0){
                 soundMngr.muteSound(true);
                 sound2Mngr.muteSound(true);
                 sound3Mngr.muteSound(true);
-                musicSlider.value=0.0
-                soundsSlider.value=0.0
-            }else{
-                musicSlider.value=volumeM
-                soundsSlider.value=volumeS
+            }else if(volumeM==0.0){
+                musicMngr.muteSound(true);
             }
         }else{
-            if(!temp){
-                volumeM=musicSlider.value
-                volumeS=soundsSlider.value
+            if(tmp_bool==true){
+                musicMngr.muteSound(true);
+                soundMngr.muteSound(false);
+                sound2Mngr.muteSound(false);
+                sound3Mngr.muteSound(false);
             }
-            musicSlider.value=0.0
-            soundsSlider.value=50.0
+            volumeM=musicSlider.value
+            volumeS=soundsSlider.value
+            musicSlider.value=defaultM
+            soundsSlider.value=defaultS
         }
+    }
+
+    function muteMan(){
+        musicMngr.muteSound(tmp_bool);
+        soundMngr.muteSound(tmp_bool);
+        sound2Mngr.muteSound(tmp_bool);
+        sound3Mngr.muteSound(tmp_bool);
     }
 }

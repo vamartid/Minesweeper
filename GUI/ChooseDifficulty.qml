@@ -408,9 +408,10 @@ Rectangle {
                     text: qsTr("Accept")
                     color: Style.color.text
                     horizontalAlignment: Text.AlignHCenter
-                    anchors.top: acceptImage.bottom
                     anchors.left: acceptImage.left
                     anchors.right: acceptImage.right
+                    anchors.bottom: parent.bottom
+                    anchors.bottomMargin: parent.height*0.07
                     font.pixelSize: parent.height*0.2
                 }
 
