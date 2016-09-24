@@ -35,9 +35,9 @@
         <file>GUI/DarkButton.qml</file>
         <file>GUI/ExitGameDialog.qml</file>
         <file>GUI/icons/dazed.png</file>
-        <file>GUI/icons/screenshot.png</file>
         <file>GUI/AndroidSlider.qml</file>
         <file>Styles/qmldir</file>
         <file>Styles/Style_Default.qml</file>
+        <file>GUI/icons/ico/minesweeper.ico</file>
     </qresource>
 </RCC>

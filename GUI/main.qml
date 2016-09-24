@@ -10,6 +10,14 @@ ApplicationWindow {
     title: qsTr("Minesweeper - Qt")
     minimumHeight: 640
     minimumWidth: 360
+    property double keepS: 50.0
+    property double keepM: 0.0
+//    onWidthChanged: {
+//        height=width*1.77777777778
+//    }
+//    onHeightChanged: {
+//        width=height/1.77777777778
+//    }
     maximumHeight: width*16/9
     maximumWidth: height*2.2
 
@@ -20,6 +28,7 @@ ApplicationWindow {
 
     ToastManager{
         id: toast
+
     }
 
     StackView

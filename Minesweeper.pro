@@ -1,9 +1,11 @@
+TARGET  = Minesweeper
 TEMPLATE = app
 
 QT += qml quick \
         multimedia \
         multimediawidgets
-CONFIG += c++11
+
+CONFIG += static
 
 SOURCES += main.cpp \
     GameLogic/Cell.cpp \
@@ -15,6 +17,10 @@ SOURCES += main.cpp \
 
 RESOURCES += \
     qml.qrc
+
+#Windows icon
+#Not working...we need to fix this
+#win32:RC_ICONS += :/GUI/icons/ico/minesweeper.ico
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =

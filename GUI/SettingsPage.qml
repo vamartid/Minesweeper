@@ -31,6 +31,8 @@ Rectangle {
             id: backButton_settingsPage
             onClicked:{
                 back();
+                root.keepS= soundsSlider.value
+                root.keepM= musicSlider.value
             }
         }
         Text{
@@ -75,7 +77,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width-parent.width/3
         height: parent.height*0.06
-        value: 0.0
+        value: root.keepM
         maximumValue: 100.0
         minimumValue : 0.0
         stepSize: 1.0
@@ -104,7 +106,7 @@ Rectangle {
         anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width-parent.width/3
         height: parent.height*0.06
-        value: 50.0
+        value: root.keepS
         maximumValue: 100.0
         minimumValue : 0.0
         stepSize: 1.0
