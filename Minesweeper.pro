@@ -20,7 +20,9 @@ RESOURCES += \
 
 #Windows icon
 #Not working...we need to fix this
-#win32:RC_ICONS += :/GUI/icons/ico/minesweeper.ico
+win32:RC_FILE = minesweeper.rc
+#MAC set .ICN
+#ICON =/GUI/icons/ico/minesweeper.icns
 
 # Additional import path used to resolve QML modules in Qt Creator's code model
 QML_IMPORT_PATH =
@@ -43,6 +45,8 @@ DISTFILES += \
     android/res/values/libs.xml \
     android/build.gradle \
     android/gradle/wrapper/gradle-wrapper.properties \
-    android/gradlew.bat
+    android/gradlew.bat \
+    minesweeper.rc \
+    minesweeper.exe.manifest
 
 ANDROID_PACKAGE_SOURCE_DIR = $$PWD/android

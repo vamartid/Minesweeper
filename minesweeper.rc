@@ -1,0 +1,2 @@
+IDI_ICON1               ICON    DISCARDABLE     "/GUI/icons/ico/minesweeper.ico"
+CREATEPROCESS_MANIFEST_RESOURCE_ID RT_MANIFEST "/minesweeper.exe.manifest"

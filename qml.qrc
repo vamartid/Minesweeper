@@ -39,5 +39,6 @@
         <file>Styles/qmldir</file>
         <file>Styles/Style_Default.qml</file>
         <file>GUI/icons/ico/minesweeper.ico</file>
+        <file>GUI/icons/ico/minesweeper.png</file>
     </qresource>
 </RCC>
