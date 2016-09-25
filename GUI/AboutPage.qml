@@ -355,7 +355,10 @@ Rectangle {
                 <br>&nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/vamartid\">vamartid</a> - Vasilis Martidis<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/rigopoui\">rigopoui</a> - Yanis Rigopoulos<br>
                 &nbsp;&nbsp;&nbsp;&nbsp;<a href=\"https://github.com/GeorgeKirm\">GeorgeKirm</a> - Giorgos Kirmitsakis<br><br>
-                The emojis used in the game are modified versions of <a href=\"http://emojione.com\">EmojiOne</a>, licensed under <a href=\"https://creativecommons.org/licenses/by/4.0\">Creative Commons BY 4.0</a>")
+                The emojis used in the game are modified versions of <a href=\"http://emojione.com\">EmojiOne</a>, licensed under <a href=\"https://creativecommons.org/licenses/by/4.0\">Creative Commons BY 4.0</a><br>
+                Other Images used are created by us.<br>
+                The <a href=\"https://www.youtube.com/watch?v=1-BmRDGXPZA\">music</a> is a remake by <a href=\"http://www.maf464.com\">maf464</a> of the music from the game \"Nemesis The Warlock\"
+                composed by Rob Hubbard, licensed under <a href=\"https://creativecommons.org/licenses/by-nc/3.0\">Attribution Non-Commercial Creative Commons License (CC BY NC)</a>.<br><br>")
                 linkColor: Style.color.text_Link
                 horizontalAlignment: Text.AlignJustify
                 font.pixelSize: aboutPage.height*0.025
