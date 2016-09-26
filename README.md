@@ -12,10 +12,12 @@
 <li><h3>Where can I download Minesweeper?</h3>
 <ul>
 <li>
-<a href="https://github.com/vamartid/Minesweeper/raw/master/_build-Releases/Minesweeper.exe">
-<img src="http://imgur.com/rnaQsEl.png" alt="Download for windows"/></a>
-<a href="https://github.com/vamartid/Minesweeper/raw/master/_build-Releases/minesweeper.apk">
-<img src="http://imgur.com/V2bzoBB.png" alt="Download for Android"/></a>
+<a href="https://github.com/vamartid/Minesweeper/releases/download/v1.0/Minesweeper.exe">
+<img src="http://i.imgur.com/eAgAGLm.png" alt="Download for windows 32 bit" width="125" height="125" /></a>
+<a href="https://github.com/vamartid/Minesweeper/releases/download/v1.0/minesweeper_Android_for.armeabi-v7a.apk">
+<img src="http://i.imgur.com/qntgtVT.png" alt="Download for Android armeabi-v7a" width="106.473594549" height="125" /></a>
+<a href="https://github.com/vamartid/Minesweeper/releases/download/v1.0/minesweeper_Android_for_x86.apk">
+<img src="http://i.imgur.com/af2WQs8.png" alt="Download for Android x86" width="106.473594549" height="125" /></a>
 </li>
 </ul>
 <li><h3>License</h3>
