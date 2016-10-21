@@ -221,12 +221,12 @@ Rectangle {
                         width: parent.height
                         property bool timer: true
                         Text{
-                            id: secCounterReferenceText
+                            id: sampleCounterText
                             anchors.fill: parent
                             horizontalAlignment: Text.AlignHCenter
                             verticalAlignment: Text.AlignVCenter
                             font.pixelSize: height*0.7
-                            text: sampleSecondCounter.seconds
+                            text: sampleCounter.seconds
                             color: Style.color.text
                             font.family: "droid-sans-mono"
                         }
@@ -236,26 +236,29 @@ Rectangle {
                             acceptedButtons: Qt.LeftButton
                             onClicked:{
                                 if(secCounterReference.timer){
-                                    secCounterReferenceText.text = "4"
+                                    sampleCounterText.text = "4"
                                     secCounterReference.timer = false;
+                                    sampleCounterDescription.text = "The moves counter"
                                 } else {
-                                    secCounterReferenceText.text = Qt.binding(function() { return sampleSecondCounter.seconds})
+                                    sampleCounterText.text = Qt.binding(function() { return sampleCounter.seconds})
                                     secCounterReference.timer = true;
+                                    sampleCounterDescription.text = "The seconds counter"
                                 }
                             }
                         }
                     }
                     SecondCounter{
-                        id: sampleSecondCounter
+                        id: sampleCounter
                         running: true
                         seconds: 15
                     }
 
                     Text{
+                        id: sampleCounterDescription
                         anchors.left: secCounterReference.right
                         anchors.leftMargin: aboutPage.width*0.05
                         height: parent.height
-                        text: "The seconds timer"
+                        text: "The seconds counter"
                         font.pixelSize: parent.height*0.5
                         horizontalAlignment: Text.AlignJustify
                         verticalAlignment: Text.AlignVCenter

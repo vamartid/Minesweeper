@@ -273,12 +273,23 @@ Rectangle {
             }
             Grid{
                 id: gridid
+                //scale: gameFlickable.height/gridid.height > gameFlickable.width/gridid.width ? gameFlickable.width/gridid.width : gameFlickable.height/gridid.height
                 anchors.top: parent.top
                 anchors.left: parent.left
+                //anchors.horizontalCenter: parent.horizontalCenter
+                //anchors.centerIn: parent
                 spacing: Math.max(game.height, game.width)*0.001
                 columns: game.columns
                 rows: game.rows
                 transformOrigin: Item.TopLeft
+                ScaleAnimator {
+                        running: gridid.height > gameFlickable.height || gridid.width > gameFlickable.width
+                        target: gridid;
+                        from: gameFlickable.height/gridid.height > gameFlickable.width/gridid.width ? gameFlickable.width/(1.3*gridid.width) : gameFlickable.height/(1.3*gridid.height)
+                        to: 1;
+                        duration: 1000
+                        //easing.type: Easing.InCurve
+                    }
                 Repeater{
                     id: repeaterId
                     model:gridid.rows*gridid.columns
