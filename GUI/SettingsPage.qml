@@ -122,8 +122,8 @@ Rectangle {
         id: mute
         anchors.top: soundsSlider.bottom
         anchors.topMargin: height*0.34
-        anchors.left: parent.left
-        anchors.leftMargin: height*0.34
+        anchors.right: max.left
+        anchors.rightMargin: height*0.34
         width: parent.width/3.5
         height: root.height/16
         Text{
@@ -145,8 +145,7 @@ Rectangle {
         id: max
         anchors.top: soundsSlider.bottom
         anchors.topMargin: height*0.34
-        anchors.left: mute.right
-        anchors.leftMargin: height*0.34
+        anchors.horizontalCenter: parent.horizontalCenter
         width: parent.width/3.5
         height: root.height/16
         Text{
@@ -168,8 +167,8 @@ Rectangle {
         id: defaults
         anchors.top: soundsSlider.bottom
         anchors.topMargin: height*0.34
-        anchors.right: parent.right
-        anchors.rightMargin: height*0.34
+        anchors.left: max.right
+        anchors.leftMargin: height*0.34
         width: parent.width/3.5
         height: root.height/16
         Text{
@@ -192,7 +191,7 @@ Rectangle {
         anchors.top: max.bottom
         anchors.topMargin: height*0.34
         anchors.horizontalCenter: parent.horizontalCenter
-        width: parent.width/2.6
+        width: parent.width/3.5
         height: root.height/16
         Text{
             color: Style.color.android_Button_Text

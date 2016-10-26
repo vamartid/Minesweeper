@@ -1,6 +1,5 @@
 import QtQuick 2.5
 import QtQuick.Controls 1.4
-import QtQuick.Window 2.2
 import "qrc:/Styles/" 1.0
 
 Rectangle {
@@ -282,8 +281,11 @@ Rectangle {
                 columns: game.columns
                 rows: game.rows
                 transformOrigin: Item.TopLeft
+
+                //An animation when the game starts to show that the grid may be bigger than the window
                 ScaleAnimator {
-                        running: gridid.height > gameFlickable.height || gridid.width > gameFlickable.width
+                        //id: zoomAnimation
+                        running : gridid.height > gameFlickable.height || gridid.width > gameFlickable.width
                         target: gridid;
                         from: gameFlickable.height/gridid.height > gameFlickable.width/gridid.width ? gameFlickable.width/(1.3*gridid.width) : gameFlickable.height/(1.3*gridid.height)
                         to: 1;
@@ -383,7 +385,7 @@ Rectangle {
 
     function rightClicked(x_position, y_position){
         if(mineField.getMoves() === 0){
-            toast.show("Reveal a cell to start the game")
+            toast.show("Reveal a block to start the game")
         } else {
             mineField.rightClickAction(x_position, y_position);
             if(!mineField.getisRevealed(x_position, y_position)){

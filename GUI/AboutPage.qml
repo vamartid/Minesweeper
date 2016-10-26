@@ -320,11 +320,12 @@ Rectangle {
                 Layout.preferredHeight: contentHeight
                 Layout.preferredWidth: aboutPage.width*0.9
                 color: Style.color.text
-                text: qsTr("-  The reset button starts a new game.<br><br>
+                text: qsTr("-  The goal of the game is to reveal all the blocks that don't contain mines.<br><br>
+                -  A block's number represents the amount of mines in neighbouring blocks.<br><br>
+                -  The reset button starts a new game.<br><br>
                 -  The flag mode button changes your mode from reveal mode to flag mode.<br><br>
                 -  In reveal mode, left click reveals blocks and right click / left hold flags a block.<br><br>
                 -  In flag mode, left click flags blocks and right click/ left hold reveals a block.<br><br>
-                -  A block's number represents the amount of mines in neighbouring blocks.<br><br>
                 -  Double clicking a block, which has as many neighbouring flagged blocks as its number, will reveal the rest of its neighbouring blocks.<br><br>
                 -  Clicking the seconds timer will change it to display the number of moves you have made.<br><br>
                 -  You can zoom in and out by pinching(touch screens) or using ctrl+mouse wheel(desktop/laptop)")
