@@ -453,7 +453,7 @@ Rectangle {
         resetButtonImage.source = Style.icons.dazed
         secondCounter.stop();
         sound3Mngr.playSound();
-        if(game.rows === 50 && game.columns === 50 && game.mines){
+        if(game.rows === 50 && game.columns === 50 && game.mines === 999){
             remFlagsText.font.pixelSize = 0.6*remFlagsText.height;
             remFlagsText.text = qsTr("dick");
             timerText.font.pixelSize = 0.5*timerText.height;

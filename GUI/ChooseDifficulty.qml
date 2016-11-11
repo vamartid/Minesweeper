@@ -427,7 +427,15 @@ Rectangle {
                     choice.columns = Math.floor(parseInt(widthSlider.value));
                     choice.mines = Math.floor(parseInt(minesSlider.value));
                     mineField.initField(choice.columns, choice.rows, choice.mines);
-                    customGame = true;
+                    if(choice.rows === 9 && choice.columns === 9 && choice.mines === 10){
+                        difficulty = 1;
+                    } else if(choice.rows === 16 && choice.columns === 16 && choice.mines === 40){
+                        difficulty = 2;
+                    } else if(((choice.rows === 30 && choice.columns === 16) || (choice.rows === 16 && choice.columns === 30)) && choice.mines === 99){
+                        difficulty = 3;
+                    } else{
+                        customGame = true;
+                    }
                     stack.push(game)
                 }
             }
