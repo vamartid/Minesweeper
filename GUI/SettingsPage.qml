@@ -30,6 +30,7 @@ Rectangle {
         BackButton{
             id: backButton_settingsPage
             onClicked:{
+                mainMenu.enableViewsItems();
                 back();
                 root.keepS= soundsSlider.value
                 root.keepM= musicSlider.value

@@ -25,6 +25,7 @@ Rectangle {
         BackButton{
             id: backbutton_scores
             onClicked:{
+                mainMenu.enableViewsItems();
                 back();
             }
         }

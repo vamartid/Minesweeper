@@ -86,6 +86,7 @@ Rectangle {
         BackButton{
             id: backButton_game
             onClicked:{
+                mainMenu.enableViewsItems();
                 back_game();
             }
         }

@@ -31,6 +31,7 @@ Rectangle {
             id: backbutton_choice
             onClicked:
             {
+                mainMenu.enableViewsItems();
                 back();
             }
         }
@@ -93,6 +94,7 @@ Rectangle {
                 font.pixelSize: parent.height*0.25
             }
             onClicked: {
+                disableViewAddItems();
                 choice.difficulty= 1
                 mineField.initField(choice.columns, choice.rows, choice.mines);
                 stack.push(game)
@@ -128,6 +130,7 @@ Rectangle {
             }
 
             onClicked: {
+                disableViewAddItems();
                 choice.rows= 16
                 choice.columns= 16
                 choice.mines= 40
@@ -166,6 +169,7 @@ Rectangle {
             }
 
             onClicked: {
+                disableViewAddItems();
                 if(root.height > root.width){
                     choice.rows= 30
                     choice.columns= 16
@@ -423,6 +427,7 @@ Rectangle {
 
                 onClicked: {
                     soundMngr.playSound();
+                    disableViewAddItems();
                     choice.rows = Math.floor(parseInt(heightSlider.value));
                     choice.columns = Math.floor(parseInt(widthSlider.value));
                     choice.mines = Math.floor(parseInt(minesSlider.value));
@@ -451,7 +456,9 @@ Rectangle {
             }
         }
     }
-
+    function disableViewAddItems(){
+        choice.enabled = false;
+    }
     Component{
         id:game
         Game{}

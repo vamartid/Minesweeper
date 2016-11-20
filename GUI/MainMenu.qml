@@ -5,6 +5,7 @@ import QtQuick.Window 2.2
 import "qrc:/Styles/" 1.0
 
 Rectangle {
+    id:mainMenu
     height: parent.height
     width: parent.width
     visible: true
@@ -95,6 +96,7 @@ Rectangle {
             }
             onClicked:
             {
+                disableViewAddItems()
                 stack.push(chooseDifficulty);
             }
         }
@@ -118,6 +120,7 @@ Rectangle {
             }
             onClicked:
             {
+                disableViewAddItems()
                 stack.push(scores);
             }
         }
@@ -140,6 +143,7 @@ Rectangle {
             }
             onClicked:
             {
+                disableViewAddItems()
                 stack.push(aboutPage);
             }
         }
@@ -174,6 +178,7 @@ Rectangle {
             }
             onClicked:
             {
+                disableViewAddItems()
                 stack.push(settingsPage);
             }
         }
@@ -188,6 +193,13 @@ Rectangle {
         font.pixelSize: parent.height*0.0186
         text: qsTr("Aristotle University of Thessaloniki - 2016")
     }
+    function disableViewAddItems(){
+        mainMenu.enabled = false;
+    }
+    function enableViewsItems(){
+        mainMenu.enabled = true;
+    }
+
     //Different components for the stackview
     Component
     {
