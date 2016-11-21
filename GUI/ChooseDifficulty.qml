@@ -31,7 +31,6 @@ Rectangle {
             id: backbutton_choice
             onClicked:
             {
-                mainMenu.enableViewsItems();
                 back();
             }
         }

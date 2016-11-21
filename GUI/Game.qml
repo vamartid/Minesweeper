@@ -36,6 +36,7 @@ Rectangle {
         } else {
             exitGameDialog.visible = true;
         }
+        mainMenu.enableViewsItems();
     }
     Keys.onReleased: {
         if(event.key === Qt.Key_Back){
@@ -86,7 +87,6 @@ Rectangle {
         BackButton{
             id: backButton_game
             onClicked:{
-                mainMenu.enableViewsItems();
                 back_game();
             }
         }
@@ -286,7 +286,7 @@ Rectangle {
                 //An animation when the game starts to show that the grid may be bigger than the window
                 ScaleAnimator {
                         //id: zoomAnimation
-                        running : gridid.height > gameFlickable.height || gridid.width > gameFlickable.width
+                        running : gridid.height > 1.1*gameFlickable.height || gridid.width > 1.1*gameFlickable.width
                         target: gridid;
                         from: gameFlickable.height/gridid.height > gameFlickable.width/gridid.width ? gameFlickable.width/(1.3*gridid.width) : gameFlickable.height/(1.3*gridid.height)
                         to: 1;

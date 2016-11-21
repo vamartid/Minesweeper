@@ -37,8 +37,4 @@ ApplicationWindow {
         initialItem: menu
         id: stack
     }
-
-    function back(){
-        stack.pop();
-    }
 }

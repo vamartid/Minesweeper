@@ -32,6 +32,10 @@ Item{
 
     Rectangle{
         property int minDim: Math.min(parent.height, parent.width);
+        focus: true
+        Component.onCompleted: {
+            forceActiveFocus()
+        }
         width: minDim*0.9
         height: minDim*0.5
         visible: true

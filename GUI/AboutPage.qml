@@ -33,7 +33,6 @@ Rectangle {
         BackButton{
             id: backButton_aboutPage
             onClicked:{
-                mainMenu.enableViewsItems();
                 back();
             }
         }

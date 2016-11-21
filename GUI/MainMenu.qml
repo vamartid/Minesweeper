@@ -224,4 +224,8 @@ Rectangle {
         SettingsPage{}
     }
 
+    function back(){
+        stack.pop();
+        mainMenu.enableViewsItems();
+    }
 }
