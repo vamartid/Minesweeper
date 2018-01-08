@@ -25,7 +25,7 @@ int main(int argc, char *argv[])
     engine.rootContext()->setContextProperty("musicMngr",musicMngr);
     //About the sounds of the buttons
     SoundManager *soundMngr = new SoundManager();
-    soundMngr->initFields(50,false,QUrl("qrc:/Sound/crash_padle.wav"));
+    soundMngr->initFields(50,false,QUrl("qrc:/Sound/crash_padle.mp3"));
     engine.rootContext()->setContextProperty("soundMngr",soundMngr);
     //About the sounds of the cells
     SoundManager *sound2Mngr = new SoundManager();

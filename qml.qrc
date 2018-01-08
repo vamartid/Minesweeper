@@ -26,11 +26,7 @@
         <file>GUI/SettingsPage.qml</file>
         <file>GUI/icons/gear.png</file>
         <file>GUI/icons/screenshot.png</file>
-        <file>Sound/crash_padle.wav</file>
-        <file>Sound/Rob Hubbard - Nemesis The Warlock (Maf464 remix).mp3</file>
-        <file>Sound/temp.wav</file>
         <file>GUI/icons/mine-greyflagged.png</file>
-        <file>Sound/grenade.mp3</file>
         <file>GUI/ClearScoreCheck.qml</file>
         <file>GUI/DarkButton.qml</file>
         <file>GUI/ExitGameDialog.qml</file>
@@ -40,5 +36,9 @@
         <file>Styles/Style_Default.qml</file>
         <file>GUI/icons/ico/minesweeper.ico</file>
         <file>GUI/icons/ico/minesweeper.png</file>
+        <file>Sound/crash_padle.mp3</file>
+        <file>Sound/grenade.mp3</file>
+        <file>Sound/Rob Hubbard - Nemesis The Warlock (Maf464 remix).mp3</file>
+        <file>Sound/temp.wav</file>
     </qresource>
 </RCC>
